@@ -1617,6 +1617,634 @@ class ClassComponent extends React.Component {
 
 </details>
 
+## State and Events (and create-react-app)
+
+<details><summary> <strong><code>npx</code> vs. <code>npm</code> in regards to <code>create-react-app</code> (use <code>npx</code>!)</strong></summary>
+
+[This answer on Stack Overflow](https://stackoverflow.com/a/52018825/5209533) does an *excellent* job of making clear what `npm` and `npx` actually are and why we might want to use one over the other. Some key takeaways: 
+
+- `npm`: *Manages* packages *but* doesn't make life easy *executing* any.
+- `npx`: A tool for *executing* Node packages.
+- `npx` comes bundled with `npm` version `5.2+`.
+- The major advantage of `npx` is the ability to execute a package which wasn't previously installed:
+
+  ``` BASH
+  $ npx create-react-app my-app
+  ```
+
+  The above example will generate a `react` app boilerplate *within* the path the command had run in, and **ensures that you always use the latest version** of a generator or build tool without having to upgrade each time you’re about to use it.
+
+Hence, for what we are about to learn, instead of doing something like
+
+``` BASH
+$ sudo npm install create-react-app -g
+```
+
+you will want to do
+
+``` BASH
+$ npx create-react-app my-app
+```
+
+every time you want to make a new `react` application using `create-react-app`. Using `npx` in this fashion ensures you are getting the latest version of `create-react-app` instead of installing `create-react-app` globally and subsequently possibly using an outdated version.
+
+---
+
+</details>
+
+<details><summary> <strong>Modernizing our web development with <code>create-react-app</code></strong></summary>
+
+Up until now, we have used actual `.html` files and actual `.js` files and we connected the JavaScript to our HTML by means of `script` tags. Nothing is wrong with this, and it's probably rather important to start learning React this way; otherwise, you risk it being *very* mystical how React is actually working under the hood. But this is not how modern React development is done. Instead, Facebook has made (and maintains) [create-react-app](https://github.com/facebook/create-react-app) which is a node module [available through NPM](https://www.npmjs.com/package/create-react-app). And this thing does a crazy good job of kicking out everything you could possibly need to build out a great React application from scratch. Building production applications before this came out was highly frustrating (due to the amount of configuration that was needed in so many respects). 
+
+We are now going to fire off a React application from a scaffold using `create-react-app`. And if you've used, say, Rails before, Rails creates a scaffold for you when you do [rails g](https://guides.rubyonrails.org/command_line.html#rails-generate), Laravel [is similar](https://github.com/JeffreyWay/Laravel-4-Generators) with `php artisan`, the [Express generator](http://expressjs.com/en/starter/generator.html) is similar with `express-generator`, and so on. Most frameworks and platforms have something like this where it will just create a whole bunch of files for you (i.e., a "scaffolding"). It's kind of like saying, "Developers need this to make almost anything so we'll just give you what you probably need and you can take it from there." 
+
+We will run 
+
+``` BASH
+$ npx create-react-app first-cra
+```
+
+where `first-cra` simply stands for "First Create-React-App." This process will probably take a decent bit of time because a *ton* of dependencies are being installed. We can then `cd first-cra` and run `npm start` as we are informed in the terminal and we'll get a boilerplate React application launched on `localhost:3000` (or we will be prompted for another port on which to listen if that port is already in use). Now, if you look at the `node_modules` folder, you will see hundreds of node modules. The `webpack` node module is what creates the development server for us. We also see a whole bunch of `jest` node modules. And `jest` is a [unit-testing framework](https://jestjs.io/) for JavaScript, and React has been kind enough to install everything to get that up and running if we choose to do testing (as we should!). We also see a whole bunch of `eslint` node modules. And those are meant to make error messages when we run our code to be much friendlier and much more helpful. 
+
+Now let's inspect our `package.json` for a moment:
+
+```JSON
+{
+  "name": "first-cra",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
+```
+
+Recall that the `package.json` file gives metadata about our application; that is, it tells the world about our application. And one of the most important things the `package.json` file does is it determines your dependencies, meaning if someone downloads your app and wants to use it, you have to have the node modules listed in the dependencies:
+
+```JSON
+"dependencies": {
+  "@testing-library/jest-dom": "^4.2.4",
+  "@testing-library/react": "^9.5.0",
+  "@testing-library/user-event": "^7.2.1",
+  "react": "^16.13.1",
+  "react-dom": "^16.13.1",
+  "react-scripts": "3.4.1"
+}
+```
+
+As for why `npm start` worked to launch our development server, we can see this from the `scripts` part in our `package.json`:
+
+```JSON
+"scripts": {
+  "start": "react-scripts start",
+  "build": "react-scripts build",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject"
+}
+```
+
+And we can actually check these scripts out for ourselves if we want:
+
+```
+node_modules -> react-scripts -> scripts -> build.js | eject.js | init.js | start.js | test.js
+```
+
+So the `scripts` folder in the `react-scripts` node module is where all these little scripts live. When we type `npm start`, `npm` is going to go check out our `package.json` file and see if there is a `start` command. There is! So it's going to call the `react-scripts` node module and it's going to grab the `start` script that lives in `start.js`. Basically, this is where Babel, Webpack, and basically all of the development stuff is going to get started. And you can check out `build.js` for the `build` script as well. And in `react-scripts` we see a `package.json` file which details that node module's dependencies, several of which have their own dependencies, and so forth (that is how we end up with a huge folder of node modules at the root of our application).
+
+Apart from the testing modules, React needs `react`, `react-dom`, and `react-scripts`, the last of which actually creates our entire development environment for us. 
+
+---
+
+</details>
+
+<details><summary> <strong>Understanding the file structure given to us by <code>create-react-app</code></strong></summary>
+
+As of this writing (April 26, 2020), this is the file structure you will get when running `create-react-app` on `cra-app-name`:
+
+```
+cra-app-name
+ ┣ node_modules
+ ┣ public
+ ┃ ┣ favicon.ico
+ ┃ ┣ index.html
+ ┃ ┣ logo192.png
+ ┃ ┣ logo512.png
+ ┃ ┣ manifest.json
+ ┃ ┗ robots.txt
+ ┣ src
+ ┃ ┣ App.css
+ ┃ ┣ App.js
+ ┃ ┣ App.test.js
+ ┃ ┣ index.css
+ ┃ ┣ index.js
+ ┃ ┣ logo.svg
+ ┃ ┣ serviceWorker.js
+ ┃ ┗ setupTests.js
+ ┣ .gitignore
+ ┣ README.md
+ ┣ package-lock.json
+ ┗ package.json
+```
+
+We are going to spend almost all of our time in the `src` folder. The entry point for the entire application is `index.js` inside of `src`:
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
+
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister();
+```
+
+This is where everything is going to start. And some of it may look a little funky, but at least one bit should look very familiar (read more about `React.StrictMode` [on Medium](https://medium.com/nmc-techblog/wait-youre-not-using-react-strictmode-a9713927a33b) or [directly from the docs](https://reactjs.org/docs/strict-mode.html); the gist is that `StrictMode` is a tool for highlighting potential problems in the application and, like `Fragment`, `StrictMode` does not render any visible UI--it simply activates additional checks and warnings for descendants):
+
+```javascript
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+```
+
+Above, we are rendering a component call `App` (in `StrictMode`) and we are putting in whatever HTML element has an `id` of `root`. But where is React actually getting `root` at? It is getting it from `index.html` which appears in the `public` folder. Note that anything placed in the `public` folder will be publicly accessible. All of its contents will be statically served--it won't be part of your React application (unless it's a link or something like that). This is where you would typically place files like images, audio clips, videos, JavaScript that is not part of React (like a library or your own utility files), CSS files, etc. The point, however, is that `index.html` is located in this `public` folder and we see `<div id="root"></div>` contained therein so *that* is where everything is going from `ReactDOM.render` in our `index.js` file in the `src` folder.
+
+At the top of our `index.js` file we see the following:
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
+```
+
+These are all `import` statements and this is an ES6+ feature which is not supported by any browser (at least as of this writing). `import` makes it very easy to modularize your stuff. The point is that `import` is kind of like doing
+
+```javascript
+import React from 'react';
+```
+
+instead of
+
+``` HTML
+<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+```
+
+as we have been doing previously. Using `import React from 'react';` indicates we are fetching the `React` object from the `react` node module. So the `react` node module had better exist! The same thing applies to `ReactDOM` coming from `react-dom`. We brought these in before by adding `React` and `ReactDOM` to the `window` object by our `script` tags, but now they're being added by Node.js through Webpack. We can also import our `index.css` easily with one line. And we can import `App` from `./App` exactly as we just described instead of doing something like
+
+``` HTML
+<script src="./App.js"></script>
+```
+
+as before. Well, what actually lives in `App.js`? Let's see: 
+
+```javascript
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
+
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
+}
+
+export default App;
+```
+
+---
+
+</details>
+
+<details><summary> <strong>What is state?</strong></summary>
+
+Previously, we talked about components and about props. Components form the bedrock of React and props is how we pass data to components. The third main staple or backbone element of React is the concept of "state." As discussed previously, React came onto the web development scene with a couple of goals in mind, the first being to modularize web development because modern web development has massive front-ends that are getting totally out of control. The codebases are *huge* and have to be modularized. Components solve that. We need to speed up the front-end in the browser, and the virtual DOM solves that by minimizing the things that actually need to change. The other really big thing that Facebook wanted to do when they made React was create some kind of state management tool.
+
+State is a fairly universal concept in programming. An oversimplified definition might be that state is the value of a variable or variables at any given time. And the whole issue of state management is really a problem in modern web development. An example to illustrate this might be by imagining your daily vist to Amazon's website. We can describe the process in different states:
+
+- **State 1:** What happens when you order a product on their site? What are the different steps of the process? Maybe you start by having an empty cart. You've never been there before and maybe we say that you have a *pristine* empty cart.
+- **State 2:** You place an item in your cart. Suppose you add a super cool book about gardening to your cart, but then soon after decide you don't want the book so you *remove* the book from your cart. Does that take you back to State 1 where you had a *pristine* empty cart? No. It does not. It does not take you back to State 1. Why not? Because, in Amazon's eyes, you now have a *dirty* empty cart.
+- **State 3:** By *dirty* empty cart what is meant is that something *used to be* in the cart and is no longer there. The difference between a *pristine empty cart* and a *dirty empty cart* is very important to Amazon. Why? Because they will want to market to you as you cruise around the site (e.g., "Hey, remember that gardening book you were thinking about buying? You should buy that! Or maybe these related books."). They are going to want to keep track of what you put in and take out of your cart.
+- **State 4:** Maybe this time you add a book to your cart on woodworking because gardening just wasn't doing it to you. Are we now in the same situation we were in during State 2? No, of course not. The books are different. 
+- **Other States:** You can imagine other states being things such as maybe you go to the checkout, the payment section, the delivery phase, the customer service phase, etc. And maybe at some point you need to return something. The idea is that there's any number of things that can happen during this whole process, and Amazon whats to track this carefully. 
+
+If you think about a simple web form, the same thing will be true. Maybe you have a super simple form with a `username` entry, a `password` enty, and a `submit` button. As soon as you type something into the `username` or `password` fields, something has just happened. The DOM has just changed, however slightly. The `value` of an `input` box in the DOM has just changed. Every time we have changed something in the DOM we have *mutated* the DOM. For a tiny form, the changes might be totally nominal. Maybe we have *two* password fields, the second to verify the first and vice-versa. Another thing we might want to know is how many times this particular form has been changed: does it seem like human behavior or robot behavior? Have they submitted the form several times? And so on. So there's lots of options and there's lots of reasons to be interested in how the page is actually changing. 
+
+Another example would be something like playing Tic-Tac-Toe in JavaScript (in fact, one of the [main tutorials](https://reactjs.org/tutorial/tutorial.html) on first learning React uses this as an example of highlighting all of the key concepts in React). This would also have state. What is the state of the game right now? What place is occupied by which player? Whose turn is it? And so on.
+
+The bottom line is that there needs to be some state management tool so that we can figure out where certain things are in a process because the application needs to make decisions about what the current state is, and we want to avoid making mutations (i.e., updating the DOM) when they're not necessary. 
+
+Instead of manipulating the DOM directly, we will allow components to manage their themselves, and we can pass that around as needed to other components. We will use functional programming to update the state which means we won't ever change state directly--we will let React know that something happens that way React can go through all of its paces and all the right channels to make sure that whoever needs to know or whatever needs to happen can happen in the appropriate order.
+
+---
+
+</details>
+
+<details><summary> <strong>A note about <code>React.StrictMode</code> double-invoking functions (<code>constructor</code>, <code>render</code>, etc.)</strong></summary>
+
+Since
+
+```javascript
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+```
+
+is part of the new boilerplate code added to `index.js` in the `src` folder when scaffolding out a project using `create-react-app`, it's good to know that some mildy funky or unexpected behavior can result from using `React.StrictMode`. Specifically, if we make a dummy component like
+
+```javascript
+import React, { Component } from 'react';
+
+class StateInAction extends Component {
+  constructor(props) {
+    super(props);
+    console.log('Constructor is running')
+  }
+  render() { 
+    return ( 
+      <h1>State in Action</h1>
+     );
+  }
+}
+ 
+export default StateInAction;
+```
+
+and drop this in `App.js` like so:
+
+```javascript
+import React from 'react';
+import './App.css';
+import StateInAction from './components/StateInAction/StateInAction.component';
+
+class App extends React.Component {
+  render() {
+    return (
+      <div className="App">
+        <StateInAction />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+Then we will actually see `Constructor is running` logged to the console *twice*. And if we change our `index.js` to only have
+
+```javascript
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);
+```
+
+as used to be the case when creating projects with `create-react-app`, then `Constructor is running` will only be logged once. What accounts for this behavior? 
+
+[This answer](https://stackoverflow.com/a/60986044/5209533) on Stack Overflow succinctly answers this question and points us to [the docs](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) for more information. Essentially (from the SO post), in recent versions of React, rendering uses [strict mode](https://reactjs.org/docs/strict-mode.html) when running in development. Strict mode intentionally double-calls the `constructor` and `render` functions [to better detect unexpected side effects](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects). From the docs: Strict mode can’t automatically detect side effects for you, but it can help you spot them by making them a little more deterministic. **This is done by intentionally double-invoking the following functions**:
+
+- Class component `constructor`, `render`, and `shouldComponentUpdate` methods
+- Class component static getDerivedStateFromProps method
+- Function component bodies
+- State updater functions (the first argument to setState)
+- Functions passed to useState, useMemo, or useReducer
+
+Running in [production build](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build) at least in one use case did *not* result in the same double render of the class component. 
+
+---
+
+</details>
+
+<details><summary> <strong>Getting started with state (where to initialize, do's and don'ts, etc.)</strong></summary>
+
+You will want to initialize state in the `constructor` method of your class component underneath `super`:
+
+```javascript
+constructor(props) {
+  super(props);
+  this.state = {
+    // ...
+  }
+}
+```
+
+The `this` in our case is the class itself because we are inside of the `constructor`. And `state` is an instance variable or it's like a variable for this particular object. State is very special. You can make anything you want inside of your constructor just like you can in any other language. But the `state` variable is very very special and unique to React. We can start by defining a property for our `state` object:
+
+```javascript
+this.state = {
+  text: 'Stat in Action!'
+}
+```
+
+And we can use it like so:
+
+```javascript
+import React, { Component } from 'react';
+
+class StateInAction extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: 'Stat in Action!',
+    };
+  }
+
+  render() {
+    const { text } = this.state;
+
+    return <h1>{text}</h1>;
+  }
+}
+
+export default StateInAction;
+```
+
+Just to illustrate how to update state for the moment, even though we will probably never do this in the future (a whole new world will open up once we start exploring events), we can set up a `setTimeout` in our `constructor`:
+
+```javascript
+constructor(props) {
+  super(props);
+  this.state = {
+    text: 'Stat in Action!',
+  };
+  setTimeout(() => {
+    this.setState({
+      text: 'State Changed!'
+    })
+  }, 2000)
+}
+```
+
+This method will run one time (when the component is created). We'll run `super` which will get us everything great about being a React component, `this.state` will set up our local `state` variable, and `setTimeout` will get called. Note how we don't try to *manually* change state by doing something like `this.state.text = 'State Changed'!`. We *never* mutate state manually. As [the docs](https://reactjs.org/docs/state-and-lifecycle.html#using-state-correctly) note in the context of certain things we should know about `setState`:
+
+- Do not modify state directly. [Read more.](https://reactjs.org/docs/state-and-lifecycle.html#do-not-modify-state-directly)
+- State updates may be asynchronous. That is, React may batch mulitple `setState` calls into a single update for performance--because `this.props` and `this.state` may be updated asynchronously, you should not rely on their values for calculating the next state. To account for this, you should use a second form of `setState` that accepts a function rather than an object, and that function will receive the previous state as the first argument and the props at the time the update is applied as the second argument. See [the docs](https://reactjs.org/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous) for more, [this Medium post](https://medium.com/@wisecobbler/using-a-function-in-setstate-instead-of-an-object-1f5cfd6e55d1), [this Stack Overflow thread](https://stackoverflow.com/q/48209452/5209533), and the bottom of [this article](https://tylermcginnis.com/react-interview-questions/) by Tyler McGinnis where he notes that, "It's rarely used (i.e., the second form of `setState` where you pass a function) and not well known, but you can also pass a function to setState that receives the previous state and props and returns a new state, just as we're doing above. And not only is nothing wrong with it, but **it's also actively recommended if you're setting state based on the previous state**." So if you are setting state *based on* previous state (e.g., counters and the like or a whole host of other things), then passing a function to `setState` instead of just an object is what you will want to do. [Read more.](https://reactjs.org/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous)
+- State updates are merged. [Read more.](https://reactjs.org/docs/state-and-lifecycle.html#state-updates-are-merged)
+
+As alluded to above, even though something like `this.state.text = 'State changed'` looks fine with regular old JavaScript, this is something with *never* do in React (i.e., never set `state` manually via an assignment like the above). The only time you should be doing `this.state = ...` is inside of the class `constructor`. The reason for that (some of which is mentioned above in the three different points) is because React needs to do a whole bunch of stuff when the state changes. So instead of changing the state ourselves, we can hand it to React and React can run its own method (i.e., `setState`), do a whole bunch of stuff, and ultimately change it for us. Why all this rigmarole? In object-oriented programming, something like `setState` is called a `setter` (the companion to a `getter`; read more about [setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) and [getters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) on MDN). A setter is a function whose job is to mutate something else (i.e., *set* something; in this context, we want to *set* the `state` in some fashion). So `setState` is basically saying, "Hey, if you want to change a `state` variable, then you tell me, and I will change it for you. Don't change it yourself."
+
+On a different note, one slight "gotcha" you will almost certainly encounter is how `this` is handled/treated in a class and the effect using the normal `function` keyword can have as opposed to using an ES6+ rocket function `=>`:
+
+```javascript
+constructor(props) {
+  super(props);
+  this.state = {
+    text: 'Stat in Action!',
+  };
+  setTimeout(() => {
+    this.setState({
+      text: 'State Changed!'
+    })
+  }, 3000)
+}
+```
+
+is different than
+
+```javascript
+constructor(props) {
+  super(props);
+  this.state = {
+    text: 'Stat in Action!',
+  };
+
+  setTimeout(function() {
+    this.setState({
+      text: 'State Changed!'
+    })
+  }, 3000)
+}
+```
+
+You will get `TypeError: this.setState is not a function` in the second case. Why? The difference between `function` and `=>` is that `=>` does not create a new `this` context. So inside of the rocket function the `this` will still point to what it was when we entered the body of the rocket function, namely the class instance. The *class* has a method called `setState`. If, instead, we use the `function` keyword, then this syntax will create a new `this` and that `this` will not have a `setState` method. It's very important to note the difference because this can cause a lot of unnecessary headaches in the future if you aren't careful. 
+
+One really hacky way (read: not recommended) of getting around this in this instance is something like the following:
+
+```javascript
+constructor(props) {
+  super(props);
+  this.state = {
+    text: 'Stat in Action!',
+  };
+
+  let self = this;
+
+  setTimeout(function() {
+    self.setState({
+      text: 'State Changed!'
+    })
+  }, 3000)
+}
+```
+
+#### Handling Events (focusing on the "this" keyword)
+
+In any case, handling events in React is where a lot of the issues involving `this` can crop up. [The docs](https://reactjs.org/docs/handling-events.html) give us a couple examples of how to handle situations involving `this`, where one approach involves using `bind` in the `constructor` for any event handlers we might have and the other approach involves using rocket functions. 
+
+##### First Approach
+
+```javascript
+class Toggle extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {isToggleOn: true};
+
+    // This binding is necessary to make `this` work in the callback
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState(state => ({
+      isToggleOn: !state.isToggleOn
+    }));
+  }
+
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        {this.state.isToggleOn ? 'ON' : 'OFF'}
+      </button>
+    );
+  }
+}
+
+ReactDOM.render(
+  <Toggle />,
+  document.getElementById('root')
+);
+```
+
+Note how the `handleClick` event handler is a class method, where `handleClick` behaves like a normal `function` (i.e., it creates its own `this` context). Hence, inside the `constructor`, it is necessary for us to `bind` the `this` for `handleClick` to the class instance like so: 
+
+```javascript
+this.handleClick = this.handleClick.bind(this);
+```
+
+Other class methods defined in this manner should be similarly bound in the `constructor`. See [this article](https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/) for more about how `bind` works as well as [this Tyler McGinnis article](https://tylermcginnis.com/this-keyword-call-apply-bind-javascript/) for understanding `this`, especially in the context of the `call`, `apply`, and `bind` functions. 
+
+##### Second Approach
+
+As the React docs note, if calling `bind` annoys you, then there are two ways you can get around using `bind`: If you are using the [public class fields syntax](https://babeljs.io/docs/en/babel-plugin-transform-class-properties/), then you can use class fields to correctly bind callbacks:
+
+```javascript
+class LoggingButton extends React.Component {
+  // This syntax ensures `this` is bound within handleClick.
+  // Warning: this is *experimental* syntax.
+  handleClick = () => {
+    console.log('this is:', this);
+  }
+
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        Click me
+      </button>
+    );
+  }
+}
+```
+
+Hence, we basically just use a rocket function for the class method (the docs note this syntax is enabled by default in Create React App). They also note that if you aren't using class fields syntax then you can use an arrow function in the callback:
+
+```javascript
+class LoggingButton extends React.Component {
+  handleClick() {
+    console.log('this is:', this);
+  }
+
+  render() {
+    // This syntax ensures `this` is bound within handleClick
+    return (
+      <button onClick={() => this.handleClick()}>
+        Click me
+      </button>
+    );
+  }
+}
+```
+
+But there are performance concerns with this approach: "The problem with this syntax is that a different callback is created each time the `LoggingButton` renders. In most cases, this is fine. However, if this callback is passed as a prop to lower components, those components might do an extra re-rendering. We generally recommend binding in the constructor or using the class fields syntax, to avoid this sort of performance problem."
+
+##### Main Takeaway
+
+In most cases, it seems you should either bind your class methods in the constructor:
+
+```javascript
+class SampleClass {
+  constructor(props) {
+    super(props);
+    this.state = { ... };
+
+    this.oneMethod = this.oneMethod.bind(this);
+    this.twoMethod = this.twoMethod.bind(this);
+    this.threeMethod = this.threeMethod.bind(this);
+    ...
+  }
+
+  oneMethod() { ... };
+  twoMethod() { ... };
+  threeMethod() { ... };
+  ...
+
+  render() {
+    return (
+      // JSX
+    )
+  }
+}
+```
+
+Or you should simply use public class fields syntax with rocket functions:
+
+```javascript
+class SampleClass {
+
+  oneMethod = () => { ... };
+  twoMethod = () => { ... };
+  threeMethod = () => { ... };
+  ...
+
+  render() {
+    return (
+      // JSX
+    )
+  }
+}
+```
+
+---
+
+</details>
+
+<details open><summary> <strong>Events in React</strong></summary>
+
+TBD
+
+---
+
+</details>
+
+
+
+
+
 
 ## Supplemental Notes
 
