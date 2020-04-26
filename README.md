@@ -932,7 +932,7 @@ Components are not just the backbone of React but really React in its entirety. 
 
 </details>
 
-<details open><summary> <strong>Props</strong></summary>
+<details><summary> <strong>Props</strong></summary>
 
 Anytime you have a component in React you have the option of adding attributes to that component. Before we just had `<Card />` but we could also have something like `<Card name="Daniel Farlow" job="Developer"/>`. Of course, attributes in HTML are typically things like `id`, `class`, `width`, etc., but now we are making up our own "attributes". What will happen to the attributes we put on our component is that when the component is called (i.e., think previously about how `<Card />` *invoked* or *called* the `Card` function in `Card.js` that returned a bunch of processed JSX), the component is handed an argument which is always called `props` (since it's a local variable you can call it whatever you want, but convention is to call it `props` so you should always do that). So in our `Card.js` file our `Card` function really should have `function Card(props) { ... }`. 
 
@@ -1149,7 +1149,473 @@ Of course, we will get to the point soon where we can easily loop through everyt
 
 </details>
 
+<details><summary> <strong>Multiple components in an array (and <code>"key" prop</code> warning)</strong></summary>
 
+One thing that is super cool in React is that you can build your components in an iterative fashion. Consider the following code: 
+
+```javascript
+let cards = data.map(courseData => (
+  <Card data={courseData}/>
+))
+
+console.log(cards)
+
+ReactDOM.render(
+  <div className="row">
+    {cards}
+  </div>,
+  document.getElementById('root')
+)
+```
+
+If we do something like this, then currently we will get a warning like the following:
+
+<p align='center'>
+  <img height="250px" src='./react-101/images-for-section/key-warning.png'>
+</p>
+
+What this means is that `cards` is an array of React elements, the type is a function, and it has a `key` with a value of `null` (also has `ref` with value of `null`, etc.). The problem is that you can basically think of this as a linked list in the context of the virtual DOM. React wants these elements in the array to have keys so that if the state of the application changes React knows which thing changes so that it doesn't have to update the entire thing. If you don't provide a key, then it won't know what it actually needs to change and will have to rebuild the whole array which is expensive which is against the whole ethos of React. The gist: Whenever you build an array of React elements, if you give a key, then React will be a lot faster. When using `map` to build an array, you could just make each `key` the value of the `index`. Hence, our code becomes:
+
+```javascript
+let cards = data.map((courseData, index) => (
+  <Card data={courseData} key={index}/>
+))
+
+console.log(cards)
+
+ReactDOM.render(
+  <div className="row">
+    {cards}
+  </div>,
+  document.getElementById('root')
+)
+```
+
+And the warning goes away.
+
+---
+
+</details>
+
+<details><summary> <strong>Components as classes</strong></summary>
+
+Up until now the only type of component we have made is a regular JavaScript function. For example:
+
+```javascript
+function Card(props) { ... }
+```
+
+This is a great and common way to make functions that are simply presentational or stateless. It means they don't need to make any decisions. But there is another very important way to make components. And this way is with classes. (The introduction of Hooks has made it possible to use stateful components with functions, and we'll get to all of that much later.)
+
+The way we have kind of done things before is like the following:
+
+```javascript
+class Card {
+  return (
+    <h1>Sanity Check</h1>
+  )
+}
+```
+
+But this is not okay anymore because inside of a `class` in JavaScript the only thing you are allowed to define are properties and methods. We can't just run JavaScript code. We need to put the JSX that we want to return inside a method in order to properly adhere to how `class`es work in JavaScript. What method should we use? It turns out there is a convention/mandate from React and [the docs](https://reactjs.org/docs/react-component.html) spell this out in more detail: "The only method you *must* define in a `React.Component` subclass is called `render()`. All the other methods are optional." Seems important! If you use a class then, you *must* have a `render` method:
+
+```javascript
+class Card {
+  render() {
+    return (
+      <h1>Sanity Check</h1>
+    )
+  }
+}
+```
+
+It turns out the code above is *still* not good enough. It's not enough to just define the component using a `class`. In order to get all the goodness of a React component, we actually need too *extend* the React component:
+
+```javascript
+class Card extends React.Component {
+  render() {
+    return (
+      <h1>Sanity Check</h1>
+    )
+  }
+}
+```
+
+What this does is it makes our class, `Card`, a subclass of `React.Component`. So `React.Component` has a bunch of stuff we are going to "inherit". All the cool stuff that belongs with being a React component can now be used as part of our `Card` component. A couple things to note here. This 
+
+```javascript
+function Card(props) {
+  return (
+    <h1>Sanity Check</h1>
+  )
+}
+```
+
+is exactly the same as
+
+```javascript
+class Card extends React.Component {
+  render() {
+    return (
+      <h1>Sanity Check</h1>
+    )
+  }
+}
+```
+
+right now. They're functionally the same although syntactically different. A class gives you all sorts of power that you do not have with a function. From [the docs](https://reactjs.org/docs/react-component.html#overview): "React lets you define components as classes or functions. Components defined as classes currently provide more features which are described in detail on this page. To define a React component class, you need to extend `React.Component`." So more often than not you will be making components as classes instead of functions. Again, if you make a class component, then it *must* have a `render` method; otherwise, the component is totally useless. It's the only method that a class must have in React. So don't forget to add it! And we have to `extends React.Component` for class components; otherwise, the class is just a regular garden-variety class. And sometimes you'll make classes that you don't extend (e.g., utility classes that don't have anything to do with React just to clean up your JavaScript). 
+
+If you've done much with classes before in JavaScript, then you will know that the `constructor` is another method available to classes (*every* `class` in JavaScript gets this method whether or not the class in question is a React component or just a garden-variety class). The `constructor` method will run when an instance of the `class` (or in our case a React component instance) is created. This gives us the ability to initialize instance variables and initialize state (the notion of state in React is a very important one we will get to momentarily).
+
+Per [the docs](https://reactjs.org/docs/react-component.html#constructor) on `constructor(props)`: "If you don’t initialize state and you don’t bind methods, you don’t need to implement a constructor for your React component. The constructor for a React component is called before it is mounted. When implementing the constructor for a `React.Component` subclass, you should call `super(props)` [within `constructor(props)`] before any other statement. Otherwise, `this.props` will be undefined in the constructor, which can lead to bugs. Typically, in React constructors are only used for two purposes: Initializing local state by assigning an object to `this.state` and binding event handler methods to an instance."
+
+The upshot of all of this is that, in order for us to use state, we need to call the `super(props)` method within our `constructor`:
+
+```javascript
+class Card extends React.Component {
+  constructor(props) {
+    super(props);
+    // more stuff to come
+  }
+
+  render() {
+    return (
+      <h1>Sanity Check</h1>
+    )
+  }
+}
+```
+
+The `constructor` will run every time a new `Card` is created. And every time the `constructor` is called the first thing that should get called is `super`, which is the `constructor` method of the *parent* class. So every time we create a new `Card` our own `constructor` will run, but we will first call `super` in order to run the `constructor` of the part/super class (i.e., `React.Component`). As the docs noted, the constructor is really only necessary if we are trying to initialize state and/or trying to bind methods to a class instance. 
+
+One last thing to note right off the bat is how `props` are accessed within classes. For a regular JavaScript class, how do you refer to properties of the class? With the `this` keyword:
+
+```javascript
+class Dog {
+  constructor(name, friends, legs) {
+    this.name = name;
+    this.friends = friends;
+    this.legs = 4;
+  }
+
+  sayName() {
+    return this.name;
+  }
+}
+```
+
+In the silly example above, how did we refer to the `name` property of the class instance within the `sayName` method? Not by `name` but by `this.name`. Why? Because, [as MDN notes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) (under the "Instance properties") subsection, instance properties must be defined inside of class methods (they give the following example with the simple `Rectangle` class):
+
+```javascript
+class Rectangle {
+  constructor(height, width) {    
+    this.height = height;
+    this.width = width;
+  }
+}
+```
+
+The `name` instance property for `Dog` is defined inside of the `constructor` class method. For example, something like `let myDog = new Dog('Archie', ['Felix', 'Bruno']);` will result in the `myDog` *instance* of `Dog` having instance properties of
+
+- `name`: `'Archie'`
+- `friends`: `['Felix', 'Bruno']`
+- `legs`: `4`
+
+And we access these instance properties in methods within the class using the `this` keyword. So something like `myDog.sayName()` results in the `sayName` method of the `Dog` class being called on the `Dog` instance of `myDog`. Hence, `this` points to `myDog` in this case so `myDog.sayName()` would result in `'Archie'`. 
+
+In the exact same manner (albeit more complicated fashion), in a React class component, we do not refer to `props` within the `render` method simply as `props` but by `this.props`. Where do our class instance properties get defined? When we create the component in question and pass props to them; for example, if `PlayingCard` were a class component, then something like `<PlayingCard value="12" suit="Spades" />` would result in implicitly having `this.props.value = "12"` and `this.props.suit = "Spades"` underneath the hood:
+
+```javascript
+class PlayingCard extends React.Component {
+  constructor(props) {
+    super(props);
+    console.log(props); // { value: "12", suit: "Spades" }
+  }
+
+  render() {
+    const cardValueMap = {
+      '1': 'ace',
+      '2': 'two',
+      '3': 'three',
+      '4': 'four',
+      '5': 'five',
+      '6': 'six',
+      '7': 'seven',
+      '8': 'eight',
+      '9': 'nine',
+      '10': 'ten',
+      '11': 'jack',
+      '12': 'queen',
+      '13': 'king'
+    }
+
+    const { suit, value } = this.props;
+    const translatedValue = cardValueMap[value];
+    const phrase = translatedValue.slice(0,1).toUpperCase() 
+    + translatedValue.slice(1) 
+    + ' of ' + suit;
+
+    return(
+      <p>This card is a {phrase}</p>
+    )
+  }
+}
+```
+
+If we throw `<script type="text/babel" src="PlayingCard.js"></script>` into our `index.html` and `<PlayingCard value="12" suit="Spades"/>` into our `app.js`, we will get `This card is a Queen of Spades` placed in the DOM. 
+
+Returning to our original `Card` example, the once functional component
+
+```javascript
+function Card(props) {
+  console.log(props)
+  const { course: courseTitle, instructor: courseInstructor, image: courseImage } = props.data;
+
+  return (
+      <div className="col s2">
+        <div className="card hoverable small">
+          <div className="card-image">
+            <img src={courseImage} />
+          </div>
+          <div className="card-content">
+            <p>{courseTitle}</p>
+            <p>{courseInstructor}</p>
+          </div>
+          <div className="card-action">
+            <a href="#">$9.99</a>
+          </div>
+        </div>
+      </div>
+  )
+}
+```
+
+can become the functionally equivalent (albeit imbued with many more potential powers now) class component:
+
+```javascript
+class Card extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  
+  render() {
+    const { course: courseTitle, instructor: courseInstructor, image: courseImage } = this.props.data;
+    
+    return (
+      <div className="col s2">
+        <div className="card hoverable small">
+          <div className="card-image">
+            <img src={courseImage} />
+          </div>
+          <div className="card-content">
+            <p>{courseTitle}</p>
+            <p>{courseInstructor}</p>
+          </div>
+          <div className="card-action">
+            <a href="#">$9.99</a>
+          </div>
+        </div>
+      </div>
+    )
+  }
+}
+```
+
+Worth noting is that for functional components we could run any plain JavaScript we wanted before we `return`ed the JSX we wanted to. Similarly, in a class component, **within the render method**, we can run any plain JavaScript we want *before* we `return` the JSX we want, as indicated above and also in the `PlayingCard` example.
+
+Using classes is actually rather helpful in general when thinking about your React components because it almost enforces the concept of encapsulation on the developer. That is, a given object should not only contain all of its own data but should also contain all the methods that change and effect that data. So we are going to try to make our components as self-sufficient as possible. They'll carry their data around with them, and they'll also carry their `render` around with them. They'll carry other methods around with them as well so that ideally you'll be able to move these components across applications or parts of applications and it should be as seamless as possible. 
+
+---
+
+</details>
+
+<details><summary> <strong>React Essentials: Recap</strong></summary>
+
+#### What Is React and Why Do We Need It?
+
+React is a bunch of JavaScript that someone else wrote that makes it easier to do front-end web development. React modernizes front-end web development by doing the following:
+
+- Making the front-end modular via components (components are encapsulated, meaning they manage themselves)
+- Making it much easier to maintain across teams and even years
+- Simplifying state changes in an application
+- Getting front-end applications to run very, very fast
+- Separating front-end from back-end
+
+#### React in Its Simplest Form
+
+Recall our first React program:
+
+``` HTML
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>First React Program</title>
+  <!-- This is React proper -->
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+  <!-- This is ReactDOM -->
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+  <!-- This is Babel -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    ReactDOM.render(
+      <h1>Sanity Check</h1>, // <-- This is JSX
+      document.getElementById('root')
+    )
+  </script>
+  
+</body>
+
+</html>
+```
+
+Here's the breakdown from the comments above:
+
+- **React:** Everything we make is a "React" element, not a DOM element.
+- **ReactDOM:** `ReactDOM` uses its `render` method to take our React elements and inject them into the actual DOM (on the webpage).
+- **JSX:** Allows us to commingle HTML and JavaScript. This saves us from having to write TONS of JavaScript. 
+- **Babel:** Converts our JSX into something the browser can read.
+
+More explicitly, [React](https://unpkg.com/react@16/umd/react.development.js) allows us to create React elements via `React.createElement`. [ReactDOM](https://unpkg.com/react-dom@16/umd/react-dom.development.js) allows us to use `ReactDOM`'s `render` method to get React elements into the actual DOM from the React's virtual DOM (i.e., onto the actual webpage). [JSX](https://reactjs.org/docs/introducing-jsx.html), via [Babel](https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js), makes it possible for us to write
+
+``` HTML
+<h1 className='root'>Sanity Check</h1>
+```
+
+instead of writing
+
+```javascript
+React.createElement("h1", { className: "root" }, "Sanity Check");
+```
+
+as you can see through an [interactive session on babeljs.io](https://babeljs.io/repl#?browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=MYewdgzgLgBApgGzgWzmWBeGAeAFgRhgEsATDAIggENkAHJAWgCc4rgoHEU0pyA-ABKIEIADQwA7iCYIS2APQE-AbiA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.9.0&externalPlugins=). We are also allowed to [embed JavaScript expressions in JSX](https://reactjs.org/docs/introducing-jsx.html#embedding-expressions-in-jsx) using the so-called wax-on/wax-off technique: `{ <-- wax-on | expression here | wax-off --> }`:
+
+```javascript
+const name = 'Josh Perez';
+const element = <h1>Hello, {name}</h1>;
+
+ReactDOM.render(
+  element,
+  document.getElementById('root')
+);
+```
+
+#### ReactDOM and the virtual DOM
+
+React keeps track of all React elements in a "virutal DOM" object. Whenever something changes, React builds a new "virtual DOM" object and ReactDOM compares them:
+
+<p align='center'>
+  <img height="350px" src='./react-101/images-for-section/recap-updating-dom.png'>
+</p>
+
+Because React elements are just plain JavaScript objects, React is very, very fast with its ability to update only what is necessary in the real DOM (where objects are far more weighted and computationally expensive to create); that is, ReactDOM updates *only* the part of the DOM that needs to change.
+
+#### Component Basics
+
+- Components are the backbone of React.
+- They are little pieces that make up the entire UI.
+- They always start with a capital letter.
+- They *must* close along with all other React elements (i.e., neither `<br>` nor `<Card something"else">` will do; instead, we must use `<br />` and `<Card something="else" />`, as an example).
+- Components *look* like HTML tags in JSX (but uppercase): `<Card />`.
+- Components always return some HTML so ReactDOM has something to put on the page. Remember that React is a front-end UI so every component we make has to have something for the UI in it. So every component has to return some HTML (technically JSX is what gets returned, which is processed by Babel and subsequently React uses what was processed to create React elements which subsequently get created as *actual* DOM elements via ReactDOM).
+- Components can be pure functions (stateless or simple).
+- Components can be classes (stateful or complex).
+- Note: Hooks make it possible to use stateful functions but we'll get to that later.
+
+#### Prop Basics
+
+- Components are a lot like JavaScript functions.
+- They can be rendered as many times as needed.
+- In order to change when they render, components can be sent any data you wish (like an argument in a function). The data that gets passed to a component is called `props`.
+- A prop is anything inside a Component call after the Component name and looks like an HTML attribute:
+
+<p align='center'>
+  <img height="125px" src='./react-101/images-for-section/recap-props.png'>
+</p>
+
+- A prop's value comes after the `=`, just like an HTML attribute.
+- A prop value can be accessed inside the component. `props` is always an object.
+- The `props` object will have a property for each prop that was passed when the component was created.
+- The value of the property will be the value of that prop:
+
+<p align='center'>
+  <img width="350px" src='./react-101/images-for-section/recap-props-breakdown.png'>
+</p>
+
+#### Components in an Array
+
+- React allows us to put components in an array.
+- JSX can unpack that array.
+- We typically use `.map()` to build the array of components.
+- `map()` builds a new array and expects a return value.
+
+#### Components as Classes
+
+- Aside from regular JavaScript functions, components can also be made as classes.
+- Classes themselves do not return JSX; they have a `render` method that returns JSX.
+- Classes always extend `React.Component` (unless you have a utility class you are using that has nothing to do with React) so that your custom class, which via `extends` is a subclass of React's `Component` superclass, inherits all the goodness that comes from being a React component. When initializing state or binding methods, `constructor(props) {super(props); ... }` will need to be used at the top of your class.
+- Props work the same way in a class as they do in a function except we refer to the props in a class by `this.props` instead of simply `props`.
+- Classes (currently) come with more powers than plain JavaScript functions, [as noted in the docs](https://reactjs.org/docs/react-component.html#overview).
+
+#### Breaking Down Components into Smaller Parts (i.e., subcomponents)
+
+- Components can contain other components.
+- Think of it like the DOM:
+  + A `div` often lives inside another `div`.
+  + A `<City />` can live inside a `<CitiesContainer />`.
+
+#### JavaScript Inside Components
+
+Recall that you can [embed JavaScript expressions in JSX](https://reactjs.org/docs/react-component.html#overview) by putting any valid [JavaScript expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) (simply: any valid unit of code that resolves to a value) inside curly braces in JSX: `{ JavaScriptExpression }`. Importantly, we *cannot* use non-expression JavaScript code inside of JSX. So a question becomes: Where can you perform "normal" or "heavy duty" JavaScript within components before returning your desired JSX? This depends on whether or not you have a function or a class:
+
+- **Function:** In functional components, regular JavaScript can be used *before* you `return` your JSX:
+
+```javascript
+function FunctionComponent(props) {
+
+  // Do all non-expression or "heavy-lifting"
+  // JavaScript stuff here before returning JSX below
+
+  return (
+    // JSX
+  )
+}
+```
+
+- **Class:** In class components, regular JavaScript can be used *before* you `return` your JSX in the `render` method (as with regular JavaScript `class`es, plain JavaScript *cannot* be left outside of a method, whether it be the `constructor` method or a custom method):
+
+```javascript
+class ClassComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    // initialize state; bind methods
+  }
+
+  // JavaScript CANNOT go here
+
+  render() {
+
+  // Do all non-expression or "heavy-lifting"
+  // JavaScript stuff here before returning JSX below
+
+    return(
+      // JSX
+    )
+  }
+}
+```
+
+---
+
+</details>
 
 
 ## Supplemental Notes
@@ -1161,3 +1627,8 @@ TBD
 ---
 
 </details>
+
+
+
+
+
