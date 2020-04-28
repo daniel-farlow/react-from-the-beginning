@@ -1870,6 +1870,17 @@ export default App;
 
 </details>
 
+<details><summary> <strong><code>import</code> a new component into <code>App.js</code> before you make it so you can benefit from the linter</strong></summary>
+
+When making a new component, it is often wise to go ahead and import that component in your `App.js` so that any issues you encounter while making your component are caught by the linter and you can be warned about them. 
+
+By default, if you are not importing your component in `App.js`, then the linter will not be able to catch any problems in your component since your component is not actually being loaded into or looked at in `App.js`.
+
+---
+
+</details>
+
+
 <details><summary> <strong>What is state?</strong></summary>
 
 Previously, we talked about components and about props. Components form the bedrock of React and props is how we pass data to components. The third main staple or backbone element of React is the concept of "state." As discussed previously, React came onto the web development scene with a couple of goals in mind, the first being to modularize web development because modern web development has massive front-ends that are getting totally out of control. The codebases are *huge* and have to be modularized. Components solve that. We need to speed up the front-end in the browser, and the virtual DOM solves that by minimizing the things that actually need to change. The other really big thing that Facebook wanted to do when they made React was create some kind of state management tool.
@@ -2571,9 +2582,566 @@ class SampleClass {
 
 </details>
 
-<details open><summary> <strong>Events in React</strong></summary>
+<details><summary> <strong>Events in React</strong></summary>
 
-TBD
+Now that we have a sense of what state is and the basics of how it works, the question becomes: Why would we ever want to use it? When is state really useful? We're going to answer that now. The short answer lies in the fact that React is JavaScript, and it's a UI that runs in the browser, and JavaScript is an event-based language. What causes something to happen on any webpage? What causes the UI or DOM to change? It's usually because the user clicked on something, submitted a form, changed an input box, etc. So we are going to talk about how events work now because state and events are very closely related. Of course, state can change at any point inside of an application or a component, but it's most commonly going to change with events.
+
+If we create a simple button, then historically we might do something like the following to add an event listener to it:
+
+```javascript
+import React, {Component, Fragment} from 'react';
+
+class SimpleEvents extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { 
+      msg: 'stateActivated'
+    }
+
+  }
+  render() { 
+    document.querySelector('.btn').addEventListener('click', () =>{
+      console.log('Button was clicked!')
+    })
+    return ( 
+      <Fragment>
+        <button onclick="myFunction()">Click me!</button>      
+      </Fragment>
+    );
+  }
+}
+ 
+export default SimpleEvents;
+```
+
+This is a very native JavaScript way of doing this. But what's the problem with what we've done above? We'll get an error: `TypeError: Cannot read property 'addEventListener' of null`. We are getting this error because, in React, our `button` actually hasn't been added to the DOM yet. So we can't do `addEventListener` because, well, the first time `render` runs there's *nothing* to add an event listener on (the JSX hasn't been returned yet). So we can't use `addEventListener` right now in this way (we can later if we want due to to how the component lifecycle works in React). 
+
+The *other* way you would normally do something like the above is you would add the event listener directly to the element we wanted to be listening on:
+
+```javascript
+<button onclick="myFunction()">Click me!</button>      
+```
+
+This is very similar to how we do things in React (with a couple of caveats). In React, virtually every DOM event is still available, but we use camelCase, and we hand the event the callback we want to run:
+
+```javascript
+<button onClick={myFunction}">Click me!</button>      
+```
+
+Unlike in native JavaScript, we don't invoke functions as part of the event listener but instead *pass* functions, as seen above. We pass a callback in our JSX that is going to get run later. The reason for this is pretty simple: In native JavaScript we invoke the code we want to run later (as in `onclick="myFunction()"`, for example), but in React we don't invoke code we pass code. For something like
+
+```javascript
+<button onClick={console.log('Test')}>Click me!</button>      
+```
+
+what we pass to `onClick` is going to get evaluated, and we don't return anything in the example immediately below (technically, a function returns `undefined` in JavaScript when nothing else is explicitly returned). So what's actually sent back is `undefined` as a result of `console.log('Test')`. Hence, on the first `render`, we get `Test` logged to the console, but every time thereafter we essentially have `onClick=undefined`. So nothing will really happen when we click on the button because we're technically not telling React to do anything when we click it. The overall point is that we do not run code in `onClick` or other listeners for events; instead, we pass code. We pass a callback. And we can do this in two ways. 
+
+Instead of running our code as above, we can simply create a new anonymous function that runs the code for us: 
+
+```javascript
+<button onClick={() => console.log('Test')}>Click me!</button>      
+```
+
+Using the code above will result in us logging `Test` to the console every time the button is clicked, as desired. This kind of pattern is fairly common in React. Again, we are not *running* `console.log('Test')`--we are passing a function that runs `console.log('Test')`. In general, this kind of pattern, albeit common, is also a bit messy. If possible, it's often wise to define a class method, which we can then pass by name:
+
+```javascript
+import React, {Component, Fragment} from 'react';
+
+class SimpleEvents extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { 
+      msg: 'stateActivated'
+    }
+  }
+
+  handleClick() {
+    console.log('Test');
+    return console.log('Real Test')
+  }
+
+  render() { 
+    return ( 
+      <Fragment>
+        <button onClick={this.handleClick()}>Click me!</button>      
+      </Fragment>
+    );
+  }
+}
+ 
+export default SimpleEvents;
+```
+
+This is functionally the same as what we had before. Again, we are not going to run `this.handleClick` but *pass* `this.handleClick`. What we can't do is `this.handleClick()` because this will just result in `Test` being logged to the console once when the inital `render` occurs, but `this.handleClick()` returns `undefined`. What if we tried to do something kind of silly like 
+
+```javascript
+// ...
+handleClick() {
+  console.log('Test');
+  return console.log('Real Test')
+}
+//...
+<button onClick={this.handleClick()}>Click me!</button>
+// ...
+```
+
+Would this work? What would happen? Well, instead of returning `undefined` now, we would return `console.log('Real Test')` which itself returns `undefined`; hence, we would just end up with `Test` and `Real Test` being logged to the console in succession. The "fix" (only for the sake of illustration ... you would never want such a silly function!):
+
+```javascript
+// ...
+handleClick() {
+  console.log('Test');
+  return () => console.log('Real Test')
+}
+//...
+<button onClick={this.handleClick()}>Click me!</button>
+// ...
+```
+
+Then we would get `Test` logged on the first render and `Real Test` logged every time we clicked the button thereafter.
+
+In summary, those are the two ways:
+
+1. We can define a method and pass that method. 
+2. We can define an anonymous function within the React element itself that runs our code. 
+
+Now let's consider a different kind of element, an `input`. You don't really click on `input` other than to *change* it. So with an `input` we will use `onChange`:
+
+```javascript
+<input type="text" placeholder="Enter some text!" onChange={this.handleChange} />
+```
+
+And if we want to, we can have a simple
+
+```javascript
+handleChange() {
+  console.log('User changed the input')
+}
+```
+
+And as a user types this handler will fire *every single time* the user presses a key because any time something changes inside of the `input` box we are logging `User changed the input` to the console. We can have more fun by using something like
+
+```javascript
+handleChange(e) {
+  console.log(e.target.value)
+}
+```
+
+which will actually what's currently in the `input` box. 
+
+Let's now consider a `form` to round things out. You don't click on or change forms--you `submit` them. So we will use `onSubmit`. If we wrap our previous elements in the `form` then something interesting will happen:
+
+```javascript
+handleSubmit() {
+  console.log('Form submitted!')
+}
+
+render() {
+  return (
+    <Fragment>
+      <form onSubmit={this.handleSubmit}>
+        <button onClick={this.handleClick}>Click me!</button>
+        <input
+          type="text"
+          placeholder="Enter some text!"
+          onChange={this.handleChange}
+        />
+      </form>
+    </Fragment>
+  );
+}
+```
+
+If we hit `Enter` while inside of the `input` box, then you will *very briefly* see `Form submitted!` logged to the console. Why does this message disappear? What's happening is common to JavaScript (in other languages there are mechanisms to prevent this), namely we have to manually tell the browser to not send the form forward to the next page because we don't have one. Normally your `form` tag might have an `action` or a `method` on it (e.g., `action='/process_review_submission'` with `method='post'`). But for our case right now, we want to stop the form from being sent forward. A very important topic when it comes to handling events is that every event in React some with an `event` object that will automatically be passed (even if we don't use it as we haven't so far except in the example of using `e.target.value`, where `e` is referring to the event). The event that is passed in each case comes with a `preventDefault` method which ... prevents the default behavior of what the event normally does, which, in the case of a form submission, is to send the form forward to the next page. We are going to *prevent* that default behavior by using `e.preventDefault` within our `handleSubmit` handler. 
+
+---
+
+</details>
+
+<details><summary> <strong>Available events</strong></summary>
+
+If we head over to [SyntheticEvent](https://reactjs.org/docs/events.html) in the docs, we can see what all events are available in React, and they use the `SyntheticEvent` wrapper (essentially a class) in order to try and normalize the way every browser works with events, just meaning that, for example, Firefox may have a slightly different event object than Chrome does, than Safari does, and so on. Instead, React uses the `SyntheticEvent` which makes sure that they pretty much all behave the same way regardless of the browser. 
+
+If you go down to [Supported Events](https://reactjs.org/docs/events.html#supported-events), you will see that they have categorized them:
+
+- [Clipboard Events](https://reactjs.org/docs/events.html#clipboard-events)
+- [Composition Events](https://reactjs.org/docs/events.html#composition-events)
+- [Keyboard Events](https://reactjs.org/docs/events.html#keyboard-events)
+- [Focus Events](https://reactjs.org/docs/events.html#focus-events)
+- [Form Events](https://reactjs.org/docs/events.html#form-events)
+- [Generic Events](https://reactjs.org/docs/events.html#generic-events)
+- [Mouse Events](https://reactjs.org/docs/events.html#mouse-events)
+- [Pointer Events](https://reactjs.org/docs/events.html#pointer-events)
+- [Selection Events](https://reactjs.org/docs/events.html#selection-events)
+- [Touch Events](https://reactjs.org/docs/events.html#touch-events)
+- [UI Events](https://reactjs.org/docs/events.html#ui-events)
+- [Wheel Events](https://reactjs.org/docs/events.html#wheel-events)
+- [Media Events](https://reactjs.org/docs/events.html#media-events)
+- [Image Events](https://reactjs.org/docs/events.html#image-events)
+- [Animation Events](https://reactjs.org/docs/events.html#animation-events)
+- [Transition Events](https://reactjs.org/docs/events.html#transition-events)
+- [Other Events](https://reactjs.org/docs/events.html#other-events)
+
+And we can take a glance at what event names there are for a given category; for example, we get the following for [Mouse Events](https://reactjs.org/docs/events.html#mouse-events):
+
+- onClick 
+- onContextMenu 
+- onDoubleClick 
+- onDrag 
+- onDragEnd 
+- onDragEnter 
+- onDragExit
+- onDragLeave 
+- onDragOver 
+- onDragStart 
+- onDrop 
+- onMouseDown 
+- onMouseEnter 
+- onMouseLeave
+- onMouseMove 
+- onMouseOut 
+- onMouseOver 
+- onMouseUp
+
+There are the [Pointer Events](https://reactjs.org/docs/events.html#pointer-events) for when you actually move your cursor around, and so on. So the Synthetic Events page can be a great reference to refer to if you are wondering how a particular event works. 
+
+---
+
+</details>
+
+<details><summary> <strong>Changing state with an event</strong></summary>
+
+We are now going to tie the two together (i.e., state and events and how we can let events change state and thereby the UI). The best way to see how state and events can be tied together is by considering a basic example involving them (see if you can tell what is *intended* inside of the component):
+
+```javascript
+import React, { Component, Fragment } from 'react';
+
+class EventAndState extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      titleText: '',
+      inputText: '',
+    };
+  }
+
+  handleClick = (e) => {
+    this.setState({
+      titleText: 'Try some more possibilities!',
+      inputText: e.target.value,
+    });
+  };
+
+  handleChange = (e) => {
+    this.setState({
+      titleText: e.target.value,
+      inputText: e.target.value,
+    });
+  };
+
+  handleSubmit = (e) => {
+    this.setState({
+      titleText: 'React is so awesome!',
+      inputText: '',
+    });
+    e.preventDefault();
+  };
+
+  render() {
+    const { inputText, titleText: dynamicTitleText } = this.state;
+
+    return (
+      <Fragment>
+        <h1>
+          {dynamicTitleText === ''
+            ? 'Start typing for a dynamic title!'
+            : dynamicTitleText}
+        </h1>
+        <form onSubmit={this.handleSubmit}>
+          <button onClick={this.handleClick} type="button">
+            Click me to try more dynamic titles!
+          </button>
+          <input
+            value={inputText}
+            type="text"
+            placeholder="Enter some text to change title!"
+            onChange={this.handleChange}
+          />
+        </form>
+      </Fragment>
+    );
+  }
+}
+
+export default EventAndState;
+```
+
+A few things to note from the above example component: 
+
+- Any change in state will cause the `EventAndState` component to render itself again (unless we explicitly tell it not to, as we will see is a possibility when looking at the component lifecycle). Since the state changes in this component on every single keystroke in the `input` field, it renders however frequently the user types (as well as when the `button` is clicked or the `form` submitted). More to the point: Every time our component rerenders, React will compare the old virtual DOM with the new virtual DOM; in this case, if a keystroke has been entered, then there *will be* a difference between the old virtual DOM and the new virtual DOM, thus resulting in a change being reflected in the actual DOM.
+- Worth repeating: Any time state changes in a React component, `render` will be called again. Every time. Unless we force it to not render.
+- In this example, for our `button`, we need to specify `type='button'`. Why? Because, as [this post](https://stackoverflow.com/a/9824845/5209533) observes, buttons like `<button>Click to do something</button>` **are** submit buttons. We can set `type='button'` on the `button` in order to change this.
+- In the `handleSubmit` method, we *must* call `e.preventDefault()` in order to prevent the `form` from submitting and the browser trying to move the page to something else that doesn't exist (basically resulting in a worthless refreshing of the page since we don't specify where the browser should go upon form submission). 
+
+This is awesome! We are beginning to see the power of state. We have it all in one place. We essentially have one source of truth for the component. We can update the UI very very efficiently using the same events we are used to but simply allow React to change the variables and then manage the rerender process down below. 
+
+**Side note:** Eventually, you will find that you want to handle `onChange` for *several* `input`s, and you'll notice you're basically rewriting the same code over and over, a giveaway that you could possibly do something more efficient. Without going into much detail here, [this brief post on Medium](https://medium.com/front-end-weekly/react-quick-tip-easy-data-binding-with-a-generic-onchange-handler-fb0254a7094e) discusses easy data binding with a generic `onChange` hander:
+
+```javascript
+onChange = e => this.setState({ [e.target.name]: e.target.value });
+```
+
+See the post for more details, but this can be pretty handy on a number of occasions. Worth noting is that this is certainly not a catch-all solution as it currently stands: it won't work if, say, you need to validate the format of an email address, check the strength of a password, etc. In those cases, you'll clearly need to run some conditional logic inside of `setState` to handle those edge cases appropriately.
+
+---
+
+</details>
+
+<details><summary> <strong>Practicing with managing state with events</strong></summary>
+
+Here were the original assignment instructions:
+
+<details><summary> Assignment instructions</summary>
+
+#### Make a new Component called StatePractice
+- import react and Component
+- make it a class, specifically a subclass of Component
+- export the class as default
+- add the constructor and super
+- initialize state in the constructor with a property of message and a value of empty string
+- add a render method
+- return a sanity check
+
+#### Add StatePractice to app.js
+- go to app.js and import the component (remove EventAndState)
+- render the component in app.js
+
+#### Add event and state change to StatePractice
+- remove sanity check and replace it with an input box and an h3
+- in the h3, render the message piece of state
+- use onFocus on the input box so that when the user clicks on the input, state updates
+- setState on "message" to notify the user that they agree to the site terms of service by filling out the form
+
+#### Add another event
+- add the onMouseEnter event to the h3 so that it clears the text when the user hovers over it
+
+#### Add another tag and event
+- add an image tag (point at any URL)
+- add another property to your state variable in the constructor called imageWidth and init to an empty string
+- use the onLoad event to grab the image width
+- if the image width is greater than 100px, then console.log("Your image is big!")
+
+---
+
+</details>
+
+We can extend on this basic assignment to create the following behavior (disregard the top and bottom bars blinking and changing colors--that's due to the console being open during the demo):
+
+<p align='center'>
+  <img width="600px" src='https://user-images.githubusercontent.com/52146855/80522414-29cf5a80-8952-11ea-9586-6bcc7f90def6.gif'>
+</p>
+
+If you try to mimic the behavior above, there are a few things worth noting:
+
+- The `textarea` field should dynamically have the same width as the image.
+- You should actually `alert` the user upon first and only first focus of the text area.
+- As [the docs note](https://reactjs.org/docs/react-component.html#setstate), the syntax for `setState` is `setState(stateChange[, callback])`. We know a fair amount about the `stateChange` *required* argument which can be a regular object (which is good to use when new state does not depend on previous state) or a callback (that automatically receives previous state and current props as available arguments). But `setState` also accepts an optional callback function that will be executed once `setState` is completed and the component is re-rendered. Generally, the React recommends using `componentDidUpdate()` (a lifecycle method we will get to before long) for such logic instead.
+- As [the docs note](https://reactjs.org/docs/refs-and-the-dom.html) about refs (in the component code below a single ref is used in order to send focus back to the `textarea` once a user has hovered over the title): Refs provide a way to access DOM nodes or React elements created in the render method: "In the typical React dataflow, [props](https://reactjs.org/docs/components-and-props.html) are the only way that parent components interact with their children. To modify a child, you re-render it with new props. However, there are a few cases where you need to imperatively modify a child outside of the typical dataflow. The child to be modified could be an instance of a React component, or it could be a DOM element. For both of these cases, React provides an escape hatch." They go on to recommend different use cases for refs: Managing focus (as is done in the component below), text selection, or media playback; triggering imperative animations; integrating with third-party DOM libraries.
+- There's also some in-line styling. We'll get to more styling possibilities later.
+
+```javascript
+import React, { Component } from 'react';
+
+class StatePractice extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      message: 'You agree to our terms of service by filling out the form.',
+      dynamicTitle: '',
+      inputText: '',
+      imageWidth: '',
+      termsAcknowledged: false,
+    };
+    this.textInput = React.createRef();
+  }
+
+  handleMouseEnter = (e) => {
+    this.setState(
+      {
+        dynamicTitle: 'New dynamic title inbound!',
+        inputText: '',
+      },
+      () => {
+        this.textInput.current.focus();
+      }
+    );
+  };
+
+  handleFocus = (e) => {
+    if (!this.state.termsAcknowledged) {
+      alert(this.state.message);
+    }
+    this.setState((prevState, props) => ({
+      termsAcknowledged:
+        prevState.termsAcknowledged || !prevState.termsAcknowledged,
+    }));
+  };
+
+  handleChange = (e) => {
+    this.setState({
+      dynamicTitle: e.target.value,
+      inputText: e.target.value,
+    });
+  };
+
+  handleImgLoad = (e) => {
+    this.setState(
+      {
+        imageWidth: e.target.width,
+      },
+      () =>
+        this.state.imageWidth > 100
+          ? console.log(`Your image is big! (${this.state.imageWidth}px)`)
+          : null
+    );
+  };
+
+  handleFormSubmit = (e) => {
+    e.preventDefault();
+    this.setState({
+      dynamicTitle: 'Thanks for submitting! Try a new one!',
+      inputText: '',
+    });
+  };
+
+  render() {
+    const { inputText, dynamicTitle, imageWidth } = this.state;
+
+    return (
+      <form action="" onSubmit={this.handleFormSubmit}>
+        <h3 onMouseEnter={this.handleMouseEnter}>
+          {dynamicTitle === ''
+            ? 'Type a message to begin! (or hover over this title at any time to begin a new one)'
+            : dynamicTitle}
+        </h3>
+        <button style={{ cursor: 'pointer' }}>Click to submit!</button>
+        <br />
+        <textarea
+          style={
+            imageWidth === ''
+              ? { display: 'none' }
+              : { width: imageWidth + 'px', margin: 10 }
+          }
+          type="text"
+          value={inputText}
+          onChange={this.handleChange}
+          onFocus={this.handleFocus}
+          placeholder="Type new message here"
+          ref={this.textInput}
+        />
+        <br />
+        <img src="binary-people.jpg" alt="" onLoad={this.handleImgLoad} />
+      </form>
+    );
+  }
+}
+
+export default StatePractice;
+```
+
+---
+
+</details>
+
+<details><summary> <strong>State and props together</strong></summary>
+
+One thing worth recalling is that we often want to pass data as props to components instead of adding file `require`ment dependencies within a component. For example, if we have card data in a `cards.js` file, then it's often architecturally better to `require` that file at a high level (e.g. in `App.js`) and *pass* the card data as props to a `CardSet` component like so: `<CardSet cards={cards} />`. This allows us to make sure `CardSet` is *modular* as it can be. It does not depend on reading in data from anywhere else. It simply uses the data it is given (as props). Another nice reason about passing data as props is that props are immutable. So whatever is passed as `cards` to `CardSet` will not change or, if it does, it will only change at a level *above* `CardSet`. So the `CardSet` does not have to worry about the `cards` data changing--that is someone else's problem.
+
+Something worth noting concerning situations when you want to get information from a certain element you created when mapping through data is that what you use as a callback for the JSX should often be an anonymous function where you can pass the *function being returned* data about the specific element. So instead of something like
+
+```javascript
+<button onClick={this.saveCourse}>Save</button>
+```
+
+where whatever `saveCourse` is it just gets called (we aren't passing the `saveCourse` method anything specific about the element on which there is a listener), we instead can pass data to `saveCourse` by means of an anonymous function:
+
+```javascript
+<button onClick={(event) => this.saveCourse(event, index, dataOne, dataTwo, ...)}>Save</button>
+```
+
+The result is you can define your methods in such a way that they are waiting for specific data instead of only being passed events:
+
+```javascript
+saveCourse = (event, index, dataOne, dataTwo, ...) => {
+  console.log(index)
+}
+```
+
+Note the `...` above refers to whatever else might be passed to `saveCourse` by means of the anonymous callback in our JSX. The point of this is that if you want to pass data to an event handler beyond just the event itself, then you will need to use something like the following (important to note below is that for the anonymous function `() => this.handleEvent` you must provide the event as the argument to the anonymous function if you want to use it in your event handler; that is, if you want to make use of the event inside of `this.handleEvent` while also passing data to `this.handleEvent`, then your JSX callback will need to look like `(event) => this.handleEvent(event, dataToBePassed)` instead of `() => this.handleEvent(event, dataToBePassed)` because in the latter case you actually don't have access to the `event` object):
+
+```javascript
+<element onEvent={(event) => this.handleEvent(event, dataOne, dataTwo, ...)}> </element>
+```
+
+as opposed to the "normal"
+
+```javascript
+<element onEvent={this.handleEvent}> </element>
+```
+
+because this "normal" way results in not passing *anything* to the `handleEvent` method other than the event itself. We *definitely* cannot do something like 
+
+```javascript
+<element onEvent={this.handleEvent(dateOne, dataTwo, ...)}> </element>
+```
+
+because this will result in this function being called immediately on render which is not what we want at all. This should be very empowering because now we have the power to generate a bunch of elements and pull data from these elements based on how the user interacts with them. And we can `setState` within these methods using the data passed to it as a result of the user's interaction with the UI.
+
+---
+
+</details>
+
+<details><summary> <strong>Stateless componenets vs stateful components (terminology)</strong></summary>
+
+Let's get our terms down for "stateless" and "stateful". What do these terms really mean?
+
+- **Stateful:**
+  + Has state. In React-speak, that means a component is managing some kind of state variable. There's data inside of the component that's changing, and the component is in charge of that. 
+  + A component will have state if it is managing its own data. 
+  + The consequence of managing state is that given input `a` in a component, it will not always equal output `b`. The point is that if you have a stateful component and you give it input `a`, then you cannot guarantee that the output is always going to be `b`. 
+  + Becuase the internal data is changing in a stateful component, if you give it `a` you might get `b` as the output one time, but you might get `c` another time, `d` another time, etc.
+  + Essentially: A stateful component can be thought of as complex and smart.
+- **Stateless:**
+  + Does not have state.
+  + The consequence of not managing state is that input `a` will always equal output `b`. 
+  + If you give a stateless component a piece of input or data, then you will *always* get the same output for that specific input. Nothing is changing internally. 
+  + Essentially: Simple, pure, presentational
+
+So a stateless component's job is simply to represent some HTML. So if you find yourself writing a bunch of markup in a stateful component, then odds may be decent you should abstract some of that markup away and create a new strictly presentational component and fill in the presentational component by passing data down to it as props.
+
+---
+
+</details>
+
+## The Component Lifecycle and HTTP
+
+<details><summary> <strong>server-side rendering vs. what we typically aim to do with React</strong></summary>
+
+When we go to Wikipedia, we get the DOM for some page. When we go to another page on Wikipedia, we make an HTTP request and we get a whole new DOM. The server accepts our request and repackages a bunch of HTML, CSS, and JS which the browser can understand and then ships that to us. Whenever we browse to a new page, this corresponds to a new request to the server and a subsequent shipment of HTML, CSS, and JS. Basically: `new page request via HTTP -> server fetches appropriate HTML, CSS, and JS -> server responds with HTML, CSS, and JS which the browser parses and returns as a whole new DOM`.
+
+We aim to change such a cycle with React. React is "back-end agnostic." Often one will be using Node.js and Express, but other options are certainly possible. 
+
+The difference between server-side rendering and what React aims to do is that when we need any new data at all, we still will make another HTTP request, but we will *not* get back HTML, CSS, and JS. Instead, we will get back JSON. And this will happen over and over and over. You can get back other things (XML, other files, etc.) but by far the most common is going to be JSON. 
+
+And that is the route we are going to take. Instead of loading up a new DOM, it's going to be
+
+```
+HTTP -> JSON : HTTP -> JSON : HTTP -> JSON ...
+```
+
+So React can update itself. It's purely a UI library so it has no idea how the data was made or who is on the other end. It could be PHP, Node, Go, C++, etc. All React knows is that it got some data and that it can do something with it. The server's job is just going to be to kick back some JSON. 
+
+Instead of server-side rendering, where the server does everything (like where you use templating engines to build the UI with the server and couple the logic), we are now creating a clean separation between front-end and back-end. This separation now means that there needs to be some chatter between the front-end and the back-end (i.e., chatter between the front-end, React, and the server that is going to provide the data, the back-end). To manage this chatter as well as other things, React gives us the component lifecycle which will help us manage how and when things should be happening.
 
 ---
 
