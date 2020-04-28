@@ -1972,7 +1972,9 @@ Running in [production build](https://reactjs.org/docs/optimizing-performance.ht
 
 </details>
 
-<details><summary> <strong>Getting started with state (where to initialize, do's and don'ts, etc.)</strong></summary>
+<details><summary> <strong>Getting started with state (where to initialize, do's and don'ts, etc.) and events (binding in <code>constructor</code>, etc.)</strong></summary>
+
+### State (initializing and setting/updating)
 
 You will want to initialize state in the `constructor` method of your class component underneath `super`:
 
@@ -1985,11 +1987,11 @@ constructor(props) {
 }
 ```
 
-The `this` in our case is the class itself because we are inside of the `constructor`. And `state` is an instance variable or it's like a variable for this particular object. State is very special. You can make anything you want inside of your constructor just like you can in any other language. But the `state` variable is very very special and unique to React. We can start by defining a property for our `state` object:
+The `this` in our case is the class instance itself because we are inside of the `constructor`. And `state` is an instance variable or it's like a variable for this particular object. State is very special. You can make anything you want inside of your constructor just like you can in any other language. But the `state` variable is very very special and unique to React. We can start by defining a property for our `state` object:
 
 ```javascript
 this.state = {
-  text: 'Stat in Action!'
+  text: 'State in Action!'
 }
 ```
 
@@ -2002,7 +2004,7 @@ class StateInAction extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: 'Stat in Action!',
+      text: 'State in Action!',
     };
   }
 
@@ -2022,8 +2024,9 @@ Just to illustrate how to update state for the moment, even though we will proba
 constructor(props) {
   super(props);
   this.state = {
-    text: 'Stat in Action!',
+    text: 'State in Action!',
   };
+
   setTimeout(() => {
     this.setState({
       text: 'State Changed!'
@@ -2032,73 +2035,127 @@ constructor(props) {
 }
 ```
 
-This method will run one time (when the component is created). We'll run `super` which will get us everything great about being a React component, `this.state` will set up our local `state` variable, and `setTimeout` will get called. Note how we don't try to *manually* change state by doing something like `this.state.text = 'State Changed'!`. We *never* mutate state manually. As [the docs](https://reactjs.org/docs/state-and-lifecycle.html#using-state-correctly) note in the context of certain things we should know about `setState`:
+This method will run one time (when the component is created). We'll run `super` which will get us everything great about being a React component, `this.state` will set up our local `state` variable, and `setTimeout` will get called. Note how we don't try to *manually* change `state` by doing something like `this.state.text = 'State Changed'!`. We *never* mutate `state` manually by ourselves. As [the docs](https://reactjs.org/docs/state-and-lifecycle.html#using-state-correctly) note in the context of certain things we should know about `setState`:
 
-- Do not modify state directly. [Read more.](https://reactjs.org/docs/state-and-lifecycle.html#do-not-modify-state-directly)
-- State updates may be asynchronous. That is, React may batch mulitple `setState` calls into a single update for performance--because `this.props` and `this.state` may be updated asynchronously, you should not rely on their values for calculating the next state. To account for this, you should use a second form of `setState` that accepts a function rather than an object, and that function will receive the previous state as the first argument and the props at the time the update is applied as the second argument. See [the docs](https://reactjs.org/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous) for more, [this Medium post](https://medium.com/@wisecobbler/using-a-function-in-setstate-instead-of-an-object-1f5cfd6e55d1), [this Stack Overflow thread](https://stackoverflow.com/q/48209452/5209533), and the bottom of [this article](https://tylermcginnis.com/react-interview-questions/) by Tyler McGinnis where he notes that, "It's rarely used (i.e., the second form of `setState` where you pass a function) and not well known, but you can also pass a function to setState that receives the previous state and props and returns a new state, just as we're doing above. And not only is nothing wrong with it, but **it's also actively recommended if you're setting state based on the previous state**." So if you are setting state *based on* previous state (e.g., counters and the like or a whole host of other things), then passing a function to `setState` instead of just an object is what you will want to do. [Read more.](https://reactjs.org/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous)
-- State updates are merged. [Read more.](https://reactjs.org/docs/state-and-lifecycle.html#state-updates-are-merged)
+- Do not modify state directly. [[Read more.](https://reactjs.org/docs/state-and-lifecycle.html#do-not-modify-state-directly)]
+- State updates may be asynchronous. That is, React may batch mulitple `setState` calls into a single update for performance--because `this.props` and `this.state` may be updated asynchronously, you should not rely on their values for calculating the next state. To account for this, you should use a second form of `setState` that accepts a function rather than an object, and that function will receive the previous state as the first argument and the props at the time the update is applied as the second argument. See [the docs](https://reactjs.org/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous) for more, [this Medium post](https://medium.com/@wisecobbler/using-a-function-in-setstate-instead-of-an-object-1f5cfd6e55d1), [this Stack Overflow thread](https://stackoverflow.com/q/48209452/5209533), and the bottom of [this article](https://tylermcginnis.com/react-interview-questions/) by Tyler McGinnis where he notes that, "It's rarely used (i.e., the second form of `setState` where you pass a function) and not well known, but you can also pass a function to `setState` that receives the previous state and props and returns a new state, just as we're doing above. And not only is nothing wrong with it, but **it's also actively recommended if you're setting state based on the previous state**." So if you are setting state *based on* previous state (e.g., counters and the like or a whole host of other things), then passing a function to `setState` instead of just an object is what you will want to do. [[Read more.](https://reactjs.org/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous)]
+- State updates are merged. [[Read more.](https://reactjs.org/docs/state-and-lifecycle.html#state-updates-are-merged)]
 
-As alluded to above, even though something like `this.state.text = 'State changed'` looks fine with regular old JavaScript, this is something with *never* do in React (i.e., never set `state` manually via an assignment like the above). The only time you should be doing `this.state = ...` is inside of the class `constructor`. The reason for that (some of which is mentioned above in the three different points) is because React needs to do a whole bunch of stuff when the state changes. So instead of changing the state ourselves, we can hand it to React and React can run its own method (i.e., `setState`), do a whole bunch of stuff, and ultimately change it for us. Why all this rigmarole? In object-oriented programming, something like `setState` is called a `setter` (the companion to a `getter`; read more about [setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) and [getters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) on MDN). A setter is a function whose job is to mutate something else (i.e., *set* something; in this context, we want to *set* the `state` in some fashion). So `setState` is basically saying, "Hey, if you want to change a `state` variable, then you tell me, and I will change it for you. Don't change it yourself."
+As alluded to above, even though something like `this.state.text = 'State changed'` looks fine with regular old JavaScript, this is something we *never* do in React (i.e., never set `state` manually via an assignment like the above). The only time you should be doing `this.state = ...` is inside of the class `constructor` when the component is created for the very first time. The reason for that (some of which is mentioned above in the three different points) is because React needs to do a whole bunch of stuff under the hood when the state changes. So instead of changing the state ourselves, we can hand it to React and React can run its own method (i.e., `setState`), do a whole bunch of stuff, and ultimately change it for us. Why all this rigmarole? In object-oriented programming, something like `setState` is called a `setter` (it is the counter-companion to a `getter`; read more about [setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) and [getters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) on MDN). A setter is a function whose job is to mutate something else (i.e., *set* something and implement *how* that something should be set without exposing the innerworkings of *how* everything is set to the user or developer; in this context, we want to *set* the `state` in some fashion, and React wants to handle *how* the state is set by exposing its `setState` method on the `React.Component` prototype (remember our class inherits all the goodies from the `Component` class since our class `extends React.Component`)). So `setState` is basically saying, "Hey, if you want to change a `state` variable, then you tell me, and I will change it for you. Don't change it yourself."
 
-On a different note, one slight "gotcha" you will almost certainly encounter is how `this` is handled/treated in a class and the effect using the normal `function` keyword can have as opposed to using an ES6+ rocket function `=>`:
+### Events (getting started)
+
+#### Events in React in General
+
+As [the docs](https://reactjs.org/docs/handling-events.html) detail in regards to handling events (something we will address in more detail in the next note), handling events with React elements is "very similar" to handling events on DOM elements. There are two key syntactical differences:
+
+- React events are named using camelCase, rather than lowercase.
+- With JSX you pass a function as the event handler, rather than a string.
+
+Hence, instead of something like
+
+``` HTML
+<button onclick="activateLasers()">
+  Activate Lasers
+</button>
+```
+
+as would normally be the case, in React, we would have something like
+
+``` HTML
+<button onClick={activateLasers}>
+  Activate Lasers
+</button>
+```
+
+The docs also note that you cannot return `false` to prevent default behavior in React. Instead, you have to call `preventDefault` explicitly. They give an example in plain HTML of preventing the default link behavior of opening a new page:
+
+``` HTML
+<a href="#" onclick="console.log('The link was clicked.'); return false">
+  Click me
+</a>
+```
+
+In React, we would have something like the following instead:
 
 ```javascript
-constructor(props) {
-  super(props);
-  this.state = {
-    text: 'Stat in Action!',
-  };
-  setTimeout(() => {
-    this.setState({
-      text: 'State Changed!'
-    })
-  }, 3000)
+function ActionLink() {
+  function handleClick(e) {
+    e.preventDefault();
+    console.log('The link was clicked.');
+  }
+
+  return (
+    <a href="#" onClick={handleClick}>
+      Click me
+    </a>
+  );
 }
 ```
 
-is different than
+What we care about here, however, is not just preventing default behavior (which is no doubt nice to know) but how events are treated in general in React (the docs note that the `e` referenced above is a `SyntheticEvent`, something we will address in just a moment). Remember that React elements *are not DOM elements* until they are made so by a need to update the DOM. In particular, the JSX we use is transpiled by Babel into JavaScript the browser can understand in order to turn our newly created React elements into freshly minted DOM elements. So how do event listeners work in React? Typically, *without React*, you would use the [addEventListener](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) Web API for Event Targets to add a listener to a DOM element *after* it was created. Consider this silly example (adding a button to the top of `body` in the DOM which, when clicked, `alert`s `hello!`):
 
 ```javascript
-constructor(props) {
-  super(props);
-  this.state = {
-    text: 'Stat in Action!',
-  };
-
-  setTimeout(function() {
-    this.setState({
-      text: 'State Changed!'
-    })
-  }, 3000)
-}
+let newElement = document.createElement('button');
+let buttonText = newElement.innerText;
+newElement.innerText = 'Click me to hear me say hello!'
+newElement.addEventListener('click', (e) => {
+  console.log(e); // MouseEvent { ..., type: "click", ... }
+  alert('hello!');
+})
+document.body.prepend(newElement);
 ```
 
-You will get `TypeError: this.setState is not a function` in the second case. Why? The difference between `function` and `=>` is that `=>` does not create a new `this` context. So inside of the rocket function the `this` will still point to what it was when we entered the body of the rocket function, namely the class instance. The *class* has a method called `setState`. If, instead, we use the `function` keyword, then this syntax will create a new `this` and that `this` will not have a `setState` method. It's very important to note the difference because this can cause a lot of unnecessary headaches in the future if you aren't careful. 
+Here we have a "normal" event `e` that is a `MouseEvent` of type `click`. In the React example, they noted that `e` is a synthetic event? Well what the heck is a synthetic event? [Their docs](https://reactjs.org/docs/events.html) give more information, but here are some observations:
 
-One really hacky way (read: not recommended) of getting around this in this instance is something like the following:
+- The `SyntheticEvent` wrapper forms part of React's Event System.
+- Event handlers will be passed instances of `SyntheticEvent`, a cross-browser wrapper around the browser's native event.
+- React normalizes events so that they have consistent properties across different browsers. The event handlers below are triggered by an event in the bubbling phase. To register an event handler for the capture phase, append `Capture` to the event name; for example, instead of using `onClick`, you would use `onClickCapture` to handle the click event in the capture phase.
+
+- [Clipboard Events](https://reactjs.org/docs/events.html#clipboard-events)
+- [Composition Events](https://reactjs.org/docs/events.html#composition-events)
+- [Keyboard Events](https://reactjs.org/docs/events.html#keyboard-events)
+- [Focus Events](https://reactjs.org/docs/events.html#focus-events)
+- [Form Events](https://reactjs.org/docs/events.html#form-events)
+- [Generic Events](https://reactjs.org/docs/events.html#generic-events)
+- [Mouse Events](https://reactjs.org/docs/events.html#mouse-events)
+- [Pointer Events](https://reactjs.org/docs/events.html#pointer-events)
+- [Selection Events](https://reactjs.org/docs/events.html#selection-events)
+- [Touch Events](https://reactjs.org/docs/events.html#touch-events)
+- [UI Events](https://reactjs.org/docs/events.html#ui-events)
+- [Wheel Events](https://reactjs.org/docs/events.html#wheel-events)
+- [Media Events](https://reactjs.org/docs/events.html#media-events)
+- [Image Events](https://reactjs.org/docs/events.html#image-events)
+- [Animation Events](https://reactjs.org/docs/events.html#animation-events)
+- [Transition Events](https://reactjs.org/docs/events.html#transition-events)
+- [Other Events](https://reactjs.org/docs/events.html#other-events)
+
+If we click on the [Mouse Events](https://reactjs.org/docs/events.html#mouse-events) link, then we will see the React `onClick` event which effectively maps to placing `addEventListener` on an element and listening for an [event](https://developer.mozilla.org/en-US/docs/Web/E) of type [click](https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event). Functionality wise, the code
 
 ```javascript
-constructor(props) {
-  super(props);
-  this.state = {
-    text: 'Stat in Action!',
-  };
-
-  let self = this;
-
-  setTimeout(function() {
-    self.setState({
-      text: 'State Changed!'
-    })
-  }, 3000)
-}
+let newElement = document.createElement('button');
+let buttonText = newElement.innerText;
+newElement.innerText = 'Click me to hear me say hello!'
+newElement.addEventListener('click', (e) => {
+  console.log(e); // MouseEvent { ..., type: "click", ... }
+  alert('hello!');
+})
+document.body.prepend(newElement);
 ```
 
-#### Handling Events (focusing on the "this" keyword)
+in plain JavaScript and 
 
-In any case, handling events in React is where a lot of the issues involving `this` can crop up. [The docs](https://reactjs.org/docs/handling-events.html) give us a couple examples of how to handle situations involving `this`, where one approach involves using `bind` in the `constructor` for any event handlers we might have and the other approach involves using rocket functions. 
+``` HTML
+<button onClick={(e) => {console.log(e); alert('hello!')}}>Click me to hear me say hello!</button>
+```
 
-##### First Approach
+in JSX when using React are the same. In fact, when we log `e` to the console in the React example when the button is clicked we see `Class { ..., nativeEvent: MouseEvent, type: "click", ...  }`. 
+
+**SO WHAT IS THE POINT OF ALL THIS TEDIUM?** The basic point is this: React may not handle events exactly how you are used to or how you expect. In particular, when you define a component using an [ES6 class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), a common pattern in React is for an event handler to be a method on the class (since for JSX we pass *functions* as event handlers rather than strings). Where this pattern can get a little tricky and confusing, however, is understanding the meaning of `this` in reference to the functions we pass as event handlers to React elements (i.e., the functions we use as JSX callbacks). 
+
+#### Possibilities for Confusion: When Event Handlers are Class Methods (the usual)
+
+Consider the following example from [the docs](https://reactjs.org/docs/handling-events.html) that illustrates where confusion may arise when using a class method as an event handler (as the docs also note, this is a *very common* pattern in React development so we need to make sure we understand what is going on):
 
 ```javascript
 class Toggle extends React.Component {
@@ -2124,67 +2181,348 @@ class Toggle extends React.Component {
     );
   }
 }
-
-ReactDOM.render(
-  <Toggle />,
-  document.getElementById('root')
-);
 ```
 
-Note how the `handleClick` event handler is a class method, where `handleClick` behaves like a normal `function` (i.e., it creates its own `this` context). Hence, inside the `constructor`, it is necessary for us to `bind` the `this` for `handleClick` to the class instance like so: 
+What's happening here? Why do we need the `this.handleClick = this.handleClick.bind(this);` line in the `constructor` (try commenting that line out and clicking the button; the application will break and you'll get a nasty error implicitly communicating that `this` is `undefined`: `TypeError: Cannot read property 'setState' of undefined`)? As the docs note, "Class methods in JavaScript are not bound by default. So if you forget to bind `this.handleClick` and pass it to `onClick`, `this` will be `undefined` when the function is actually called." But *why*?  What would `this` *normally* (i.e., outside of React) refer to in regards to DOM event handlers? As [the MDN docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) note about `this` (towards the bottom there are two subsections: `this` "As a DOM event handler" and `this` "In an inline event handler"): "When a function is used as an event handler, its `this` is set to the element on which the listener is placed (some browsers do not follow this convention for listeners added dynamically with methods other than `addEventListener()`). [...] When the code is called from an inline [on-event handler](https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Event_handlers), its `this` is set to the DOM element on which the listener is placed."
+
+Here is the key question of concern if we are to have any hope of understanding *why* it is necessary (depending on our approach) to bind event handler class methods in the `constructor` in React: **How is `this` set in regards to event handlers for React elements?** To answer this question, we have to dive under the hood a bit, but the result is worth it. What follows is largely a paraphrased version of [this excellent answer](https://stackoverflow.com/a/51759791/5209533) on Stack Overflow.
+
+#### React Event Handlers: Understanding the Meaning of `this` 
+
+We can better understand how React treats event handlers by considering and pondering a few key points in succession:
+
+- `this` is dynamic
+- how React handles event handlers
+- why `bind`ing works
+- why arrow function properties work
+- recap: 4 examples
+- main takeaway
+
+##### `this` Is Dynamic
+
+To better understand the React-specific situation, a brief introduction to how `this` works is in order; in particular, we will want to observe how `this` can *lose meaning* (i.e., become `undefined`) when the method referring to `this` gets passed around.
+
+One of the keys to understanding `this` in JavaScript lies in knowing that **`this` is a runtime binding and depends on the current execution context**, hence why `this` is commonly refered to as "context". Sometimes (not just in React) we have to *specify* the context in which we want `this` to be considered (i.e., give information on what we *want* to be the current execution context when `this` is referenced) in order to get desired/expected results. Binding is necessary on occasion because you sometimes you *lose* "context" (this is especially true when dealing with React event handlers, as we will soon see).
+
+To clearly illustrate how this problem (i.e., losing "context") can arise, consider the following basic snippet:
+
+```javascript
+const myDog = {
+  name: 'Archie',
+  sayName: function() {
+    return this.name;
+  }
+}
+console.log(myDog.sayName()); // 'Archie' ... all good so far!
+```
+
+In this example, we get `'Archie'`, as expected. But consider this example:
+
+```javascript
+const sayMyDogName = myDog.sayName;
+console.log(sayMyDogName()); // undefined ... Uh oh! Why!?!?
+```
+
+It may be unexpected to find that we get `undefined` logged and thrown back in our faces--where did `'Archie'` go? The answer lies in "context" or how you *execute* a function. Compare how we call the functions:
+
+```javascript
+// Example 1
+myDog.sayName();
+// Example 2
+const sayMyDogName = myDog.sayName;
+sayMyDogName();
+```
+
+Notice the difference. In the first example, we are specifying *exactly* where the `sayName` method is located (we'll use "method" to refer to a function that is supposed to be bound to an object, and "function" for those not): on the `myDog` object:
+
+```javascript
+myDog.sayName();
+^^^^^
+```
+
+But in the second example, we store the method into a new variable, and then we use *that* variable to call the method without explicitly state where the method actually exists, **thus losing context**:
+
+```javascript
+sayMyDogName(); // which object is this function coming from?
+```
+
+And therein lies the problem. When you store a method in a variable, the original information about *where* that method is located (i.e., the "context" in which the method is being executed) is lost. Without this information, at runtime, there is no way for the JavaScript interpreter to bind the correct `this`. Without specific context, `this` does not work as expected (in the second snippet, `undefined` is logged instead of `'Archie'` because `this` defaults to the global execution context (`window` when not in strict mode, or else `undefined`) when it cannot be determined via specific context; and in our example `window.name` does exist thus yielding `undefined`). 
+
+To fix this issue in our own example, we can use [Function.prototype.bind()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind) method: "The `bind()` method creates a new function that, when called, has its `this` keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called." So instead of
+
+```javascript
+const sayMyDogName = myDog.sayName;
+console.log(sayMyDogName()); // undefined ... Uh oh! Why!?!?
+```
+
+we can create a new function (i.e., `sayMyDogName`) that, when called, has its `this` keyword set to `myDog`:
+
+```javascript
+const sayMyDogName = myDog.sayName.bind(myDog);
+console.log(sayMyDogName()); // 'Archie' ... yay! Who's a good boy!?
+```
+
+##### How React Handles Event Handlers
+
+Here is an example of a React component suffering from the dreaded error resulting from the `this` problem: `TypeError: Cannot read property 'setState' of undefined`:
+
+```javascript
+import React from 'react';
+
+class CountExperiment extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      clicks: 0,
+    };
+    // this.handleClick = this.handleClick.bind(this); // <-- needed to work properly; why?
+  }
+
+  handleClick() {
+    this.setState((prevState, props) => ({
+      clicks: prevState.clicks + 1,
+    }));
+  }
+
+  render() {
+    return <button onClick={this.handleClick}>{this.state.clicks}</button>;
+  }
+}
+
+export default CountExperiment;
+```
+
+But why and how does the previous subsection about "`this` is Dynamic" relate to the `this` issue we have here? Because the component above and "Example 2" considered previously both suffer from an abstraction of the same problem. Specifically, [note how React handles event handlers](https://github.com/facebook/react/blob/64e1921aab4f7ad7e2f345f392033ffe724e52e9/packages/events/EventPluginHub.js#L148): 
+
+```javascript
+// Edited to fit this description; React performs other checks internally
+// props is the current React component's props,
+// registrationName is the name of the event handle prop (e.g., "onClick")
+let listener = props[registrationName];
+// Later, listener is called
+```
+
+So when you put `onClick={this.handleClick}` in your JSX in React, the `this.handleClick` method is eventually assigned to the variable `listener` (if you go down the rabbit hole of how events in the event queue are executed, [invokeGuardedCallback](https://github.com/facebook/react/blob/64e1921aab4f7ad7e2f345f392033ffe724e52e9/packages/shared/invokeGuardedCallback.js#L27) is called on the `listener`). But now you can hopefully see *why* we have the problem we do: since React has assigned `this.handleClick` to `listener`, we are no longer specifying exactly where `handleClick` is coming from! From React's point of view, `listener` is just some function, not attached to any object (the `CountExperiment` React component instance in this case). This is similar to what happened in our much simpler previous example:
+
+```javascript
+const myDog = {
+  name: 'Archie',
+  sayName: function() {
+    return this.name;
+  }
+}
+
+const sayMyDogName = myDog.sayName;
+
+console.log(sayMyDogName()); // undefined
+```
+
+From JavaScript's point of view, `sayMyDogName` is just some function, not attached to any object (the `myDog` object in this case). 
+
+**The takeway:** In *both* situations (`sayMyDogName` with `myDog` and `handleClick` with `CountExperiment`), we have lost context and thus the interpreter cannot infer a `this` value to use **inside** the `sayName` method in the `myDog` object and the `handleClick` method in the `CountExperiment` object (i.e, React component instance).  
+
+##### Why `bind`ing Works
+
+From everything we have discussed, it is sensible to wonder: If the interpreter decides the `this` value at runtime, then why can I bind the handler so that it *does work*? The reason is because you can use `Function#bind` to *guarantee* the `this` value at runtime (specificially, we want to *guarantee* that the the `this` for our event handler points to the class instance or new React component). This is done by setting an internal `this` binding property on a function, allowing it to not *infer* `this` (we want to set `this` *explicitly): 
 
 ```javascript
 this.handleClick = this.handleClick.bind(this);
 ```
 
+When the line above is executed, presumably in the class `constructor`, the current `this` *is captured* (i.e., the React component instance) and set as an internal `this` binding of an entirely new function, returned from `Function#bind`. The `bind` method ensures the interpreter will not try to *infer* anything about the value of `this` when `this` is being calculated at runtime but *explicitly* use the provided `this` you have given it.
+
+To see this in action in a semi-illustrated fashion, consider the following component:
+
+```javascript
+import React from 'react';
+
+class IllustratedBinding extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      unboundedClicks: 0,
+      boundedClicks: 0
+    }
+
+    this.handleClickBound = this.handleClickBound.bind(this);
+    //                                                |____|
+    //                                                   ^----- React component instance
+  }
+
+  handleClickUnbound() { 
+    this.setState((prevState, props) => ({
+      unboundedClicks: prevState.unboundedClicks + 1
+    }));
+  }
+
+  handleClickBound() { 
+    this.setState((prevState, props) => ({
+      boundedClicks: prevState.boundedClicks + 1
+    }));
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        {/*                v----------------- not an event handler (so never assigned as "listener")
+                  |_________________| */}
+        <p onLoad={console.log(this)}></p>
+
+        <button onClick={this.handleClickUnbound}>handleClickUnbound</button>
+        {/*             |_______________________|
+                                    ^-------------- this.handleClickUnbound eventually assigned as            
+                                                    "listener", thus losing context */}
+        
+        <button onClick={this.handleClickBound}>handleClickUnbound</button>
+        {/*             |_____________________|
+                                   ^--------------- this.handleClick eventually assigned as "listener", 
+                                                    but context not lost since context was explicitly 
+                                                    bound to the current "this" captured in the constructor
+                                                    method (i.e., the React component instance) */}
+      </React.Fragment>
+    )
+  }
+}
+ 
+export default IllustratedBinding;
+```
+
+Although all the details (and comments) are included in the code above, it's worth noting the following:
+
+- `<p onLoad={console.log(this)}></p>` is simply included in order to show that referring to `this` within a class results in what is expected, namely `IllustratedBinding { ... }`. It's when you try to *use* `this` in event handlers that we have to be mindful of how our event handler class method will eventually get assigned as "listener" in the future.
+- `handleClickUnbound`: As its name implies, the `handleClickUnbound` method has not been bounded. Hence, when the button is clicked on which this method is passed as the callback, we will get the dreaded `this` error: `TypeError: Cannot read property 'setState' of undefined`. The reason is because `this.handleClick` is eventually assigned to `listener`, thus losing its context (i.e., the React component instance).
+- `handleClickBound`: As its name implies, the `handleClickBound` method has been bounded. Specifically, what is *the current `this`* in the class `constructor` (or anywhere else in the class for that matter)? The `this` in the class constructor refers to the React component instance we are creating. Hence, *we capture the current `this` in the constructor* via `bind`: By declaring `this.handleClickBound = this.handleClickBound.bind(this);` in the `constructor`, we ensure whenever `this.handleClickBound` is called that the `this` being referred to within `handleClick` points to the React component instance we are creating.
+
+A slightly more cleaned up "visual" example of the above is given below as an image:
+
+<p align='center'>
+  <img width="800px" src='./state-and-events/images-for-section/class-method-binding-illustrated.png'>
+</p>
+
+##### Why Arrow Function Properties Work
+
+Arrow function class properties currently work through Babel based on, as an example,
+
+```javascript
+handleClick = () => { /* Can use this just fine here */ }
+```
+
+being effectively transpiled into 
+
+```javascript
+constructor() {
+  super();
+  this.handleClick = () => {}
+}
+```
+
+And this works due to the fact that arrow functions **do not** bind their own `this` but take the `this` of their enclosing scope, namely the `constructor`'s `this` in this case which points to the React component instance, thus giving us the correct `this`.
+
+It's actually *a lot more complicated*. React internally tries to use `Function#bind` on listeners for its own use, but this does not work with arrow functions as they simply do not bind `this`. That means when `this` inside the arrow function is actually evaluated, the `this` is resolved up each lexical environment of each execution context of the current code of the module. The execution context which finally resolves to have a `this` binding *is* the `constructor`, which has a `this` pointing to the current React component instance, allowing it to work.
+
+##### Recap: 4 Examples
+
+Now that we have a much better understanding of how event handlers work in React and why it's necessary to `bind` methods in the `constructor` (unless you `bind` elsewhere which is atypical and not recommended or you use arrow functions which frequently occurs and *is* recommended), we can consider 4 approaches or examples of how to go about defining event handlers in React. The following component is meant to illustrate these examples:
+
+```javascript
+import React from 'react';
+
+class FourExamples extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isToggleOnWithoutBind: true,
+      isToggleOnWithBind: true,
+      isToggleOnWithArrow: true,
+      isToggleOnWithArrowCallback: true,
+    };
+
+    // For explicit binding in Example 2, as we learned was needed
+    this.handleClickWithBind = this.handleClickWithBind.bind(this);
+  }
+
+  handleClickWithoutBind() {
+    this.setState((prevState, props) => ({
+      isToggleOnWithoutBind: !prevState.isToggleOnWithoutBind
+    }));
+  }
+
+  handleClickWithBind() {
+    this.setState((prevState, props) => ({
+      isToggleOnWithBind: !prevState.isToggleOnWithBind
+    }))
+  }
+
+  handleClickWithArrow = () => {
+    this.setState((prevState, props) => ({
+      isToggleOnWithArrow: !prevState.isToggleOnWithArrow
+    }));
+  };
+
+  handleClickWithArrowCallback() {
+    this.setState((prevState, props) => ({
+      isToggleOnWithArrowCallback: !prevState.isToggleOnWithArrowCallback
+    }));
+  }
+
+  render() {
+    const buttonMargin = {
+      display: 'block',
+      marginTop: '5px',
+      marginBottom: '20px',
+    };
+    const divStyle = {
+      textAlign: 'left',
+      marginLeft: '10px',
+      fontFamily: 'monospace',
+      fontSize: '20px',
+    };
+
+    return (
+      <div style={divStyle}>
+
+        {/* Example 1 (incorrect!!!) */}
+        handleClickWithoutBind:
+        <button style={buttonMargin} onClick={this.handleClickWithoutBind}>
+          {this.state.isToggleOnWithoutBind ? 'ON' : 'OFF'}
+        </button>
+
+        {/* Example 2 (use explicit binding: correct) */}
+        handleClickWithBind:
+        <button style={buttonMargin} onClick={this.handleClickWithBind}>
+          {this.state.isToggleOnWithBind ? 'ON' : 'OFF'}
+        </button>
+
+        {/* Example 3 (exploit fact that arrow functions do not bind their own "this": correct) */}
+        handleClickWithArrow:
+        <button style={buttonMargin} onClick={this.handleClickWithArrow}>
+          {this.state.isToggleOnWithArrow ? 'ON' : 'OFF'}
+        </button>
+        
+        {/* Example 4 (works but not performant since different callback is created for each render) */}
+        handleClickWithArrowCallback:
+        <button style={buttonMargin} onClick={() => this.handleClickWithArrowCallback()}>
+          {this.state.isToggleOnWithArrowCallback ? 'ON' : 'OFF'}
+        </button>
+      </div>
+    );
+  }
+}
+
+export default FourExamples;
+```
+
+And you can *see* the results below:
+
+<p align='center'>
+  <img height="300px" src='https://user-images.githubusercontent.com/52146855/80433767-7452c780-88bd-11ea-99fb-b719d5b94a18.gif'>
+</p>
+
 Other class methods defined in this manner should be similarly bound in the `constructor`. See [this article](https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/) for more about how `bind` works as well as [this Tyler McGinnis article](https://tylermcginnis.com/this-keyword-call-apply-bind-javascript/) for understanding `this`, especially in the context of the `call`, `apply`, and `bind` functions. 
-
-##### Second Approach
-
-As the React docs note, if calling `bind` annoys you, then there are two ways you can get around using `bind`: If you are using the [public class fields syntax](https://babeljs.io/docs/en/babel-plugin-transform-class-properties/), then you can use class fields to correctly bind callbacks:
-
-```javascript
-class LoggingButton extends React.Component {
-  // This syntax ensures `this` is bound within handleClick.
-  // Warning: this is *experimental* syntax.
-  handleClick = () => {
-    console.log('this is:', this);
-  }
-
-  render() {
-    return (
-      <button onClick={this.handleClick}>
-        Click me
-      </button>
-    );
-  }
-}
-```
-
-Hence, we basically just use a rocket function for the class method (the docs note this syntax is enabled by default in Create React App). They also note that if you aren't using class fields syntax then you can use an arrow function in the callback:
-
-```javascript
-class LoggingButton extends React.Component {
-  handleClick() {
-    console.log('this is:', this);
-  }
-
-  render() {
-    // This syntax ensures `this` is bound within handleClick
-    return (
-      <button onClick={() => this.handleClick()}>
-        Click me
-      </button>
-    );
-  }
-}
-```
-
-But there are performance concerns with this approach: "The problem with this syntax is that a different callback is created each time the `LoggingButton` renders. In most cases, this is fine. However, if this callback is passed as a prop to lower components, those components might do an extra re-rendering. We generally recommend binding in the constructor or using the class fields syntax, to avoid this sort of performance problem."
 
 ##### Main Takeaway
 
-In most cases, it seems you should either bind your class methods in the constructor:
+In most cases, you should either `bind` your class methods in the `constructor`:
 
 ```javascript
 class SampleClass {
@@ -2211,7 +2549,7 @@ class SampleClass {
 }
 ```
 
-Or you should simply use public class fields syntax with rocket functions:
+Or you should simply use public class fields syntax with arrow functions:
 
 ```javascript
 class SampleClass {

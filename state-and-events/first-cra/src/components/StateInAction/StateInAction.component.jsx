@@ -4,22 +4,20 @@ class StateInAction extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: 'Stat in Action!',
+      text: 'State in Action!',
     };
 
-    let self = this;
-
-    setTimeout(function() {
-      self.setState({
+    setTimeout(() => {
+      this.setState({
         text: 'State Changed!'
       })
     }, 3000)
   }
+  
 
   render() {
     const { text } = this.state;
-
-    return <h1>{text}</h1>;
+    return <h1>{text}</h1>
   }
 }
 
