@@ -168,6 +168,85 @@
 
 </details>
 
+<details><summary> <strong>Click to expand docs reference for <code>React.Component</code> (in a nutshell)</strong></summary>
+
+See [React.Component](https://reactjs.org/docs/react-component.html) in the docs for all the gory details. Below is a modest attempt to provide just a nuts and bolts reference for ease of use (i.e., consult the actual docs for examples of everything below).
+
+Each component has several "lifecycle methods" that you can override to run code at particular times in the process. You can use [this lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) as a cheat sheet. In the list below, commonly used lifecycle methods are marked as bold. The rest of them exist for relatively rare use cases.
+
+- **Mounting:** These methods are called in the following order when an instance of a component is being created and inserted into the DOM:
+  + **[constructor()](https://reactjs.org/docs/react-component.html#constructor)**
+  + [static getDerivedStateFromProps()](https://reactjs.org/docs/react-component.html#static-getderivedstatefromprops) 
+  + **[render()](https://reactjs.org/docs/react-component.html#render)**
+  + **[componentDidMount()](https://reactjs.org/docs/react-component.html#componentdidmount)**
+  + **Note:** These methods are considered legacy and you should [avoid them](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html) in new code:
+    * [UNSAFE_componentWillMount()](https://reactjs.org/docs/react-component.html#unsafe_componentwillmount)
+- **Updating:** An update can be caused by changes to props or state. These methods are called in the following order when a component is being re-rendered:
+  + [static getDerivedStateFromProps()](https://reactjs.org/docs/react-component.html#static-getderivedstatefromprops)
+  + [shouldComponentUpdate()](https://reactjs.org/docs/react-component.html#shouldcomponentupdate)
+  + **[render()](https://reactjs.org/docs/react-component.html#render)**
+  + [getSnapshotBeforeUpdate()](https://reactjs.org/docs/react-component.html#getsnapshotbeforeupdate)
+  + **[componentDidUpdate()](https://reactjs.org/docs/react-component.html#componentdidupdate)** These methods are considered legacy and you should avoid them in new code:
+  + **Note:** These methods are considered legacy and you should [avoid them](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html) in new code:
+    * [UNSAFE_componentWillUpdate()](https://reactjs.org/docs/react-component.html#unsafe_componentwillupdate)
+    * [UNSAFE_componentWillReceiveProps()](https://reactjs.org/docs/react-component.html#unsafe_componentwillreceiveprops)
+- **Unmounting:** This method is called when a component is being removed from the DOM:
+  + **[componentWillUnmount()](https://reactjs.org/docs/react-component.html#componentwillunmount)**
+- **Error Handling:** These methods are called when there is an error during rendering, in a lifecycle method, or in the constructor of any child component.
+  + [static getDerivedStateFromError()](https://reactjs.org/docs/react-component.html#static-getderivedstatefromerror)
+  + [componentDidCatch()](https://reactjs.org/docs/react-component.html#componentdidcatch)
+- **Other APIs:** Each component also provides some other APIs:
+  + [setState()](https://reactjs.org/docs/react-component.html#setstate)
+  + [forceUpdate()](https://reactjs.org/docs/react-component.html#forceupdate)
+- **Class Properties**
+  + [defaultProps](https://reactjs.org/docs/react-component.html#defaultprops)
+  + [displayName](https://reactjs.org/docs/react-component.html#displayname)
+- **Instance Properties**
+  + [props](https://reactjs.org/docs/react-component.html#props)
+  + [state](https://reactjs.org/docs/react-component.html#state)
+
+---
+
+</details>
+
+<details><summary> <strong>Click to expand conditional rendering cheatsheet</strong></summary>
+
+[This article](https://www.robinwieruch.de/conditional-rendering-react) gives a *very* nice overview of conditional rendering in React. The author specifies the following waysof conditional rendering: if, if else, ternary, switch case, multiple conditional renderings in React, nested conditional rendering in React, conditional rendering with higher-order components, and finally if else components. Here's the actual cheatsheet:
++ [if](https://www.robinwieruch.de/conditional-rendering-react#conditional-rendering-in-react-if)
+  * most basic conditional rendering
+  * use to opt-out early from a rendering (guard pattern)
+  * cannot be used within return statement and JSX (except self invoking function)
++ [if-else](https://www.robinwieruch.de/conditional-rendering-react#conditional-rendering-in-react-if-else)
+  * use it rarely, because it's verbose
+  * instead, use ternary operator or logical && operator
+  * cannot be used inside return statement and JSX (except self invoking function)
++ [ternary operator](https://www.robinwieruch.de/conditional-rendering-react#conditional-rendering-in-react-ternary)
+  * use it instead of an if-else statement
+  * it can be used within JSX and return statement
++ [logical && operator](https://www.robinwieruch.de/conditional-rendering-react#conditional-rendering-in-react-)
+  * use it when one side of the ternary operation would return null
+  * it can be used inside JSX and return statement
++ [switch case](https://www.robinwieruch.de/conditional-rendering-react#conditional-rendering-in-react-switch-case)
+  * avoid using it, because it's too verbose
+  * instead, use enums
+  * cannot be used within JSX and return (except self invoking function)
++ [enums: multiple conditional renderings](https://www.robinwieruch.de/conditional-rendering-react#multiple-conditional-renderings-in-react)
+  * use it for conditional rendering based on multiple states
+  * perfect to map more than one condition
++ [nested conditional rendering](https://www.robinwieruch.de/conditional-rendering-react#nested-conditional-rendering-in-react)
+  * avoid them for the sake of readability
+  * instead, split out components, use if statements, or use HOCs
++ [conditional rendering with higher-order components](https://www.robinwieruch.de/conditional-rendering-react#conditional-rendering-with-hoc)
+  * components can focus on their main purpose
+  * use HOC to shield away conditional rendering
+  * use multiple composable HOCs to shield away multiple conditional renderings
++ [external templating components: if else components](https://www.robinwieruch.de/conditional-rendering-react#if-else-components-in-react)
+  * avoid them and be comfortable with JSX and JS
+
+---
+
+</details>
+
 ## React 101
 
 <details><summary> <strong>Starter notes (course starter files, <code>create-react-app</code>, React docs, etc.)</strong></summary>
@@ -1972,10 +2051,10 @@ as used to be the case when creating projects with `create-react-app`, then `Con
 [This answer](https://stackoverflow.com/a/60986044/5209533) on Stack Overflow succinctly answers this question and points us to [the docs](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) for more information. Essentially (from the SO post), in recent versions of React, rendering uses [strict mode](https://reactjs.org/docs/strict-mode.html) when running in development. Strict mode intentionally double-calls the `constructor` and `render` functions [to better detect unexpected side effects](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects). From the docs: Strict mode can’t automatically detect side effects for you, but it can help you spot them by making them a little more deterministic. **This is done by intentionally double-invoking the following functions**:
 
 - Class component `constructor`, `render`, and `shouldComponentUpdate` methods
-- Class component static getDerivedStateFromProps method
+- Class component static `getDerivedStateFromProps` method
 - Function component bodies
-- State updater functions (the first argument to setState)
-- Functions passed to useState, useMemo, or useReducer
+- State updater functions (the first argument to `setState`)
+- Functions passed to `useState`, `useMemo`, or `useReducer`
 
 Running in [production build](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build) at least in one use case did *not* result in the same double render of the class component. 
 
@@ -3147,6 +3226,1031 @@ Instead of server-side rendering, where the server does everything (like where y
 
 </details>
 
+<details><summary> <strong>HTTP requests using React </strong></summary>
+
+Up until now, everything we have done has been from hard-coded data. We loaded static files into our application directory and used the data from those files. But that's not really how the web works anymore. Typically, React is going to be asking for data from somewhere else whether it be your own server or someone else's because React is just a UI framework. It doesn't have any access to databases or anything like that. So generally we will be making HTTP requests to a server in order to *get* data. In order to make HTTP requests, however, we need an HTTP client.
+
+Unlike Angular or some other frameworks you may have worked with, there isn't a built-in HTTP client with React. So we can use the [fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) which is built into native JavaScript now. There's also tested and tried [jQuery](https://www.npmjs.com/package/jquery) where you can use `$.ajax`. We are going to use [axios](https://www.npmjs.com/package/axios) though. Why? The reason (among others) is that it is the most commonly used HTTP client in production.
+
+---
+
+</details>
+
+<details><summary> <strong>Note about environment variables and hiding secrets (e.g., API keys) in React</strong></summary>
+
+**This still needs to be addressed** (some ideas included below for time being)
+
+In something like Express/Node (especially in the context of server-side rendering), you might often put API keys and the like into an `.env` file and use [dotenv](https://www.npmjs.com/package/dotenv) to access your environment variables throughout your application. Sense everything in React is done client- or browser-side, we have to be more careful with secrets like API keys. 
+
+[The docs](https://create-react-app.dev/docs/adding-custom-environment-variables/) indicate that environment variables are embedded during the build time. It seems like [most solutions](https://stackoverflow.com/questions/46838015/using-api-keys-in-a-react-app/46839021#46839021) involve sending a request to the backend where environment variables can remain hidden and then having the backend make the request for us (subsequently sending what response the backend request gets to the frontend).
+
+Assuming we are using Express as the backend (I imagine it would work similarly otherwise as well), at least one approach I have seen involves having the client make a call to, say, `/api`, and then have an `/api` route in Express proxy that request to the actual API URL:
+
+```javascript
+app.use('/api', (req, res) => {
+  const method = req.method.toLowerCase();
+  const headers = req.headers;
+  const url = 'your_actual_api_url';
+ 
+  // Proxy request
+  const proxyRequest = req.pipe(
+    request({
+      url
+      headers,
+      method,
+    })
+  );
+ 
+  const data = [];
+  proxyRequest.on('data', (chunk) => {
+    data.push(chunk);
+  });
+ 
+  proxyRequest.on('end', () => {
+    const { response } = proxyRequest;
+    const buf = Buffer.concat(data).toString();
+    res.status(response.statusCode).send(buf);
+  });
+});
+```
+
+And I have also seen [another approach](https://github.com/react-boilerplate/react-boilerplate/issues/1744#issuecomment-303112505) that looks a bit more elaborate (but possibly more effective/secure?).
+
+This is something to spend a fair amount of time with to ensure secrets aren't exposed in the bundle for a real production application.
+
+---
+
+</details>
+
+<details><summary> <strong>The component lifecycle</strong></summary>
+
+#### Asynchronous Rendering Quandary: Forced Introduction to the Component Lifecycle
+
+We have an example of how one API works ([open weather map](https://openweathermap.org/api)) and how to get some data from it:
+
+```javascript
+import React from 'react';
+import './App.css';
+import axios from 'axios';
+
+function App() {
+  const url = 'https://api.openweathermap.org/data/2.5/weather?q=London&units=imperial&appid=e312dbeb8840e51f92334498a261ca1d'
+  let weatherData= axios.get(url).then(resp => console.log(resp.data))
+
+  return (
+    <div className="App">
+      <h1>Sanity Check</h1>
+    </div>
+  );
+}
+
+export default App;
+```
+
+The question now is how do we actually use the data we get back from the API we send a request to? Because this is certainly going to be the most common way in which you fetch data in React (or really any UI framework). Essentially: How do we get the data from our API call into our JSX that we actually want to render to the screen? 
+
+The key thing to remember here is that HTTP requests are asynchronous, meaning JavaScript will not wait for the response. It will keep on moving. So above, the `const url = ... ` line will run and the next line will *start* to run, but JavaScript will keep going and return the JSX without the data even if we don't intend for or want it to. So we are going to want to use state. State is meant for this very thing when we have data that needs to change. We start off with our basic rendering *without* data, but that's not what we ultimately want in the DOM. We are going to want to change the DOM once we hear back from our API request. So this is a very good example of when we would want to use state. So for the time being (until we get to hooks), we will convert `App` to be a class.
+
+The following may be one attempt at trying to come up with a solution to our apparent problem:
+
+```javascript
+import React, { Component } from 'react';
+import './App.css';
+import axios from 'axios';
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    const url = 'https://api.openweathermap.org/data/2.5/weather?q=London&units=imperial&appid=e312dbeb8840e51f92334498a261ca1d'
+    let weatherData = axios.get(url).then(resp => {
+      this.state = {
+        temp: resp.data.main.temp
+      }
+    })
+  }
+
+render() {
+  return (
+    <div className="App">
+      <h1>{this.state.temp}</h1>
+    </div>
+  );
+}
+}
+
+export default App;
+```
+
+Why won't this work? Again, it's the asynchronous part at work here. `this.state` in the `axios` request doesn't get run until *after* the `render` runs (we also can't be assigning a variable inside of an `axios` request that we can nakedly access later). So there are all sorts of things wrong with this. 
+
+So where do we put our request? We have an asynchronous thing that needs to happen. We can't put it in the constructor. So what if we put our request in the `render` like so:
+
+```javascript
+import React, { Component } from 'react';
+import './App.css';
+import axios from 'axios';
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      temp: ''
+    }
+  }
+
+render() {
+  const url = 'https://api.openweathermap.org/data/2.5/weather?q=London&units=imperial&appid=e312dbeb8840e51f92334498a261ca1d';
+  axios.get(url).then(resp => {
+    this.setState({
+      temp: resp.data.main.temp
+    })
+  })
+  return (
+    <div className="App">
+      <h1>{this.state.temp}</h1>
+    </div>
+  );
+}
+}
+
+export default App;
+```
+
+If you run the code above, then it *looks* like it works (you will get a number on the screen with the data we retrieved), but this is really really bad. Why? Because we are updating state inside of `render`. And what happens when we update state? Our component renders again. React is smart enough to see what we are doing and keeps us from hurting ourselves. So our request doesn't belong in `render` either. If React didn't have safety mechanisms in place, then we would get caught in an infinite loop: our `setState` would run, cause a render, which would then update state, cause another render, etc., etc. 
+
+So where on earth does our request belong then? This is where the lifecycle methods for components become crucial! We will make use of the `componentDidMount` lifecycle method like so:
+
+```javascript
+import React, { Component } from 'react';
+import './App.css';
+import axios from 'axios';
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      temp: ''
+    }
+  }
+
+  componentDidMount() {
+    const url = 'https://api.openweathermap.org/data/2.5/weather?q=London&units=imperial&appid=e312dbeb8840e51f92334498a261ca1d';
+    axios.get(url).then(resp => {
+      this.setState({
+        temp: resp.data.main.temp
+      })
+    })
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>{this.state.temp}</h1>
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+So we get exactly the same result now, but what gives? We didn't *call* `componentDidMount` anywhere inside `render` or anywhere else. So why did our request run, our state update, and then our component render again with the data we wanted? This is the lifecycle of the component at work. 
+
+At the *very beginning* of our component we have a class `App` which has all the goodness that comes from being a `Component` which `react` gives us. Because `App` is a component and we called `super` within our class definition, we get all that cool stuff that comes with being a React component, namely all of the lifecycle methods for React components. In particular, one of the lifecycle methods we get is `componentDidMount`, and React will look for the existence of this method and, if it exists, React will call this method automatically after the first render. Without even saying else just yet, you should be able to see why it is often advised to put asynchronous requests in `componentDidMount`: React will call this method after the initial render of your component and you can do all your fun data retrieval then. Since you will *still render a component* without your data at first, the idea of "conditional rendering" is prominent. You may see stuff like a "loading" component that will display if our data hasn't been retrieved just yet. As soon as we get our data, then we can render what we actually want. 
+
+#### Initial Rendering Order
+
+Consider the following pseudocode:
+
+```js
+class Foo extends Component {
+  constructor() {
+    super();
+
+    this.state = {temp: ''}
+  }
+
+  componentDidMount() {
+    axios 
+    ...
+  }
+
+  render() {
+    ...
+    return(
+      ...
+    )
+  }
+}
+```
+
+In what order does all of this execute? 
+
+1. The very first thing that will happen when an instance of the `Foo` class is created is its `constructor` will run (which, in this case, means calling `super` and inhereting everything that comes with being a React `Component` as well as setting initial values of `state`, etc.).
+2. The `render` method is called and whatever is being returned is placed in the virtual DOM and then the actual DOM (on the first rendering of the application).
+3. `componentDidMount`, if it exists (which it does above!), will get called after the initial `render`. The reason this is a sensible method is because of the single-threaded nature of JS. Anything asynchronous gets plucked out of the event loop and plopped onto the call stack. This method is where it makes sense to make HTTP requests using `axios`, `fetch`, or something similar. The idea is then to call `setState` once you have gotten the data back that you want.
+4. Calling `setState` results in a rerender (a new render results any time state changes unless we force different behavior). The idea is to get one version of the DOM upon the initial render without the desired data (along with probably a loading screen of some sort). Once the desired data is obtained and the state updated, the state can then be used to render the DOM how we want.
+
+#### Rendering Process (mounting, updating, unmounting)
+
+Here is the simplified rendering process for components in React:
+
+| **Mounting** | **Updating** | **Unmounting**| 
+| ------------ | ------------ | ------------- |
+| 1. `constructor` | New props / new state |  |
+| 2. `render` | 4. `render` again (as many times as needed) |  | 
+| 3. `componentDidMount` | 5. `componentDidUpdate` | `componentWillUnmount` |
+
+Every React component has to mount, where "mount" is simply the term for "it wasn't in the virtual DOM a second ago and I'm about to put it in there"; that is, the entire component is being rendered. 
+
+Here is a high-level overview of the whole process:
+
+- **Mounting:** The very first thing that happens is the `constructor` runs when the component is actually created or called by something else. So `index.js` starts everything with `ReactDOM.render(<App />, document.getElementById('root'));` which asks for `App` from `App.js`. When `App` gets asked for, the `constructor` for `App` will run, and then the `render` for `App` will run. And once the first `render` is finished, `componentDidMount` will run (if it exists). And at this point our React component is just sitting there. It doesn't have anything else to do. After that, we get into the updating phase.
+- **Updating:** The mounting phase is now over and the component is in the DOM. Thus begins the update phase. If we get new `props` or new `state`, then `render` will run again; as soon as `render` is finished running, `componentDidUpdate` will run again. And then we get new `props`. Then `render` runs again. Then `componentDidUpdate` runs again. And so on and so forth so long as new `props` or new `state` come in. Hence, in a nutshell, the update phase is a circular process that looks as follows:
+  1. new `props` or new `state`
+  2. `render`
+  3. `componentDidUpdate`
+This process happens again and again and again (however long is necessary). Every time there is new `props` or new `state`, the component will rerender and `componentDidUpdate` will always follow. We need `render` to run because we need the component to update the virtual DOM. And `componentWillUpdate` will allow us to run logic after we have an update--we might need to know if something happened. 
+- **Unmounting:** The unmounting process is when the component is going to get removed from the DOM. So, in this example, it may be that we do not need `App` anymore because we are going to go to something else. `componentWillUnmount` runs as a last gasp right before it's actually removed. So if we have logic we need to run, if we need to clear up something in memory or we want to alert some other component or some other part of the application, then we can do that inside of `componentWillUnmount`. 
+
+The above is the lifecycle that components go through. There are a couple of other methods, but these are the most frequently used. The point is that the power of the component lifecycle is that it gives us the ability to patch into the process but let React manage how and when everything happens. We can use the methods React is giving us to optimize how everything is being processed and rendered. 
+
+#### Component Lifecycle Visualized (and legacy lifecycle methods addressed)
+
+It's worth taking a good look at [the docs](https://reactjs.org/docs/react-component.html) concerning `React.Component`. In particular, [this blog post on React's official site](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html) addresses some updates concerning asynchronous rendering ([this talk](https://reactjs.org/blog/2018/03/01/sneak-peek-beyond-react-16.html) by Dan Abramov addresses what the React team has been working on). Essentially, the React team noted that some of their legacy component lifecycles tended to encourage unsafe coding practices:
+
+- `componentWillMount`
+- `componentWillReceiveProps`
+- `componentWillUpdate`
+
+They show in their [Gradual Migration Path](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#gradual-migration-path) that React 17.0+ (as of writing now, April 28, 2020, the latest React version is 16.13.1) will actually *remove* the lifecycle methods listed above. [This Reddit post](https://www.reddit.com/r/reactjs/comments/997s8o/how_replace_component_will_update_lifecycles/) points out the general approach to making sure you avoid the methods listed above:
+
+- Use `componentDidMount` instead of `componentWillMount`
+- Use `static getDerivedStateFromProps` instead of `componentWillReceiveProps` (only if you *really* need to derive state; the React team has another blog post literally titled [You Probably Don't Need Derived State](https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html))
+- Use `componentDidUpdate` instead of `componentWillUpdate`
+
+With all of the above said, [this site](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) (which React actually links to in the docs) illustrates the commonly used lifecycle methods we have just mentioned in passing:
+
+<p align='center'>
+  <img width="750px" src='./component-lifecycle-and-http/images-for-section/lifecycle-methods-basic.png'>
+</p>
+
+They also show the less common lifecycles as well (although it's a more cluttered picture):
+
+<p align='center'>
+  <img width="750px" src='./component-lifecycle-and-http/images-for-section/lifecycle-methods-complete.png'>
+</p>
+
+The following link list may be helpful for reference in the context of the outline(s) above:
+
+- **Mounting:**
+  + [constructor](https://reactjs.org/docs/react-component.html#constructor)
+  + [getDerivedStateFromProps](https://reactjs.org/docs/react-component.html#static-getderivedstatefromprops)
+  + [render](https://reactjs.org/docs/react-component.html#render)
+  + [componentDidMount](https://reactjs.org/docs/react-component.html#componentdidmount)
+- **Updating:**
+  + [getDerivedStateFromProps](https://reactjs.org/docs/react-component.html#static-getderivedstatefromprops)
+  + [shouldComponentUpdate](https://reactjs.org/docs/react-component.html#shouldcomponentupdate)
+  + [render](https://reactjs.org/docs/react-component.html#render)
+  + [getSnapshotBeforeUpdate](https://reactjs.org/docs/react-component.html#getsnapshotbeforeupdate)
+  + [componentDidUpdate](https://reactjs.org/docs/react-component.html#componentdidupdate)
+- **Unmounting:**
+  + [componentWillUnmount](https://reactjs.org/docs/react-component.html#componentwillunmount)
+
+[This article on Medium](https://blog.bitsrc.io/understanding-react-v16-4-new-component-lifecycle-methods-fa7b224efd7d) explores all of the lifecycle methods listed above in the hypothetical context of building a music player.
+
+---
+
+</details>
+
+<details><summary> <strong>Reference: The docs on <code>React.Component</code> (in a nutshell)</strong></summary>
+
+See [React.Component](https://reactjs.org/docs/react-component.html) in the docs for all the gory details. Below is a modest attempt to provide just a nuts and bolts reference for ease of use (i.e., consult the actual docs for examples of everything below).
+
+Each component has several "lifecycle methods" that you can override to run code at particular times in the process. You can use [this lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) as a cheat sheet. In the list below, commonly used lifecycle methods are marked as bold. The rest of them exist for relatively rare use cases.
+
+- **Mounting:** These methods are called in the following order when an instance of a component is being created and inserted into the DOM:
+  + **[constructor()](https://reactjs.org/docs/react-component.html#constructor)**
+  + [static getDerivedStateFromProps()](https://reactjs.org/docs/react-component.html#static-getderivedstatefromprops) 
+  + **[render()](https://reactjs.org/docs/react-component.html#render)**
+  + **[componentDidMount()](https://reactjs.org/docs/react-component.html#componentdidmount)**
+  + **Note:** These methods are considered legacy and you should [avoid them](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html) in new code:
+    * [UNSAFE_componentWillMount()](https://reactjs.org/docs/react-component.html#unsafe_componentwillmount)
+- **Updating:** An update can be caused by changes to props or state. These methods are called in the following order when a component is being re-rendered:
+  + [static getDerivedStateFromProps()](https://reactjs.org/docs/react-component.html#static-getderivedstatefromprops)
+  + [shouldComponentUpdate()](https://reactjs.org/docs/react-component.html#shouldcomponentupdate)
+  + **[render()](https://reactjs.org/docs/react-component.html#render)**
+  + [getSnapshotBeforeUpdate()](https://reactjs.org/docs/react-component.html#getsnapshotbeforeupdate)
+  + **[componentDidUpdate()](https://reactjs.org/docs/react-component.html#componentdidupdate)** These methods are considered legacy and you should avoid them in new code:
+  + **Note:** These methods are considered legacy and you should [avoid them](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html) in new code:
+    * [UNSAFE_componentWillUpdate()](https://reactjs.org/docs/react-component.html#unsafe_componentwillupdate)
+    * [UNSAFE_componentWillReceiveProps()](https://reactjs.org/docs/react-component.html#unsafe_componentwillreceiveprops)
+- **Unmounting:** This method is called when a component is being removed from the DOM:
+  + **[componentWillUnmount()](https://reactjs.org/docs/react-component.html#componentwillunmount)**
+- **Error Handling:** These methods are called when there is an error during rendering, in a lifecycle method, or in the constructor of any child component.
+  + [static getDerivedStateFromError()](https://reactjs.org/docs/react-component.html#static-getderivedstatefromerror)
+  + [componentDidCatch()](https://reactjs.org/docs/react-component.html#componentdidcatch)
+- **Other APIs:** Each component also provides some other APIs:
+  + [setState()](https://reactjs.org/docs/react-component.html#setstate)
+  + [forceUpdate()](https://reactjs.org/docs/react-component.html#forceupdate)
+- **Class Properties**
+  + [defaultProps](https://reactjs.org/docs/react-component.html#defaultprops)
+  + [displayName](https://reactjs.org/docs/react-component.html#displayname)
+- **Instance Properties**
+  + [props](https://reactjs.org/docs/react-component.html#props)
+  + [state](https://reactjs.org/docs/react-component.html#state)
+
+---
+
+</details>
+
+<details><summary> <strong>The Lifecycle: <code>componentDidMount()</code></strong></summary>
+
+We will now explore [componentDidMount()](https://reactjs.org/docs/react-component.html#componentdidmount) a bit more. As the docs note: `componentDidMount()` is invoked immediately after a component is mounted (inserted into the tree). Initialization that requires DOM nodes should go here. 
+
+**Example:** If you need something to already exist in the DOM, then this is where you can access that thing. You could then technically use `element.addEventListener` or something similar even though we will rarely use that. The point is that if you need an *actual DOM element* to grab after rendering, then this is a place to do that. 
+
+If you need to load data from a remote endpoint, this is a good place to instantiate the network request.
+
+**Example:** This is a good place to instantiate HTTP requests!
+
+We are now going to consider a simple use case of `componentDidMount()` in the context of trying to use the [Materialize](https://materializecss.com/) framework. We can copy their CDN links and dump them into our `index.html` in our `public` folder (under `title` or somewhere appropriate in the `head`):
+
+``` HTML
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+```
+
+Suppose we like the [Modals](https://materializecss.com/modals.html) in Materialize and we want to use one in our React application (there are *lots* of modules for React modals and other such things, but we're just going to use Materialize here to illustrate how `componentDidMount()` can be used in this instance). We can copy their base modal:
+
+``` HTML
+<!-- Modal Trigger -->
+<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h4>Modal Header</h4>
+    <p>A bunch of text</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
+</div>
+```
+
+Note that we will need to change `class` to `className` to make this work in our application (we will also need get rid of the HTML comments or change them to be `{/* JSX Comments */}`). The Materialize docs note that the following about initialization and opening a modal using a trigger: 
+
+```javascript
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.modal');
+  var instances = M.Modal.init(elems, options);
+});
+```
+
+Our modal uses a trigger. But notice the use of `document.querySelectorAll('.modal')`. What does this assume? That an element with a class of `modal` actually *exists* in the DOM (they have even structured things to make sure that element exists by only adding the event listener once all of the DOM content has loaded). In our situation, in the context of React, how can we add an event listener to an element if the element doesn't even exist in the DOM on the first go around? This is exactly where `componentDidMount()` comes into play! The React team even told us as much in the docs: "Initialization that requires DOM nodes should go here." Materialize tells us how to initialize a modal to open using a trigger, but they gave us a vanilla JavaScript approach--we want the React approach, and the sensible way of doing this in React is to perform the initialization in the `componentDidMount()` lifecycle method. One last potential "gotcha" in this case concerns the fact that we have to be careful of stuff that we bring in from the outside: right now, with just
+
+```javascript
+var elems = document.querySelectorAll('.modal');
+var instances = M.Modal.init(elems, options);
+```
+
+in `componentDidMount()` we would get an error: `'M' is not defined`. Basically, `M` *was inserted* by the Materialize script (you can check this via `console.log(M)`), so `M` does exist, but it's attached to the `window` object (i.e., `console.log(window.M)` will give the same result as `console.log(M)` because we are in the window when we are in the browser console). In our React application, we are not in the `window`. So we need `window.M.Modal.init(elems)` (we drop the `options` since we aren't going to use those here). All in all, our component might look something like the following:
+
+```javascript
+import React, { Component } from 'react';
+import './App.css';
+import axios from 'axios';
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      temp: ''
+    }
+  }
+
+  componentDidMount() {
+    const url = 'https://api.openweathermap.org/data/2.5/weather?q=London&units=imperial&appid=e312dbeb8840e51f92334498a261ca1d';
+    axios.get(url).then(resp => {
+      this.setState({
+        temp: resp.data.main.temp
+      })
+    })
+    const elems = document.querySelectorAll('.modal');
+    const instances = window.M.Modal.init(elems);
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>{this.state.temp}</h1>
+        <a className="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+
+        <div id="modal1" className="modal">
+          <div className="modal-content">
+            <h4>Modal Header</h4>
+            <p>A bunch of text</p>
+          </div>
+          <div className="modal-footer">
+            <a href="#!" className="modal-close waves-effect waves-green btn-flat">Agree</a>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+---
+
+</details>
+
+<details><summary> <strong>The Lifecycle: <code>render()</code></strong></summary>
+
+We know a good deal about `render()` as we have interacted with it a fair amount so far, but we can still glean some useful information from [the docs](https://reactjs.org/docs/react-component.html#componentdidmount) (and also recall that the `render()` method is the *only* required method in a class component):
+
+- When called, `render()` should examine `this.props` and `this.state` and return one of the following types: React elements, arrays and [fragments](https://reactjs.org/docs/fragments.html), [portals](https://reactjs.org/docs/portals.html), strings and numbers, booleans or null.
+  + Recall that all of our "regular JavaScript" happens in `render()` *above* the `return`. Typically, this means we might destructure things we want to use off of `this.props` and/or `this.state`, mash up our data however we see fit, and then use the mashed up data within the `return`.
+- The `render()` function should be pure, meaning that it does not modify component state, it returns the same result each time it's invoked, and it does not directly interact with the browser.
+  + Concerning state, the docs basically communicate that we should not call `setState` in `render()`. If you are doing that, then you have likely organized your component incorrectly. Concerning the browser, `render()`'s job is to just *build* the virtual DOM appropriately, not interact with the actual DOM in some way. It is `ReactDOM`'s job to interact with the browser and the actual DOM (hence its name, React**DOM**). 
+- If you need to interact with the browser, perform your work in `componentDidMount()` or the other lifecycle methods instead. Keeping `render()` pure makes components easier to think about.
+  + Note how this corresponds to what we just did with the Materialize modal (where we needed to access an element with class `modal` that did not yet exist in the DOM): we needed to wait for the first `render()` before we could access the element.
+
+The bottom line in all of this is to simply keep `render()` pure. It should always return the same thing given the same input. That doesn't mean don't use `state` in render (we will do that a lot!). It just means do not set `state` or do not mutate `state` inside of `render()`. That and any time `state` or props changes the render method will fire. So we will get that method firing any time one of those two things changes.
+
+---
+
+</details>
+
+<details><summary> <strong>The Lifecycle: <code>componentDidUpdate()</code></strong></summary>
+
+We are now going to take a look at [componentDidUpdate()](https://reactjs.org/docs/react-component.html#componentdidupdate). As they note: "`componentDidUpdate()` is invoked immediately after updating occurs. This method is not called for the initial render." So `componentDidMount()` runs the very first time after the initial render. And `componentDidUpdate()` runs after every render thereafter. So if you make an HTTP request in `componentDidMount()` and get the data and set new state with this data, then `render()` will run again because new state was set, and this *second* `render()` (and every one thereafter) will result in `componentDidUpdate()` being called. Here is the chain of events:
+
+| Order | Method | Description |
+| :-: | --- | --- |
+| 1 | `constructor()` | constructor fires when creating component |
+| 2 | `render()` | initial render (no async data loaded/available) |
+| 3 | `componentDidMount()` | component has mounted (make network requests here) |
+| 4 | `render()` | state has changed (we updated state from data obtained in `componentDidMount`) |
+| 5 | `componentDidUpdate()` | component has been updated (actual DOM now has data we wanted from network request) |
+| 6 | `render()` | user does something in UI to trigger new state/props for this component |
+| 7 | `componentDidUpdate()` | component has been updated/rerendered to reflect new state/props |
+| 8 | `render()` | user does something in UI to trigger new state/props for this component |
+| 9 | `componentDidUpdate()` | component has been updated/rerendered to reflect new state/props |
+| `...` | `...` | `...` |
+
+So what gives? Why would we ever want to use `componentDidUpdate`? Mostly because what `componentDidUpdate` receives: `componentDidUpdate(prevProps, prevState, snapshot)`. That is, yes, it probably will not make much sense to call `componentDidUpdate` if you do not care about how state or props updated and compares to *previous* (i.e., before the update) state or props. 
+
+Essentially `componentDidUpdate` will give you the ability to look at what *was* (via `prevProps` and `prevState`) and what *is* (via current props, `this.props`, and current state, `this.state`) in order to decide what needs to happen in your application. 
+
+Lastly, what is `snapshot`? As the docs note at [the bottom](https://reactjs.org/docs/react-component.html#componentdidupdate) of the entry on `componentDidUpdate`: "If your component implements the `getSnapshotBeforeUpdate()` lifecycle (which is rare), the value it returns will be passed as a third “snapshot” parameter to `componentDidUpdate()`. Otherwise this parameter will be undefined." Let's take a look at [the docs](https://reactjs.org/docs/react-component.html#getsnapshotbeforeupdate) on `getSnapshotBeforeUpdate()`: "`getSnapshotBeforeUpdate()` is invoked right before the most recently rendered output is committed to e.g. the DOM. It enables your component to capture some information from the DOM (e.g. scroll position) before it is potentially changed. Any value returned by this lifecycle will be passed as a parameter to `componentDidUpdate()`. This use case is not common, but it may occur in UIs like a chat thread that need to handle scroll position in a special way. A snapshot value (or `null`) should be returned." 
+
+We will hardly ever use `getSnapshotBeforeUpdate()`, but it's useful to know that it exists. The `componentDidUpdate()` lifecycle method will be especially useful when we get React router. 
+
+Continuing, suppose we wanted to do something like the following:
+
+```javascript
+componentDidUpdate(prevProps, prevState) {
+  const isRaining = this.state.weather.includes('rain');
+  if (isRaining) {
+    this.setState({
+      isRaining: 'Rain rain go away!'
+    });
+  }
+}
+```
+
+If it is raining in the city you just received data about, then you just might be the recipient of a really ugly warning:
+
+```
+Error: Maximum update depth exceeded. This can happen when a component 
+repeatedly calls setState inside componentWillUpdate or componentDidUpdate. 
+React limits the number of nested updates to prevent infinite loops.
+```
+
+We are not using `componentWillUpdate` so it seems we at least know the likely culprit: How are we repeatedly calling `setState` inside of `componentDidUpdate` though? What happened? This example illustrates why we need `prevProps` and `prevState` in `componentDidUpdate`. Before examining our specific example, let's see what [the docs](https://reactjs.org/docs/react-component.html#componentdidupdate) say about this: "You may call `setState()` immediately in `componentDidUpdate()` but note that it must be wrapped in a condition like in the example above, or you’ll cause an infinite loop." And they give the following example:
+
+```javascript
+componentDidUpdate(prevProps) {
+  // Typical usage (don't forget to compare props):
+  if (this.props.userID !== prevProps.userID) {
+    this.fetchData(this.props.userID);
+  }
+}
+```
+
+With this in mind, can we now deduce what the issue is with the code we originally had for our own example? It may be most helpful to look at the entire lifecycle in sequence to see why the sequence will never end:
+
+- `constructor` runs
+- initial `render` runs
+- `componentDidMount` runs (we get our default data)
+- `render` runs (user searches for a city where it *is* raining and state is set with new city data)
+- `componentDidUpdate` runs (and state is set)
+- `render` runs (to reflect new state from `componentDidUpdate` above)
+- `componentDidUpdate` runs (because we just updated the DOM; state is set again since *it is still raining* in the searched for city (i.e., we never changed `isRaining` for the searched for city)) 
+- `render` runs (to reflect new state (even though it really isn't new) from `componentDidUpdate` above)
+- `...`
+
+Hopefully the problem above is clear. We need some way of making sure that we set the state only when we need to within `componentDidUpdate`. And the way we can do this is by comparing previous props/state (i.e., `prevProps/prevState`) with current props/state (i.e., `this.props/this.state`). Specifically, we could do something like the following:
+
+```javascript
+componentDidUpdate(prevProps, prevState) {
+  if (this.state.weather !== prevState.weather) {
+    const isRaining = this.state.weather.includes('rain');
+    if (isRaining) {
+      this.setState({
+        isRaining: 'Rain rain go away!'
+      });
+    } else {
+      this.setState({
+        isRaining: ''
+      });
+    }
+  }
+}
+```
+
+Hence, we will only set state again (raining or not) if the city weather data we have received *after* a render is *different* from the data we received before the render that triggered `componentDidUpdate`. 
+
+Perhaps more clearly: The bottom line is that you need to always *conditionally* set state within `componentDidUpdate`; otherwise, setting state in `componentDidUpdate` triggers a render, which then triggers `componentDidUpdate` which again triggers render because state was set (even if we were setting the state to be the exact same), etc., etc.
+
+---
+
+</details>
+
+<details><summary> <strong>The Lifecycle: <code>componentWillUnmount()</code></strong></summary>
+
+As [the docs](https://reactjs.org/docs/react-component.html#componentwillunmount) note: "`componentWillUnmount()` is invoked immediately before a component is unmounted and destroyed (i.e., before it is removed from the DOM). Perform any necessary cleanup in this method, such as invalidating timers, canceling network requests, or cleaning up any subscriptions that were created in `componentDidMount()`. You should not call `setState()` in `componentWillUnmount()` because the component will never be re-rendered. Once a component instance is unmounted, it will never be mounted again." 
+
+In our weather application, how could we possibly make use of `componentWillUnmount()`? What if we selectively got rid of the weather data modal and then brought it back somehow (and somehow tied a timer to this somehow as well)? Conditional rendering is one possible case where a component may be mounted one moment and umounted/destroyed the next (i.e., it may be mounted again later but only as a brand *new* component ... the unmounted one never comes back). So this is a very useful hook for cleanup that you need to do. So if you have a heavy workload or series of network requests in the background that need to stop, then this will be the place to do that. 
+
+---
+
+</details>
+
+<details><summary> <strong>Practicing what we know so far: city weather application</strong></summary>
+
+Using what we know so far about the different component lifecycle methods, we can make a reasonably decent, however basic, city weather application. I have expanded on some of the notes included so far. You can go to [the repository](https://github.com/daniel-farlow/city-weather) and do an `npm install` and don't forget to create an `.env` file with `REACT_APP_WEATHER_APP=e312dbeb8840e51f92334498a261ca1d` in it or you can go to [the live site](https://daniel-farlow.github.io/city-weather/) to play around with it (demo below):
+
+<p align='center'>
+  <img src='https://user-images.githubusercontent.com/52146855/80688366-4920d180-8a91-11ea-8576-ae021c65bb34.gif'>
+</p>
+
+
+There are four files that serve as the core of the application:
+
+1\. `App.js`
+2\. `Headers.jsx`
+3\. `Modal.jsx`
+4\. `UnitedStatesSelectionForm.jsx`
+
+<details><summary> Click to see <code>App.js</code> contents here</summary>
+
+```javascript
+import React, { Component } from 'react';
+import './App.css';
+import axios from 'axios';
+import moment from 'moment';
+import Headers from './Headers';
+import Modal from './Modal';
+import UnitedStatesSelectionForm from './UnitedStatesSelectionForm';
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchCount: -1,
+      genWeatherDesc: '',
+      specificWeatherDesc: '',
+      temp: '',
+      feelsLike: '',
+      low: '',
+      high: '',
+      cityId: '',
+      cityName: '',
+      cityState: '',
+      timezone: '',
+      sunrise: '',
+      sunset: '',
+      icon: '',
+      iconURL: '',
+      showCityDetailsModal: true,
+      sameCityState: false,
+      persistentTimeCount: 0
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState){
+    if (this.state.cityId !== prevState.cityId) {
+      this.setState((prevState, props) => ({
+        searchCount: prevState.searchCount + 1
+      }));
+    }
+  }
+
+  componentDidMount() {
+    this.persistentTimer = setInterval(() => {
+      this.setState((prevState, props) => ({
+        persistentTimeCount: prevState.persistentTimeCount + 1
+      }));
+    }, 1000);
+
+    this.getCityWeather('Nashville', 'TN')
+  }
+
+  searchCity = e => {
+    e.preventDefault();
+    const city = document.getElementById('city').value;
+    const cityState = document.getElementById('city-state').value;
+    this.getCityWeather(city, cityState);
+  }
+
+  getCityWeather = async (city, cityState) => {
+    if (city === this.state.cityName && cityState === this.state.cityState) {
+      alert(`You already have data for ${city}, ${cityState}!`);
+      return;
+    }
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city},${cityState},us&units=imperial&appid=${process.env.REACT_APP_WEATHER_APP}`;
+    let weatherInfo;
+    try {
+      weatherInfo = await axios.get(url);
+    } catch (error) {
+      alert(`No data found for the city you entered: "${city}". Please try again!`);
+      return;
+    }
+    let { weather: weatherDesc, main: weatherFacts, name: cityName, sys: { sunrise, sunset }, timezone, id: cityId } = weatherInfo.data;
+    let { main: genWeatherDesc, description: specificWeatherDesc, icon } = weatherDesc[0];
+    let { temp, feels_like: feelsLike, temp_min: low, temp_max: high } = weatherFacts;
+
+    sunrise = moment.unix(sunrise).utcOffset(timezone / 60).format('h:mm A');
+    sunset = moment.unix(sunset).utcOffset(timezone / 60).format('h:mm A');
+    let iconURL = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+
+    let desiredState = { genWeatherDesc, specificWeatherDesc, temp, feelsLike, low, high, cityName, icon, cityState, sunrise, sunset, iconURL, cityId };
+
+    this.setState((prevState, props) => ({
+      persistentTimeCount: 0,
+      sameCityState: false,
+      ...desiredState
+    }));
+  }
+
+  toggleModal = e => {
+    this.setState((prevState, props) => ({
+      showCityDetailsModal: !prevState.showCityDetailsModal,
+      sameCityState: true
+    }));
+  }
+
+  render() {
+    console.log('render is running...')
+    const { genWeatherDesc, specificWeatherDesc, temp, feelsLike, low, high, cityName, cityState, sunrise, sunset, iconURL, showCityDetailsModal, searchCount, cityId, persistentTimeCount, sameCityState } = this.state;
+
+    const headerProps = {temp, specificWeatherDesc, cityName, cityState, searchCount};
+    const modalProps = {genWeatherDesc, specificWeatherDesc, temp, feelsLike, low, high, cityName, iconURL, cityState, sunrise, sunset, searchCount, cityId, persistentTimeCount, sameCityState};
+
+    return (
+      <div className="App">
+        <div className="row">
+          <div className="col s6 offset-s3">
+            <Headers { ...headerProps } />
+            <div className="row center-align">
+            {showCityDetailsModal ? <a
+              className="waves-effect waves-light btn modal-trigger"
+              href="#modal1"
+              style={{marginRight: 40 }}
+            >See Weather Details
+            </a> : ''}
+            <button style={{marginLeft: 20}} onClick={this.toggleModal} className='btn'> {showCityDetailsModal ? 'Remove Weather Details and Timer' : 'Add Weather Details and Timer'}</button>
+            </div>
+            <form onSubmit={this.searchCity}>
+              <UnitedStatesSelectionForm />
+            </form>
+          </div>
+        </div>
+        {showCityDetailsModal ? <Modal { ...modalProps } /> : ''}
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+---
+
+</details>
+
+<details><summary> Click to see <code>Headers.jsx</code> contents</summary>
+
+```javascript
+import React, { Fragment } from 'react';
+
+const Headers = ({temp, specificWeatherDesc, cityName, cityState, searchCount}) => {
+  return (
+    <Fragment>
+      {searchCount === 0 ? <h2>Search for US City Weather!</h2> : null}
+      {searchCount === 0 ? <h3 style={{marginBottom: 30}}>Sample City: {cityName}, {cityState}</h3> 
+        : <h2>{cityName}, {cityState}: {Math.round(temp)}{String.fromCharCode(176, 70).toUpperCase()} and {specificWeatherDesc}</h2> }
+    </Fragment>
+  );
+};
+
+export default Headers;
+
+```
+
+---
+
+</details>
+
+<details><summary> Click to see <code>Modal.jsx</code> contents</summary>
+
+```javascript
+import React, { Component, Fragment } from 'react';
+
+class Modal extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      timerCount: 0
+    };
+  }
+
+  componentDidMount() {
+    console.log('componentDidMount is running ...')
+
+    const modalElem = document.querySelectorAll('.modal');
+    const selectElem = document.querySelectorAll('select');
+    window.M.Modal.init(modalElem);
+    window.M.FormSelect.init(selectElem);
+
+    this.timer = setInterval(() => {
+      this.setState((prevState, props) => ({
+        timerCount: prevState.timerCount + 1
+      }));
+    }, 1000);
+  }
+
+  componentWillUnmount() {
+    console.log('Component is about to be history ... (compnentWillUnmount running ...)')
+    clearInterval(this.timer);
+  }
+
+  componentDidUpdate(prevState, prevProps) {
+    console.log('THIS IS YOUR PERSISTENT TIME COUNT: ', this.props.persistentTimeCount)
+    console.log('componentDidUpdate is running ... ')
+    if( this.props.cityId !== prevState.cityId ) {
+      this.setState({
+        timerCount: 0
+      });
+    }
+  }
+
+  render() {
+    console.log('render is running ...')
+    const {genWeatherDesc, specificWeatherDesc, temp, feelsLike, low, high, cityName, iconURL, cityState, sunrise, sunset, sameCityState, persistentTimeCount} = this.props;
+    const {timerCount} = this.state;
+    console.log(timerCount)
+    return (
+      <Fragment>
+        <h4>How long you have been viewing weather data for {cityName}, {cityState} (seconds): {sameCityState ? persistentTimeCount : timerCount}</h4>
+        <div id="modal1" className="modal" style={{ maxWidth: 700 }}>
+      <div className="modal-content">
+        <table className="striped bordered">
+          <thead>
+            <tr>
+              <th>Descriptor</th>
+              <th>Information</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>City</td>
+              <td>
+                {cityName} ({cityState})
+              </td>
+            </tr>
+            <tr>
+              <td>Current Temperature</td>
+              <td>{Math.round(temp)} (&#8457;)</td>
+            </tr>
+            <tr>
+              <td>Feels Like</td>
+              <td>{Math.round(feelsLike)} (&#8457;)</td>
+            </tr>
+            <tr>
+              <td>High</td>
+              <td>{Math.round(high)} (&#8457;)</td>
+            </tr>
+            <tr>
+              <td>Low</td>
+              <td>{Math.round(low)} (&#8457;)</td>
+            </tr>
+            <tr>
+              <td>Sunrise</td>
+              <td>{sunrise}</td>
+            </tr>
+            <tr>
+              <td>Sunset</td>
+              <td>{sunset}</td>
+            </tr>
+            <tr>
+              <td>Weather Description</td>
+              <td>
+                {genWeatherDesc} ({specificWeatherDesc})
+              </td>
+            </tr>
+            <tr>
+              <td>Weather Condition</td>
+              <td>
+                <img src={iconURL} alt="" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div className="modal-footer">
+        <a href="#!" className="modal-close waves-effect waves-green btn-flat">
+          Cool!
+        </a>
+      </div>
+    </div>
+      </Fragment>
+    );
+  }
+}
+
+export default Modal;
+```
+
+---
+
+</details>
+
+<details><summary> Click to see <code>UnitedStatesSelection.jsx</code> contents</summary>
+
+```javascript
+import React, { Fragment } from 'react';
+
+const UnitedStatesSelectionForm = () => {
+  return (
+    <Fragment>
+      <div className="input-field col s7">
+        <input type="text" id="city" className="validate" required />
+        <label htmlFor="city">Enter a City for Weather Data</label>
+      </div>
+      <div className="input-field col s3">
+        <select id="city-state">
+          <option value="" disabled defaultValue>
+            US State
+          </option>
+          <option value="AL">Alabama</option>
+          <option value="AK">Alaska</option>
+          <option value="AZ">Arizona</option>
+          <option value="AR">Arkansas</option>
+          <option value="CA">California</option>
+          <option value="CO">Colorado</option>
+          <option value="CT">Connecticut</option>
+          <option value="DE">Delaware</option>
+          <option value="DC">District of Columbia</option>
+          <option value="FL">Florida</option>
+          <option value="GA">Georgia</option>
+          <option value="HI">Hawaii</option>
+          <option value="ID">Idaho</option>
+          <option value="IL">Illinois</option>
+          <option value="IN">Indiana</option>
+          <option value="IA">Iowa</option>
+          <option value="KS">Kansas</option>
+          <option value="KY">Kentucky</option>
+          <option value="LA">Louisiana</option>
+          <option value="ME">Maine</option>
+          <option value="MD">Maryland</option>
+          <option value="MA">Massachusetts</option>
+          <option value="MI">Michigan</option>
+          <option value="MN">Minnesota</option>
+          <option value="MS">Mississippi</option>
+          <option value="MO">Missouri</option>
+          <option value="MT">Montana</option>
+          <option value="NE">Nebraska</option>
+          <option value="NV">Nevada</option>
+          <option value="NH">New Hampshire</option>
+          <option value="NJ">New Jersey</option>
+          <option value="NM">New Mexico</option>
+          <option value="NY">New York</option>
+          <option value="NC">North Carolina</option>
+          <option value="ND">North Dakota</option>
+          <option value="OH">Ohio</option>
+          <option value="OK">Oklahoma</option>
+          <option value="OR">Oregon</option>
+          <option value="PA">Pennsylvania</option>
+          <option value="RI">Rhode Island</option>
+          <option value="SC">South Carolina</option>
+          <option value="SD">South Dakota</option>
+          <option value="TN">Tennessee</option>
+          <option value="TX">Texas</option>
+          <option value="UT">Utah</option>
+          <option value="VT">Vermont</option>
+          <option value="VA">Virginia</option>
+          <option value="WA">Washington</option>
+          <option value="WV">West Virginia</option>
+          <option value="WI">Wisconsin</option>
+          <option value="WY">Wyoming</option>
+        </select>
+        <label>State of City</label>
+      </div>
+      <div className="input-field col s2">
+        <button
+          className="btn waves-effect waves-light"
+          type="submit"
+          name="action"
+        >
+          Submit
+          <i className="material-icons right">cloud</i>
+        </button>
+      </div>
+    </Fragment>
+  );
+};
+
+export default UnitedStatesSelectionForm;
+```
+
+---
+
+</details>
+
+A couple takeaways:
+
+- [moment.js](https://momentjs.com/): This is *very* useful when dealing with time-related data in JavaScript. This made it possible to report accurate `sunrise` and `sunset` times for a selected city instead of just using, say, your own local time which really wouldn't be accurate for another timezone (the `timezone` given from the `openweathermap` API is supplied as the shift in seconds from UTC). Basically, working with timezones is annoying in JavaScript.
+- [Materialize](https://materializecss.com/): Don't forget to initialize!
+- [Conditional rendering](https://www.robinwieruch.de/conditional-rendering-react): The linked to article gives a *very* nice overview of conditional rendering in React. He specifies the following ways even though I have just used the ternary way: [if](https://www.robinwieruch.de/conditional-rendering-react#conditional-rendering-in-react-if), [if else](https://www.robinwieruch.de/conditional-rendering-react#conditional-rendering-in-react-if-else), [ternary](https://www.robinwieruch.de/conditional-rendering-react#conditional-rendering-in-react-ternary), [&&](https://www.robinwieruch.de/conditional-rendering-react#conditional-rendering-in-react-), [switch case](https://www.robinwieruch.de/conditional-rendering-react#conditional-rendering-in-react-switch-case), [multiple conditional renderings in React](https://www.robinwieruch.de/conditional-rendering-react#multiple-conditional-renderings-in-react), [nested conditional rendering in React](https://www.robinwieruch.de/conditional-rendering-react#nested-conditional-rendering-in-react), [conditional rendering with higher-order components](https://www.robinwieruch.de/conditional-rendering-react#conditional-rendering-with-hoc), and finally [if else components in React](https://www.robinwieruch.de/conditional-rendering-react#if-else-components-in-react). Clearly quite a few ways! He provides a nice summary to make it all more palatable: 
+  + [if](https://www.robinwieruch.de/conditional-rendering-react#conditional-rendering-in-react-if)
+    * most basic conditional rendering
+    * use to opt-out early from a rendering (guard pattern)
+    * cannot be used within return statement and JSX (except self invoking function)
+  + [if-else](https://www.robinwieruch.de/conditional-rendering-react#conditional-rendering-in-react-if-else)
+    * use it rarely, because it's verbose
+    * instead, use ternary operator or logical && operator
+    * cannot be used inside return statement and JSX (except self invoking function)
+  + [ternary operator](https://www.robinwieruch.de/conditional-rendering-react#conditional-rendering-in-react-ternary)
+    * use it instead of an if-else statement
+    * it can be used within JSX and return statement
+  + [logical && operator](https://www.robinwieruch.de/conditional-rendering-react#conditional-rendering-in-react-)
+    * use it when one side of the ternary operation would return null
+    * it can be used inside JSX and return statement
+  + [switch case](https://www.robinwieruch.de/conditional-rendering-react#conditional-rendering-in-react-switch-case)
+    * avoid using it, because it's too verbose
+    * instead, use enums
+    * cannot be used within JSX and return (except self invoking function)
+  + [enums: multiple conditional renderings](https://www.robinwieruch.de/conditional-rendering-react#multiple-conditional-renderings-in-react)
+    * use it for conditional rendering based on multiple states
+    * perfect to map more than one condition
+  + [nested conditional rendering](https://www.robinwieruch.de/conditional-rendering-react#nested-conditional-rendering-in-react)
+    * avoid them for the sake of readability
+    * instead, split out components, use if statements, or use HOCs
+  + [conditional rendering with higher-order components](https://www.robinwieruch.de/conditional-rendering-react#conditional-rendering-with-hoc)
+    * components can focus on their main purpose
+    * use HOC to shield away conditional rendering
+    * use multiple composable HOCs to shield away multiple conditional renderings
+  + [external templating components: if else components](https://www.robinwieruch.de/conditional-rendering-react#if-else-components-in-react)
+    * avoid them and be comfortable with JSX and JS
+- [Destructuring](https://hacks.mozilla.org/2015/05/es6-in-depth-destructuring/): Life will be so much easier if you can effectively destructure. 
+
+The last point above deserves another remark in the context of passing props. Depending on your application, you will often want to pass quite a few props. Everything can get out of control quickly if you aren't careful. Instead of passing all of the props individually inside of a component, you can *spread* the props. This makes it possible, for example, to specify what you want your component props to be and then to pass them as needed:
+
+```javascript
+const headerProps = {temp, specificWeatherDesc, cityName, cityState, searchCount};
+const modalProps = {genWeatherDesc, specificWeatherDesc, temp, feelsLike, low, high, cityName, iconURL, cityState, sunrise, sunset, searchCount, cityId, persistentTimeCount, sameCityState};
+
+<Headers { ...headerProps } />
+<Modal { ...modalProps } />
+```
+
+Then, inside of the `Model` component, which is a class, we can do the following:
+
+```javascript
+const {genWeatherDesc, specificWeatherDesc, temp, feelsLike, low, high, cityName, iconURL, cityState, sunrise, sunset, searchCount, cityId, persistentTimeCount, sameCityState} = this.props;
+```
+
+Since `Headers` is a functional component, we can do the following:
+
+```javascript
+const Headers = ({temp, specificWeatherDesc, cityName, cityState, searchCount}) => {  }
+```
+
+The less you have to type the better!
+
+---
+
+</details>
 
 
 
