@@ -4252,6 +4252,82 @@ The less you have to type the better!
 
 </details>
 
+<details open><summary> <strong>Controlled forms: Managing forms with state</strong></summary>
+
+So far we have dealt with forms how you might normally deal with forms, namely doing something like the following in a class method (as we did with the city weather application in the above note):
+
+```javascript
+searchCity = e => {
+  e.preventDefault();
+  const city = document.getElementById('city').value;
+  const cityState = document.getElementById('city-state').value;
+  this.getCityWeather(city, cityState);
+}
+```
+
+Or consider something even more generic (i.e., the `handleSubmit` method below):
+
+```javascript
+import React, { Component } from 'react';
+
+class FormPractice extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    console.log('form submitted')
+    const name = document.getElementById('name').value;
+    console.log(name)
+  }
+
+  render() {
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col s6 offset-sm-3">
+            <form onSubmit={this.handleSubmit}>
+              <input type="text" placeholder="Enter a name" />
+              <input type="submit" value="submit" />
+            </form>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default FormPractice;
+```
+
+What we have above is a `value` property that's attached to every `input` box (input text) that's kind of already managing state for us. When we submit the form, we can see that the DOM has already updated the `<input type="text" placeholder="Enter a name" />` element's `value` property to reflect what the value was when we submitted the form. [The docs](https://reactjs.org/docs/forms.html) on forms even note this behavior: "HTML form elements work a little bit differently from other DOM elements in React, because form elements naturally keep some internal state." They then give an example of a form in plain HTML that accepts a single name:
+
+``` HTML
+<form>
+  <label>
+    Name:
+    <input type="text" name="name" />
+  </label>
+  <input type="submit" value="Submit" />
+</form>
+```
+
+They then note: "This form has the default HTML form behavior of browsing to a new page when the user submits the form. If you want this behavior in React, it just works. But in most cases, it’s convenient to have a JavaScript function that handles the submission of the form and has access to the data that the user entered into the form. The standard way to achieve this is with a technique called *controlled components*." 
+
+What they're saying is we can always do something like `document.getElementById('name').value` as you might normally do with JavaScript, but that is bad. That is not good in React. The main idea in React is that mutable state (including `input` box values) is typically kept in the state property of components and only updated with `setState`. 
+
+
+
+
+
+
+---
+
+</details>
+
+
 
 
 
