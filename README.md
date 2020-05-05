@@ -4252,7 +4252,7 @@ The less you have to type the better!
 
 </details>
 
-<details open><summary> <strong>Controlled forms: Managing forms with state</strong></summary>
+<details><summary> <strong>Controlled forms: Managing forms with state</strong></summary>
 
 So far we have dealt with forms how you might normally deal with forms, namely doing something like the following in a class method (as we did with the city weather application in the above note):
 
@@ -4302,7 +4302,7 @@ class FormPractice extends Component {
 export default FormPractice;
 ```
 
-What we have above is a `value` property that's attached to every `input` box (input text) that's kind of already managing state for us. When we submit the form, we can see that the DOM has already updated the `<input type="text" placeholder="Enter a name" />` element's `value` property to reflect what the value was when we submitted the form. [The docs](https://reactjs.org/docs/forms.html) on forms even note this behavior: "HTML form elements work a little bit differently from other DOM elements in React, because form elements naturally keep some internal state." They then give an example of a form in plain HTML that accepts a single name:
+What we have above is a `value` property that's attached to every `input` box (input text) that's kind of already managing state for us. When we submit the form, we can see that the DOM has already updated the `<input type="text" placeholder="Enter a name" />` element's `value` property to reflect what the value was when we submitted the form. [The docs](https://reactjs.org/docs/forms.html) on forms even note this kind of behavior: "HTML form elements work a little bit differently from other DOM elements in React, because form elements naturally keep some internal state." They then give an example of a form in plain HTML that accepts a single name:
 
 ``` HTML
 <form>
@@ -4316,16 +4316,155 @@ What we have above is a `value` property that's attached to every `input` box (i
 
 They then note: "This form has the default HTML form behavior of browsing to a new page when the user submits the form. If you want this behavior in React, it just works. But in most cases, it’s convenient to have a JavaScript function that handles the submission of the form and has access to the data that the user entered into the form. The standard way to achieve this is with a technique called *controlled components*." 
 
-What they're saying is we can always do something like `document.getElementById('name').value` as you might normally do with JavaScript, but that is bad. That is not good in React. The main idea in React is that mutable state (including `input` box values) is typically kept in the state property of components and only updated with `setState`. 
+What they're saying is we can always do something like `document.getElementById('name').value` as you might normally do with JavaScript, but that is bad. That is not good in React. The main idea in React is that mutable state (anything changing inside of our application, especially data), including `input` box values, is typically kept in the state property of components and only updated with `setState`. 
 
+So you could do things "the vanilla JS way" where you grab the elements using something like `document.getElementById(element).value`, but React wants state to be the single source of truth, meaning the value of the input box is going to be state, not the other way around. Thus, you will often see an `input` element whose `value` attributes reads from state and whose `onChange` attribute is an event handler used to *update* state. Consider this example:
 
+``` HTML
+<label>Name (4 to 20 characters) 
+<input 
+  id='input-name-example'
+  onChange={this.handleChange} 
+  type='text' 
+  name='chosenText' 
+  value={this.state.chosenText} 
+  minLength='4' 
+  maxLength='20' 
+  size='30'
+/>
+</label>
+```
 
+It is clear the `value` attribute is the value of the `chosenText` *state* property (if you don't initialize `chosenText`, then React will give you a warning), but you have to update state (specifically `chosenText` if you actually want the new value to be reflected in the input box). How do we do this? Understanding that the following two pieces of code are effectively the same will help:
+
+```javascript
+showNameBad = e => {
+  const anExample = document.getElementById('input-name-example').value;
+  console.log(anExample);
+}
+
+showNameGood = e => {
+  console.log(e.target.value)
+}
+```
+
+The `e` referenced in both `showName` methods above *is the change* (which is why `onChange` makes sense in terms of naming what is effectively an event listener). So anytime the `input-name-example` input box changes for any reason, then that is what's going to cause `showName` to fire. The `e` is the change--what is the `target` of the change? It's the `input` element itself, in this case the `input` box with an ID of `input-name-example`. And then, of course, we grab the `value` from the `input` box. To recap:
+
+- `e`: The change itself.
+- `target`: The element on which there was a change.
+- `value`: The value of the target element on which there was a change.
+
+Notice that the same thing is effectively happening above: 
+- `e`: The change itself.
+- `document.getElementById('input-name-example')`: The element whose value we suspected to be effected by the change--this element is the `input` box on which we want to manage changes.
+- `value`: The value of the target element on which there was a change (or not). 
+
+To make this example useful, we need to modify the `showNameGood` method to update state to reflect the new value (otherwise the input box will never reflect this change and all the user will see is something that looks and feels like they aren't actually typing anything):
+
+```javascript
+showNameGood = e => {
+  this.setState({
+    chosenText: e.target.value  
+  });
+}
+```
+
+So what's really happening here is that the user thinks they are changing the input box but they aren't really the ones changing it. What the user is doing is making some change on the input box that causes the `onChange` event handler to fire, which itself often sets state to update with a new value, and when state was updated the `render` method would run again, and finally React would change the input box. 
+
+In a typical JavaScript application, the DOM would manage this state internally for us, and we would simply pull values from the DOM as needed. But this is not the programming paradigm employed in React. Anything that changes is almost always going to go in state. Hence, for pretty much all form-related inputs, React wants to control them via state. The main exception is the `input` with `type='file'`. These tags are read-only: you can't write to a file field. So those are always going to be uncontrolled components. If you want the value of those, then you will need to get them the old-fashioned way.
+
+The big win here is that we don't need to go and bother the DOM. We don't need to go and fetch an element or any of that. We've already got it saved in state. And it's React's job to make sure this process is efficient. See the next note for efficiently handling situations involving multiples inputs with only one `onChange` event handler.
+
+---
+
+</details>
+
+<details><summary> <strong>Handling multiple inputs with one <code>onChange</code> event listener</strong></summary>
+
+When accepting multiple inputs from a user via a form, a common pattern starts to crop up in React: many of your `onChange` event handlers will look *very* similar:
+
+```javascript
+handleOpinion = e => {
+  this.setState({
+    userOpinion: e.target.value
+  });
+}
+
+handleFact = e => {
+  this.setState({
+    userFact: e.target.value
+  });
+}
+...
+```
+
+In [the docs](https://reactjs.org/docs/forms.html#handling-multiple-inputs), React hints at a way to possibly deal with this potential problem (imagine having *numerous* event handlers like the above the event handler was basically doing the same thing every single time): The basic idea is to add a `name` attribute to each element (where `name` on the concerned element typically matches what you have named the state variable associated with the concerned element) and let the handler function choose what to do based on the value of `event.target.name`.
+
+For example, if you have a variable in state such as `userText: 'Boilerplate'`, then an input tag where this value is meant to be effected might generically look like the following:
+
+``` HTML
+<input onChange={this.handleChange} type='text' name='userText' value={this.state.userText}  />
+```
+
+And then our `onChange` function would very often look like the following: 
+
+```javascript
+handleChange = event => {
+  let eventName = event.target.name;
+  let eventValue = event.target.value;
+  this.setState({
+    [eventName]: eventValue
+  });
+}
+```
+
+The `[eventName]` syntax simply lets us use a variable for an object key property in JavaScript ([it's an ES6+ feature](https://www.samanthaming.com/tidbits/37-dynamic-property-name-with-es6/)). It's worth nothing that the `handleChange` handler function can get much more sophisticated and can even be useful for situations where `name` on an element may not be what we are after so much as the *type* as is the case for an `input` with `type='checkbox'` (often you simply want to know whether or not a checkbox is checked or not, and this can be assessed by looking at `event.target.checked`, not `event.target.name`). Here's one minor example:
+
+```javascript
+handleChange = (event) => {
+  const {target: {name: eventName, type: eventType, value: eventValue}} = event;
+  switch(eventType) {
+    case 'checkbox':
+      this.setState((prevState, props) => {
+        let {wantedFoods} = this.state;
+        let removalIndex = wantedFoods.indexOf(eventValue);
+        let newWantedFoods = wantedFoods.includes(eventValue) 
+          ? wantedFoods.slice(0, removalIndex).concat(wantedFoods.slice(removalIndex + 1)) 
+            : [...wantedFoods, eventValue];
+        return ({
+          [eventName]: !prevState[eventName],
+          wantedFoods: newWantedFoods
+        })
+      });
+      break;
+    case 'select-multiple':
+      this.setState({
+        chosenFruits: Array.from(event.target.selectedOptions, (item) => item.value)
+      });
+      break;
+    default:
+      this.setState({
+        [eventName]: eventValue
+      });
+  }
+}
+```
+
+The overall point is that you can essentially have one robust `handleChange` method (try not to overload it, but it's useful to know what your options are). Read [this article](https://medium.com/@bretdoucette/understanding-this-setstate-name-value-a5ef7b4ea2b4) on Medium for more info.
+
+---
+
+</details>
+
+<details open><summary> <strong>Data flows down so pass state up!</strong></summary>
 
 
 
 ---
 
 </details>
+
+
 
 
 
