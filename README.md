@@ -4456,19 +4456,349 @@ The overall point is that you can essentially have one robust `handleChange` met
 
 </details>
 
-<details open><summary> <strong>Data flows down so pass state up!</strong></summary>
+<details><summary> <strong>Data flows down so pass state up!</strong></summary>
 
+The need to so-called "lift state up" (or share state in different components despite not being children of each other) is rather common in React. Much of the need for lifting state up explicitly, as shown [in the docs](https://reactjs.org/docs/lifting-state-up.html), will be mitigated when we start using Redux and/or the Context API. 
 
+"Lifting state up" means we are going from two or more components managing their own state locally to lifting up state to the most common ancestor of all the components that need access to the same piece(s) of state. The components will still have event handlers and the like, but those event handlers will now not be defined locally but passed down as props from the common ancestor so that the event handler changes state in the common ancestor as opposed to changing state in the local component.
+
+In [the example in the docs](https://reactjs.org/docs/lifting-state-up.html), both `TemperatureInput` components will be passed an `onChange` method (specifically named `onTemperatureChange` even though it can be named anything that makes sense) to be used *within* `TemperatureInput` as the `onChange` event handler for an `input`:
+
+``` HTML
+<!-- In Calculator.jsx -->
+<TemperatureInput scale='f' temperature={fahrenheit}  onTemperatureChange={this.handleTempChange} />
+
+<!-- In TemperatureInput.jsx -->
+handleChange = e => {
+  const {name: scale, value: temperature} = e.target;
+  this.props.onTemperatureChange(temperature, scale);
+}
+
+<input name={scale} onChange={this.handleChange} type='number' value={temperature} />
+```
+
+As can be seen above, *within* the `TemperatureInput` component, we have an `input` whose `onChange` calls a method available as a prop, `this.props.onTemperatureChange`, where the method made available as a prop changes the state of the common ancestor component instead of changing state locally (`this.props.onTemperatureChange` changes the state of the `Calculator` component and not the `TemperatureInput` component). 
+
+In terms of architecture, when you realize two components are at different levels of the component tree (i.e., one is not the direct child of another) but both need access to the same piece of state, then the common practice is to lift the state to the first common ancestor and pass down through props whatever methods are necessary to change the state of the parent component--the method that actually changes the state of the parent component is called within one of the children components. Thus, essentially, a child component (e.g., `TemperatureInput`) is changing the state of its parent component (e.g., `Calculator`)  by means of a method that lives in its parent component and changes state in its parent component but is called within itself (e.g., `handleTempChange` lives in `Calculator` and sets state in `Calculator` but is called within `TemperatureInput` because it is passed down as a prop). So when the code runs inside either `input` box in `TemperatureInput`, it's not going to manage its own state--it's going to be running its parent's function which is going to update its parent's state.
+
+Here are the three files (somewhat refactored from what appears in the docs) with a subsequent recap of what happens throughout the process:
+
+<details><summary> <code>Calculator.jsx</code></summary>
+
+```javascript
+import React, { Component, Fragment } from 'react';
+import TemperatureInput from '../TemperatureInput/TemperatureInput'
+import BoilingVerdict from '../BoilingVerdict/BoilingVerdict';
+
+function toCelsius(fahrenheit) {
+  return (fahrenheit - 32) * 5 / 9;
+}
+
+function toFahrenheit(celsius) {
+  return (celsius * 9 / 5) + 32;
+}
+
+function tryConvert(temperature, convert) {
+  const input = parseFloat(temperature);
+  if (Number.isNaN(input)) {
+    return '';
+  }
+  const output = convert(input);
+  const rounded = Math.round(output * 1000) / 1000;
+  return rounded.toString();
+}
+
+class Calculator extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      temperature: '',
+      scale: 'c'
+    }
+  }
+
+  handleTempChange = (temperature, scale) => {
+    switch(scale) {
+      case 'c':
+        this.setState({
+          scale: 'c', 
+          temperature
+        });
+        break;
+      case 'f':
+        this.setState({
+          scale: 'f', 
+          temperature
+        });
+        break;
+      default:
+        return;
+    }
+  }
+
+  render() {
+    const {scale, temperature} = this.state;
+    const celsius = scale === 'f' ? tryConvert(temperature, toCelsius) : temperature;
+    const fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;
+    return (
+      <Fragment>
+        <TemperatureInput 
+          scale='c' 
+          temperature={celsius} 
+          onTemperatureChange={this.handleTempChange} />
+        <TemperatureInput 
+          scale='f' 
+          temperature={fahrenheit} 
+          onTemperatureChange={this.handleTempChange} />
+        <BoilingVerdict 
+          celsius={parseFloat(celsius)}  />
+      </Fragment>
+    );
+  }
+}
+
+export default Calculator;
+```
 
 ---
 
 </details>
 
+<details><summary> <code>TemperatureInput.jsx</code></summary>
 
+```javascript
+import React, { Component } from 'react';
 
+const scaleNames = {
+  c: 'Celsius',
+  f: 'Fahrenheit',
+};
 
+class TemperatureInput extends Component {
 
+  handleChange = e => {
+    const {name: scale, value: temperature} = e.target;
+    this.props.onTemperatureChange(temperature, scale);
+  }
 
+  render() {
+    const { scale, temperature } = this.props;
+    return (
+      <fieldset>
+        <legend>Enter temperature in {scaleNames[scale]}:</legend>
+        <input name={scale} onChange={this.handleChange} type='number' value={temperature} />
+      </fieldset>
+    );
+  }
+}
+
+export default TemperatureInput;
+```
+
+---
+
+</details>
+
+<details><summary> <code>BoilingVerdict.jsx</code></summary>
+
+```javascript
+import React from 'react';
+
+function BoilingVerdict(props) {
+  if (props.celsius >= 100) {
+    return <p>The water would boil.</p>;
+  }
+  return <p>The water would not boil.</p>;
+}
+
+export default BoilingVerdict;
+```
+
+---
+
+</details>
+
+**Here's the recap for what happens when you edit an input:**
+
+1\. React calls the function specified as `onChange` on the DOM `<input>`. In our case, this is the `handleChange` method in the `TemperatureInput` component:
+
+```javascript
+handleChange = e => {
+  const {name: scale, value: temperature} = e.target;
+  this.props.onTemperatureChange(temperature, scale);
+}
+```
+
+2\. The `handleChange` method in the `TemperatureInput` component calls `this.props.onTemperatureChange()` with the new desired value (i.e., `temperature`) and scale. The props for `TemperatureInput`, including `onTemperatureChange` and `scale`, were provided by its parent component, the `Calculator`:
+
+``` HTML
+<TemperatureInput 
+  scale='c' 
+  temperature={celsius} 
+  onTemperatureChange={this.handleTempChange} />
+<TemperatureInput 
+  scale='f' 
+  temperature={fahrenheit} 
+  onTemperatureChange={this.handleTempChange} />
+```
+
+3\. The `handleTempChange` method in `Calculator` 
+
+```javascript
+handleTempChange = (temperature, scale) => {
+  switch(scale) {
+    case 'c':
+      this.setState({
+        scale: 'c', 
+        temperature
+      });
+      break;
+    case 'f':
+      this.setState({
+        scale: 'f', 
+        temperature
+      });
+      break;
+    default:
+      return;
+  }
+}
+```
+
+gets called regardless of which `input`
+
+``` HTML
+<input name={scale} onChange={this.handleChange} type='number' value={temperature} />
+```
+
+was edited within the `TemperatureInput` component. 
+
+4\. Inside the `handleTempChange` method, as seen above, the `Calculator` component asks React to re-render itself by calling `this.setState()` with the new input value and the current scale of the input we just edited.
+
+5\. React calls the `Calculator` component's `render` method 
+
+```javascript
+render() {
+  const {scale, temperature} = this.state;
+  const celsius = scale === 'f' ? tryConvert(temperature, toCelsius) : temperature;
+  const fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;
+  return (
+    <Fragment>
+      <TemperatureInput 
+        scale='c' 
+        temperature={celsius} 
+        onTemperatureChange={this.handleTempChange} />
+      <TemperatureInput 
+        scale='f' 
+        temperature={fahrenheit} 
+        onTemperatureChange={this.handleTempChange} />
+      <BoilingVerdict 
+        celsius={parseFloat(celsius)}  />
+    </Fragment>
+  );
+}
+```
+
+to learn what the UI should look like. The values of both inputs are recomputed based on the current temperature and the active scale. The temperature conversion is performed here.
+
+6\. React calls the `render` methods of the individual `TemperatureInput` components 
+
+```javascript
+render() {
+  const { scale, temperature } = this.props;
+  return (
+    <fieldset>
+      <legend>Enter temperature in {scaleNames[scale]}:</legend>
+      <input name={scale} onChange={this.handleChange} type='number' value={temperature} />
+    </fieldset>
+  );
+}
+```
+
+with their new props specified by the Calculator. It learns what their UI should look like.
+
+7\. React calls the `render` method of the `BoilingVerdict` component
+
+```javascript
+function BoilingVerdict(props) {
+  if (props.celsius >= 100) {
+    return <p>The water would boil.</p>;
+  }
+  return <p>The water would not boil.</p>;
+}
+```
+
+passing the temperature in Celsius as its props.
+
+8\. React DOM updates the DOM with the boiling verdict and to match the desired input values. The input we just edited receives its current value, and the other input is updated to the temperature after conversion.
+
+---
+
+</details>
+
+<details><summary> <strong>Styling components</strong></summary>
+
+If we look at the "style" subsection under "DOM Elements" [in the API reference](https://reactjs.org/docs/dom-elements.html#style), we see that `style` is often used in-line, but that should almost always be used for dynamic styling because in-line styles are often the least performant way to change styles (in-line styles also have a high degree of specificity in relation to other stylesheets and the like). Additionally, as will be seen below from the docs, in-line styles lend themselves well to conditional styling (this falls under "dynamic styling" but should specifically be noted because of how useful it can be). That said, much of what is said in the docs about styling is reproduced below:
+
+Some examples in the documentation use `style` for convenience, but **using the `style` attribute as the primary means of styling elements is generally not recommended**. In most cases, `className` should be used to reference classes defined in an external CSS stylesheet. `style` is most often used in React applications to add dynamically-computed styles at render time. See also [FAQ: Styling and CSS](https://reactjs.org/docs/faq-styling.html).
+
+The `style` attribute accepts a JavaScript object with camelCased properties rather than a CSS string. This is consistent with the DOM `style` JavaScript property, is more efficient, and prevents XSS security holes. For example:
+
+```javascript
+const divStyle = {
+  color: 'blue',
+  backgroundImage: 'url(' + imgUrl + ')',
+};
+
+function HelloWorldComponent() {
+  return <div style={divStyle}>Hello World!</div>;
+}
+```
+
+Note that styles are not autoprefixed. To support older browsers, you need to supply corresponding style properties:
+
+```javascript
+const divStyle = {
+  WebkitTransition: 'all', // note the capital 'W' here
+  msTransition: 'all' // 'ms' is the only lowercase vendor prefix
+};
+
+function ComponentWithTransition() {
+  return <div style={divStyle}>This should work cross-browser</div>;
+}
+```
+
+Style keys are camelCased in order to be consistent with accessing the properties on DOM nodes from JS (e.g. `node.style.backgroundImage`). Vendor prefixes [other than ms](https://www.andismith.com/blogs/2012/02/modernizr-prefixed/) should begin with a capital letter. This is why `WebkitTransition` has an uppercase “W”.
+
+React will automatically append a “px” suffix to certain numeric inline style properties. If you want to use units other than “px”, specify the value as a string with the desired unit. For example:
+
+```javascript
+// Result style: '10px'
+<div style={{ height: 10 }}>
+  Hello World!
+</div>
+
+// Result style: '10%'
+<div style={{ height: '10%' }}>
+  Hello World!
+</div>
+```
+
+Not all style properties are converted to pixel strings though. Certain ones remain unitless (e.g., `zoom`, `order`, `flex`). A complete list of unitless properties can be seen [here](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59).
+
+---
+
+</details>
+
+## AWS Flash Cards Project (practice with state and component lifecycle)
+
+<details open><summary> <strong>TBD</strong></summary>
+
+TBD
+
+---
+
+</details>
 
 
 ## Supplemental Notes
