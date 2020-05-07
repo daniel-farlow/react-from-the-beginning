@@ -247,6 +247,135 @@ Each component has several "lifecycle methods" that you can override to run code
 
 </details>
 
+<details><summary> <strong>Click to expand docs reference for React Router</strong></summary>
+
+The following are a few of the helpful links to get started with React Router:
+
+- [Official Documentation](https://reacttraining.com/react-router/)
+- [Quick Start Docs for React Router on the Web](https://reacttraining.com/react-router/web/guides/quick-start)
+- [Philosophy of React Router](https://reacttraining.com/react-router/core/guides/philosophy)
+- [GitHub Home for react-router](https://github.com/ReactTraining/react-router)
+- [NPM Home for react-router](https://www.npmjs.com/package/react-router)
+- [GitHub Home for react-router-dom](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom)
+- [NPM Home for react-router-dom](https://www.npmjs.com/package/react-router-dom)
+
+Now for the actual docs reference:
+
+- **Announcements**
+  + [The Future of React Router](https://reacttraining.com/blog/reach-react-router-future/)
+- **Examples**
+  + [Basic](https://reacttraining.com/react-router/web/example/basic)
+  + [URL Parameters](https://reacttraining.com/react-router/web/example/url-params)
+  + [Nesting](https://reacttraining.com/react-router/web/example/nesting)
+  + [Redirects (Auth)](https://reacttraining.com/react-router/web/example/auth-workflow)
+  + [Custom Link](https://reacttraining.com/react-router/web/example/custom-link)
+  + [Preventing Transitions](https://reacttraining.com/react-router/web/example/preventing-transitions)
+  + [No Match (404)](https://reacttraining.com/react-router/web/example/no-match)
+  + [Recursive Paths](https://reacttraining.com/react-router/web/example/recursive-paths)
+  + [Sidebar](https://reacttraining.com/react-router/web/example/sidebar)
+  + [Animated Transitions](https://reacttraining.com/react-router/web/example/animated-transitions)
+  + [Route Config](https://reacttraining.com/react-router/web/example/route-config)
+  + [Modal Gallery](https://reacttraining.com/react-router/web/example/modal-gallery)
+  + [StaticRouter Context](https://reacttraining.com/react-router/web/example/static-router)
+  + [Query Parameters](https://reacttraining.com/react-router/web/example/query-parameters)
+- **Guides**
+  + [Quick Start](https://reacttraining.com/react-router/web/guides/quick-start)
+  + [Primary Components](https://reacttraining.com/react-router/web/guides/primary-components)
+  + [Server Rendering](https://reacttraining.com/react-router/web/guides/server-rendering)
+  + [Code Splitting](https://reacttraining.com/react-router/web/guides/code-splitting)
+  + [Scroll Restoration](https://reacttraining.com/react-router/web/guides/scroll-restoration)
+  + [Philosophy](https://reacttraining.com/react-router/web/guides/philosophy)
+  + [Testing](https://reacttraining.com/react-router/web/guides/testing)
+  + [Redux Integration](https://reacttraining.com/react-router/web/guides/redux-integration)
+  + [Static Routes](https://reacttraining.com/react-router/web/guides/static-routes)
+- **API**
+  + **[Hooks](https://reacttraining.com/react-router/web/api/Hooks)**
+    - [useHistory](https://reacttraining.com/react-router/web/api/Hooks/usehistory)
+    - [useLocation](https://reacttraining.com/react-router/web/api/Hooks/uselocation)
+    - [useParams](https://reacttraining.com/react-router/web/api/Hooks/useparams)
+    - [useRouteMatch](https://reacttraining.com/react-router/web/api/Hooks/useroutematch)
+  + **[`<BrowserRouter>`](https://reacttraining.com/react-router/web/api/BrowserRouter)**
+    - [basename: string](https://reacttraining.com/react-router/web/api/BrowserRouter/basename-string)
+    - [getUserConfirmation: func](https://reacttraining.com/react-router/web/api/BrowserRouter/getuserconfirmation-func)
+    - [forceRefresh: bool](https://reacttraining.com/react-router/web/api/BrowserRouter/forcerefresh-bool)
+    - [keyLength: number](https://reacttraining.com/react-router/web/api/BrowserRouter/keylength-number)
+    - [children: node](https://reacttraining.com/react-router/web/api/BrowserRouter/children-node)
+  + **[`<HashRouter>`](https://reacttraining.com/react-router/web/api/HashRouter)**
+    - [basename: string](https://reacttraining.com/react-router/web/api/HashRouter/basename-string)
+    - [getUserConfirmation: func](https://reacttraining.com/react-router/web/api/HashRouter/getuserconfirmation-func)
+    - [hashType: string](https://reacttraining.com/react-router/web/api/HashRouter/hashtype-string)
+    - [children: node](https://reacttraining.com/react-router/web/api/HashRouter/children-node)
+  + **[`<Link>`](https://reacttraining.com/react-router/web/api/Link)**
+    - [to: string](https://reacttraining.com/react-router/web/api/Link/to-string)
+    - [to: object](https://reacttraining.com/react-router/web/api/Link/to-object)
+    - [to: function](https://reacttraining.com/react-router/web/api/Link/to-function)
+    - [replace: bool](https://reacttraining.com/react-router/web/api/Link/replace-bool)
+    - [innerRef: function](https://reacttraining.com/react-router/web/api/Link/innerref-function)
+    - [innerRef: RefObject](https://reacttraining.com/react-router/web/api/Link/innerref-refobject)
+    - [others](https://reacttraining.com/react-router/web/api/Link/others)
+  + **[`<NavLink>`](https://reacttraining.com/react-router/web/api/NavLink)**
+    - [activeClassName: string](https://reacttraining.com/react-router/web/api/NavLink/activeclassname-string)
+    - [activeStyle: object](https://reacttraining.com/react-router/web/api/NavLink/activestyle-object)
+    - [exact: bool](https://reacttraining.com/react-router/web/api/NavLink/exact-bool)
+    - [strict: bool](https://reacttraining.com/react-router/web/api/NavLink/strict-bool)
+    - [isActive: func](https://reacttraining.com/react-router/web/api/NavLink/isactive-func)
+    - [location: object](https://reacttraining.com/react-router/web/api/NavLink/location-object)
+    - [aria-current: string](https://reacttraining.com/react-router/web/api/NavLink/aria-current-string)
+  + **[`<Prompt>`](https://reacttraining.com/react-router/web/api/Prompt)**
+  + **[`<MemoryRouter>`](https://reacttraining.com/react-router/web/api/MemoryRouter)**
+    - [initialEntries: array](https://reacttraining.com/react-router/web/api/MemoryRouter/initialentries-array)
+    - [initialIndex: number](https://reacttraining.com/react-router/web/api/MemoryRouter/initialindex-number)
+    - [getUserConfirmation: func](https://reacttraining.com/react-router/web/api/MemoryRouter/getuserconfirmation-func)
+    - [keyLength: number](https://reacttraining.com/react-router/web/api/MemoryRouter/keylength-number)
+    - [children: node](https://reacttraining.com/react-router/web/api/MemoryRouter/children-node)
+  + **[`<Redirect>`](https://reacttraining.com/react-router/web/api/Redirect)**
+    - [to: string](https://reacttraining.com/react-router/web/api/Redirect/to-string)
+    - [to: object](https://reacttraining.com/react-router/web/api/Redirect/to-object)
+    - [push: bool](https://reacttraining.com/react-router/web/api/Redirect/push-bool)
+    - [from: string](https://reacttraining.com/react-router/web/api/Redirect/from-string)
+    - [exact: bool](https://reacttraining.com/react-router/web/api/Redirect/exact-bool)
+    - [strict: bool](https://reacttraining.com/react-router/web/api/Redirect/strict-bool)
+    - [sensitive: bool](https://reacttraining.com/react-router/web/api/Redirect/sensitive-bool)
+  + **[`<Route>`](https://reacttraining.com/react-router/web/api/Route)**
+    - [Route render methods](https://reacttraining.com/react-router/web/api/Route/route-render-methods)
+    - [Route props](https://reacttraining.com/react-router/web/api/Route/route-props)
+    - [component](https://reacttraining.com/react-router/web/api/Route/component)
+    - [render: func](https://reacttraining.com/react-router/web/api/Route/render-func)
+    - [children: func](https://reacttraining.com/react-router/web/api/Route/children-func)
+    - [path: string | string[]](https://reacttraining.com/react-router/web/api/Route/path-string-string)
+    - [exact: bool](https://reacttraining.com/react-router/web/api/Route/exact-bool)
+    - [strict: bool](https://reacttraining.com/react-router/web/api/Route/strict-bool)
+    - [location: object](https://reacttraining.com/react-router/web/api/Route/location-object)
+    - [sensitive: bool](https://reacttraining.com/react-router/web/api/Route/sensitive-bool)
+  + **[`<Router>`](https://reacttraining.com/react-router/web/api/Router)**
+    - [history: object](https://reacttraining.com/react-router/web/api/Router/history-object)
+    - [children: object](https://reacttraining.com/react-router/web/api/Router/children-node)
+  + **[`<StaticRouter>`](https://reacttraining.com/react-router/web/api/StaticRouter)**
+    - [basename: string](https://reacttraining.com/react-router/web/api/StaticRouter/basename-string)
+    - [location: string](https://reacttraining.com/react-router/web/api/StaticRouter/location-string)
+    - [location: object](https://reacttraining.com/react-router/web/api/StaticRouter/location-object)
+    - [context: object](https://reacttraining.com/react-router/web/api/StaticRouter/context-object)
+    - [children: node](https://reacttraining.com/react-router/web/api/StaticRouter/children-node)
+  + **[`<Switch>`](https://reacttraining.com/react-router/web/api/Switch)**
+    - [location: object](https://reacttraining.com/react-router/web/api/Switch/location-object)
+    - [children: node](https://reacttraining.com/react-router/web/api/Switch/children-node)
+  + **[`history`](https://reacttraining.com/react-router/web/api/history)**
+    - [history is mutable](https://reacttraining.com/react-router/web/api/history/history-is-mutable)
+  + **[`location`](https://reacttraining.com/react-router/web/api/location)**
+  + **[`match`](https://reacttraining.com/react-router/web/api/match)**
+    - [null matches](https://reacttraining.com/react-router/web/api/match/null-matches)
+  + **[`matchPath`](https://reacttraining.com/react-router/web/api/matchPath)**
+    - [pathname](https://reacttraining.com/react-router/web/api/matchPath/pathname)
+    - [props](https://reacttraining.com/react-router/web/api/matchPath/props)
+    - [returns](https://reacttraining.com/react-router/web/api/matchPath/returns)
+  + **[`withRouter`](https://reacttraining.com/react-router/web/api/withRouter)**
+    - [Component.WrappedComponent](https://reacttraining.com/react-router/web/api/withRouter/componentwrappedcomponent)
+    - [wrappedComponentRef: func](https://reacttraining.com/react-router/web/api/withRouter/wrappedcomponentref-func)
+
+---
+
+</details>
+
 ## React 101
 
 <details><summary> <strong>Starter notes (course starter files, <code>create-react-app</code>, React docs, etc.)</strong></summary>
@@ -4790,16 +4919,824 @@ Not all style properties are converted to pixel strings though. Certain ones rem
 
 </details>
 
-## AWS Flash Cards Project (practice with state and component lifecycle)
+## React Router
 
-<details open><summary> <strong>TBD</strong></summary>
+<details><summary> <strong>Introduction to React Router and why you may want to use it</strong></summary>
+
+Before jumping into anything concerning React Router, here are some useful links for reference:
+
+- [Official Documentation](https://reacttraining.com/react-router/)
+- [Quick Start Docs for React Router on the Web](https://reacttraining.com/react-router/web/guides/quick-start)
+- [Philosophy of React Router](https://reacttraining.com/react-router/core/guides/philosophy)
+- [GitHub Home for react-router](https://github.com/ReactTraining/react-router)
+- [NPM Home for react-router](https://www.npmjs.com/package/react-router)
+- [GitHub Home for react-router-dom](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom)
+- [NPM Home for react-router-dom](https://www.npmjs.com/package/react-router-dom)
+
+And here is the message we are greeted with at the homepage for React Router: "Components are the heart of React's powerful, declarative programming model. React Router is a collection of **navigational components** that compose declaratively with your application. Whether you want to have **bookmarkable URLs** for your web app or a composable way to navigate in **React Native**, React Router works wherever React is rendering--so take your pick!" [Web](https://reacttraining.com/react-router/web/guides/quick-start) | [Native](https://reacttraining.com/react-router/native/guides/quick-start)
+
+Now we get to the important question: Why would you want to use React Router? Well, React Router does a couple things. First of all, as the docs note, it's just a collection of navigational components. So that's how we are going to use React Router. We are going to install it with NPM and they are going to give us a handful of components that we can use and not make for ourselves (e.g., `<Route>`, `<Link>`, etc.), and they allow us to control the URL bar. That's really really big because it does two things:
+
+1. It gives us bookmarkable URLs (or "deep links"). Why does this matter? Well, suppose you wanted to share a story, article, or something else on the web with a friend, but whatever link you gave always rendered the homepage (as would happen right now with the AWS flashcards app done previously). That is obviously not desired behavior. If you send someone a link, then you want the link to point to the resource you are trying to share. Essentially, we need to make sure the user can get back to a given page using the URL.
+2. It makes it possible for us to use the forward and backward arrows in the browser. Right now (e.g., in the AWS flashcards app) if we were to use the forward or backward arrows in the browser, then *everything* would be lost. Of course, that is not desirable behavior either!
+
+So React Router's job is to give us the ability to make a "real" single-page application where we are manipulating the DOM we have been with React, but we can use the URL bar. This usefulness of this will become more and more apparent, especially as you manage applications of any size.
+
+---
+
+</details>
+
+<details><summary> <strong>React Router docs reference (for web applications</strong></summary>
+
+Here are the docs links for React Router (for a web application):
+
+- **Announcements**
+  + [The Future of React Router](https://reacttraining.com/blog/reach-react-router-future/)
+- **Examples**
+  + [Basic](https://reacttraining.com/react-router/web/example/basic)
+  + [URL Parameters](https://reacttraining.com/react-router/web/example/url-params)
+  + [Nesting](https://reacttraining.com/react-router/web/example/nesting)
+  + [Redirects (Auth)](https://reacttraining.com/react-router/web/example/auth-workflow)
+  + [Custom Link](https://reacttraining.com/react-router/web/example/custom-link)
+  + [Preventing Transitions](https://reacttraining.com/react-router/web/example/preventing-transitions)
+  + [No Match (404)](https://reacttraining.com/react-router/web/example/no-match)
+  + [Recursive Paths](https://reacttraining.com/react-router/web/example/recursive-paths)
+  + [Sidebar](https://reacttraining.com/react-router/web/example/sidebar)
+  + [Animated Transitions](https://reacttraining.com/react-router/web/example/animated-transitions)
+  + [Route Config](https://reacttraining.com/react-router/web/example/route-config)
+  + [Modal Gallery](https://reacttraining.com/react-router/web/example/modal-gallery)
+  + [StaticRouter Context](https://reacttraining.com/react-router/web/example/static-router)
+  + [Query Parameters](https://reacttraining.com/react-router/web/example/query-parameters)
+- **Guides**
+  + [Quick Start](https://reacttraining.com/react-router/web/guides/quick-start)
+  + [Primary Components](https://reacttraining.com/react-router/web/guides/primary-components)
+  + [Server Rendering](https://reacttraining.com/react-router/web/guides/server-rendering)
+  + [Code Splitting](https://reacttraining.com/react-router/web/guides/code-splitting)
+  + [Scroll Restoration](https://reacttraining.com/react-router/web/guides/scroll-restoration)
+  + [Philosophy](https://reacttraining.com/react-router/web/guides/philosophy)
+  + [Testing](https://reacttraining.com/react-router/web/guides/testing)
+  + [Redux Integration](https://reacttraining.com/react-router/web/guides/redux-integration)
+  + [Static Routes](https://reacttraining.com/react-router/web/guides/static-routes)
+- **API**
+  + **[Hooks](https://reacttraining.com/react-router/web/api/Hooks)**
+    - [useHistory](https://reacttraining.com/react-router/web/api/Hooks/usehistory)
+    - [useLocation](https://reacttraining.com/react-router/web/api/Hooks/uselocation)
+    - [useParams](https://reacttraining.com/react-router/web/api/Hooks/useparams)
+    - [useRouteMatch](https://reacttraining.com/react-router/web/api/Hooks/useroutematch)
+  + **[`<BrowserRouter>`](https://reacttraining.com/react-router/web/api/BrowserRouter)**
+    - [basename: string](https://reacttraining.com/react-router/web/api/BrowserRouter/basename-string)
+    - [getUserConfirmation: func](https://reacttraining.com/react-router/web/api/BrowserRouter/getuserconfirmation-func)
+    - [forceRefresh: bool](https://reacttraining.com/react-router/web/api/BrowserRouter/forcerefresh-bool)
+    - [keyLength: number](https://reacttraining.com/react-router/web/api/BrowserRouter/keylength-number)
+    - [children: node](https://reacttraining.com/react-router/web/api/BrowserRouter/children-node)
+  + **[`<HashRouter>`](https://reacttraining.com/react-router/web/api/HashRouter)**
+    - [basename: string](https://reacttraining.com/react-router/web/api/HashRouter/basename-string)
+    - [getUserConfirmation: func](https://reacttraining.com/react-router/web/api/HashRouter/getuserconfirmation-func)
+    - [hashType: string](https://reacttraining.com/react-router/web/api/HashRouter/hashtype-string)
+    - [children: node](https://reacttraining.com/react-router/web/api/HashRouter/children-node)
+  + **[`<Link>`](https://reacttraining.com/react-router/web/api/Link)**
+    - [to: string](https://reacttraining.com/react-router/web/api/Link/to-string)
+    - [to: object](https://reacttraining.com/react-router/web/api/Link/to-object)
+    - [to: function](https://reacttraining.com/react-router/web/api/Link/to-function)
+    - [replace: bool](https://reacttraining.com/react-router/web/api/Link/replace-bool)
+    - [innerRef: function](https://reacttraining.com/react-router/web/api/Link/innerref-function)
+    - [innerRef: RefObject](https://reacttraining.com/react-router/web/api/Link/innerref-refobject)
+    - [others](https://reacttraining.com/react-router/web/api/Link/others)
+  + **[`<NavLink>`](https://reacttraining.com/react-router/web/api/NavLink)**
+    - [activeClassName: string](https://reacttraining.com/react-router/web/api/NavLink/activeclassname-string)
+    - [activeStyle: object](https://reacttraining.com/react-router/web/api/NavLink/activestyle-object)
+    - [exact: bool](https://reacttraining.com/react-router/web/api/NavLink/exact-bool)
+    - [strict: bool](https://reacttraining.com/react-router/web/api/NavLink/strict-bool)
+    - [isActive: func](https://reacttraining.com/react-router/web/api/NavLink/isactive-func)
+    - [location: object](https://reacttraining.com/react-router/web/api/NavLink/location-object)
+    - [aria-current: string](https://reacttraining.com/react-router/web/api/NavLink/aria-current-string)
+  + **[`<Prompt>`](https://reacttraining.com/react-router/web/api/Prompt)**
+  + **[`<MemoryRouter>`](https://reacttraining.com/react-router/web/api/MemoryRouter)**
+    - [initialEntries: array](https://reacttraining.com/react-router/web/api/MemoryRouter/initialentries-array)
+    - [initialIndex: number](https://reacttraining.com/react-router/web/api/MemoryRouter/initialindex-number)
+    - [getUserConfirmation: func](https://reacttraining.com/react-router/web/api/MemoryRouter/getuserconfirmation-func)
+    - [keyLength: number](https://reacttraining.com/react-router/web/api/MemoryRouter/keylength-number)
+    - [children: node](https://reacttraining.com/react-router/web/api/MemoryRouter/children-node)
+  + **[`<Redirect>`](https://reacttraining.com/react-router/web/api/Redirect)**
+    - [to: string](https://reacttraining.com/react-router/web/api/Redirect/to-string)
+    - [to: object](https://reacttraining.com/react-router/web/api/Redirect/to-object)
+    - [push: bool](https://reacttraining.com/react-router/web/api/Redirect/push-bool)
+    - [from: string](https://reacttraining.com/react-router/web/api/Redirect/from-string)
+    - [exact: bool](https://reacttraining.com/react-router/web/api/Redirect/exact-bool)
+    - [strict: bool](https://reacttraining.com/react-router/web/api/Redirect/strict-bool)
+    - [sensitive: bool](https://reacttraining.com/react-router/web/api/Redirect/sensitive-bool)
+  + **[`<Route>`](https://reacttraining.com/react-router/web/api/Route)**
+    - [Route render methods](https://reacttraining.com/react-router/web/api/Route/route-render-methods)
+    - [Route props](https://reacttraining.com/react-router/web/api/Route/route-props)
+    - [component](https://reacttraining.com/react-router/web/api/Route/component)
+    - [render: func](https://reacttraining.com/react-router/web/api/Route/render-func)
+    - [children: func](https://reacttraining.com/react-router/web/api/Route/children-func)
+    - [path: string | string[]](https://reacttraining.com/react-router/web/api/Route/path-string-string)
+    - [exact: bool](https://reacttraining.com/react-router/web/api/Route/exact-bool)
+    - [strict: bool](https://reacttraining.com/react-router/web/api/Route/strict-bool)
+    - [location: object](https://reacttraining.com/react-router/web/api/Route/location-object)
+    - [sensitive: bool](https://reacttraining.com/react-router/web/api/Route/sensitive-bool)
+  + **[`<Router>`](https://reacttraining.com/react-router/web/api/Router)**
+    - [history: object](https://reacttraining.com/react-router/web/api/Router/history-object)
+    - [children: object](https://reacttraining.com/react-router/web/api/Router/children-node)
+  + **[`<StaticRouter>`](https://reacttraining.com/react-router/web/api/StaticRouter)**
+    - [basename: string](https://reacttraining.com/react-router/web/api/StaticRouter/basename-string)
+    - [location: string](https://reacttraining.com/react-router/web/api/StaticRouter/location-string)
+    - [location: object](https://reacttraining.com/react-router/web/api/StaticRouter/location-object)
+    - [context: object](https://reacttraining.com/react-router/web/api/StaticRouter/context-object)
+    - [children: node](https://reacttraining.com/react-router/web/api/StaticRouter/children-node)
+  + **[`<Switch>`](https://reacttraining.com/react-router/web/api/Switch)**
+    - [location: object](https://reacttraining.com/react-router/web/api/Switch/location-object)
+    - [children: node](https://reacttraining.com/react-router/web/api/Switch/children-node)
+  + **[`history`](https://reacttraining.com/react-router/web/api/history)**
+    - [history is mutable](https://reacttraining.com/react-router/web/api/history/history-is-mutable)
+  + **[`location`](https://reacttraining.com/react-router/web/api/location)**
+  + **[`match`](https://reacttraining.com/react-router/web/api/match)**
+    - [null matches](https://reacttraining.com/react-router/web/api/match/null-matches)
+  + **[`matchPath`](https://reacttraining.com/react-router/web/api/matchPath)**
+    - [pathname](https://reacttraining.com/react-router/web/api/matchPath/pathname)
+    - [props](https://reacttraining.com/react-router/web/api/matchPath/props)
+    - [returns](https://reacttraining.com/react-router/web/api/matchPath/returns)
+  + **[`withRouter`](https://reacttraining.com/react-router/web/api/withRouter)**
+    - [Component.WrappedComponent](https://reacttraining.com/react-router/web/api/withRouter/componentwrappedcomponent)
+    - [wrappedComponentRef: func](https://reacttraining.com/react-router/web/api/withRouter/wrappedcomponentref-func)
+
+---
+
+</details>
+
+<details><summary> <strong>Getting started: <code>Router</code>, <code>Route</code>, and <code>Link</code></strong></summary>
+
+The [first basic example](https://reacttraining.com/react-router/web/guides/quick-start/1st-example-basic-routing) in the docs has the following `import` statement:
+
+```javascript
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+```
+
+We will get to `Switch` in due time (a `<Switch>` looks through its children `<Route>s` and renders the first one that matches the current URL), but we will focus on `Router`, `Route`, and `Link` for right now.
+
+**Note:** Before moving on, make sure to note that most of what you will import from `react-router-dom` will be *components*. And the docs spell out more about these components take as props, but everything we have learned about components previously apply just as well to components coming from `react-router-dom`, only we get extra goodies, more sophisticated behavior, etc., due to code someone else wrote (this is just how it is with components you might import from other libraries as well). 
+
+1\. **BrowserRouter:** The first thing to take note of is that the `Router` (we import `BrowserRouter as Router` mostly to keep with how things are done with React Native--it makes the transition from one thing to the next much simpler and smoother) goes around everything that it needs to control. So generally speaking that's going to be at the application level (i.e., you will often find yourself wrapping everything in the `App` component in `Router`):
+
+```javascript
+function App() {
+  return (
+    <Router>
+      <div className="App">
+        ...
+      </div>
+    </Router>
+  );
+}
+```
+
+Note that `Router` will be the single DOM element that we are actually going to be exporting. Now, when we get to Redux, or there might be other situations where something is around the `Router`, but every component that the `Router` needs to be able to manage needs to be contained within `Router`. And that's important because we only ever want one instance of the `Router`. We don't ever want more than one `Router` component unless you really know what you're doing--we want to keep it down to just one because we only have one URL bar to work with.
+
+2\. **Route and Switch:** The second thing we need now is an actual route! So this is what we use to determine what happens in our application when we are at a given URL (this will make more sense momentarily). For example:
+
+```javascript
+function App() {
+  return (
+    <Router>
+      <Route path='/' component={Home} />
+    </Router>
+  );
+}
+```
+
+As with most things, [the docs](https://reacttraining.com/react-router/web/api/Route) give us the most insight as to what is going on underneath the hood. The authors even put in a good note about the importance of understanding the `Route` component and learning how to use it well: "The Route component is perhaps the most important component in React Router to understand and learn to use well. Its most basic responsibility is to render some UI when its path matches the current URL."
+
+In terms of what is shown above, the `path='/'` prop means React Router is going to look to see if the URL has the specified path in it (namely `'/'` in this case), and if it does, then it's going to render the `Home` component. 
+
+**Note:** As noted [in the docs](https://reacttraining.com/react-router/web/api/Route/route-render-methods) concerning `Route` render methods, the authors suggest using `children` elements over `component` or `render` (especially with the addition of Hooks). They note we should only ever use one of the `component`, `render`, or `children` props on a given `Route`. 
+
+In any case, consider the following chunk of code that may give somewhat unexpected results at first:
+
+```javascript
+import React from 'react';
+import './App.css';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+
+import Home from './components/Home/Home.component';
+import About from './components/About/About.component';
+
+function App() {
+  return (
+    <Router>
+      <Route path='/' component={Home} />
+      <Route path='/about' component={About} />
+    </Router>
+  );
+}
+
+export default App;
+```
+
+If we visited `http://localhost:3000` (or whatever port your application is listening on), then we would just get the `Home` component. Makes sense. If we `http://localhost:3000/about`, however, we would actually get both the `Home` component as well as the `About` component. Why? This has to do with how [path](https://reacttraining.com/react-router/web/api/Route/path-string-string) is treated, specifically in terms of how it uses the [path-to-regexp](https://github.com/pillarjs/path-to-regexp/tree/v1.7.0) library which utilizes *partial* matching by default. Essentially, *both* paths are matched because *both* paths contain `/`. This is clearly undesired behavior, and there are a few ways of going about addressing it (next we discuss use of the [exact](https://reacttraining.com/react-router/web/api/Route/exact-bool) prop which needs to be used with some care, especially if you have nested routes at some point--we will remark on this soon). Might this possible be a chance to use a `Switch` component (recall that a `<Switch>` looks through its children `<Route>s` and renders the first one that matches the current URL)? Would something like
+
+```javascript
+function App() {
+  return (
+    <Router>
+      <Switch>
+        <Route exact={true} path='/' component={Home} />
+        <Route path='/about' component={About} />
+      </Switch>
+    </Router>
+  );
+}
+```
+
+only render the `About` component if we visited `http://localhost:3000/about`? No, only the `Home` component would render! Why? Because the `Home` component was matched *first*, and the `Switch` component effectively results in only considering the *first* `Route` with a `path` whose URL matches the current one. Since both `/` and `/about` match `/about`, but `path='/'` comes *first* above, we end up simply getting the `Home` component. Of course, we could just switch the order of the `Route`s and our problem would be solved. 
+
+As mentioned above, we have to be somewhat careful with using the `exact` prop, especially if our application starts to grow and we want to have `Route`s inside of multiple components. Then you could be looking at a bunch of nested routes, and using the `exact` prop could unintentionally prevent matching for the nested routes. [This answer](https://stackoverflow.com/a/51961213/5209533) on Stack Overflow does a great job of explaining the utility of using the `Switch` component along with *not* using `exact`:
+
+---
+
+Suppose the Home route contains nested `Route`s like the following:
+
+```javascript
+const Home = (props) => {
+  return ( 
+    <Fragment>
+      <p>This will always appear in Home :)</p>
+      <Route path='/dashboard' component={Dashboard}></Route>
+      <Route path='/layout' component={Layout}></Route>
+    </Fragment>
+  );
+}
+```
+
+So now if you write
+
+```javascript
+<Route exact path="/" component={Home} />
+```
+
+then when you visit `/dashboard`, the `Dashboard` component you *want* to render cannot be rendered since no Route matches with `/dashboard` at the top level. In order to achieve the desired behavior, you can make use of `Switch` and reorder the routes so that the paths that are prefixes to other paths are at the end:
+
+```javascript
+<Switch>
+  <Route path='/about' component={About} />
+  <Route path='/' component={Home} />
+</Switch>
+```
+
+---
+
+The effect of the example code above from the SO answer is that we can visit `http://localhost:3000` and *only* have the `Home` component rendered (i.e., without any of its nested `Route`s, specifically `Dashboard` and `Layout`, being rendered). We can visit `http://localhost:3000/about` and have *only* the `About` component rendered (even though `/` is a partial match, since we are inside of `Switch`, only the `About` component will be rendered), as expected. But the great thing happens when we visit `http://localhost:3000/dashboard` or `http://localhost:3000/layout`: Since `/` is a partial match for `/dashboard` and/or `/layout`, we get the `Home` component and also whatever routes inside match the current URL, namely `/dashboard` or `/layout`. The point is that you can use `Switch` along with `exact` in powerful ways--simply don't get carried away with `exact` lest you prevent yourself from useful nested routing.
+
+The awesome thing about all of this is that we are basically getting conditional rendering based on what is in the URL bar, and that is totally awesome!
+
+3\. **Link:** For a [Link](https://reacttraining.com/react-router/web/api/Link), we *do not use anchor tags!* Why? Because that will take us *away* from our application. Think about it like this: When we load up our application for the first time, what loads up is `index.html`. We are using a front-end framework, and if we *leave* `index.html`, then everything has to start back over again. It's not like a back-end framework. As [the docs note](https://reacttraining.com/react-router/web/guides/quick-start/1st-example-basic-routing), behind the scenes, `<Link>` renders an `<a>` with a real `href`, so people using the keyboard for navigation or screen readers will still be able to use the app. Whatever the case, under `Link` [in the docs](https://reacttraining.com/react-router/web/api/Link), the authors make it clear that the `Link` component is intended to provide declarative, accessible navigation around our application (not outside of it!). So how do we use `Link`? 
+
+The most common prop you will use with `Link` is the `to` prop (that actually comes in three forms, namely `to: string`, `to: object`, `to: function`, all of which have varying powers but the most basic and common one is simply `to: string`). And we say where we want to go (among other things sometimes):
+
+```javascript
+function App() {
+  return (
+    <Router>
+      <h1>Header!</h1>
+      <div>
+        <Link to='/'>Home</Link>
+        <Link to='/about'>About</Link>
+      </div>
+      <Route exact path='/' component={Home} />
+      <Route path='/about' component={About} />
+      <h1>Footer!</h1>
+    </Router>
+  );
+}
+```
+
+If we click on the `Link` with "Home", then React Router will send us along to `/`, where the `Home` component is being rendered. React Router is going to keep an eye on the URL, and when it sees that we are now at `/`, then it will load the `Home` component. The same thing goes if we click the `Link` with "About". React Router will send us along to `/about`, whereby React Router will then see that we are supposed to render the `About` component. 
+
+The cool thing with using `Link`s like this is that now we can use the forward and backward arrows in our browser:
+
+<p align='center'>
+  <img width='300px' src='https://user-images.githubusercontent.com/52146855/81254271-458ccd80-8ff0-11ea-9dbf-87b70ed215b7.gif'>
+</p>
+
+As can be seen above, we have *actual* anchor tags as if we had made them (even though React Router made them for us), but the difference is that as we hop back and forth within the application, we can see the purple blinking which means the DOM is changing, and now we can use the forward and backward arrows without any issue because React Router is doing two things:
+
+1. It's deciding which component to render. 
+2. We're not leaving `index.html`. We're not leaving our application. It's not reloading. JavaScript is simply rewriting what's in the URL, and so it makes it *look* like we are reloading our application on different pages, but really we simply conditionally rendering all sorts of different components based on routes that we set up. 
+
+---
+
+**Recap (on the basics of how React Router works):**
+
+1. The `Router` itself is going to be used only one time and it will wrap around everything in our application. 
+2. The `Route` can be used anytime we want to render a component(s) based on whatever URL the user happens to be at. 
+3. The `Link` is going to be our new substitute for anchor tags--if we want to link internally inside of our application, then we are always going to use `Link`. 
+
+---
+
+</details>
+
+<details><summary> <strong><code>NavLink</code> and making a <code>NavBar</code> component</strong></summary>
+
+One thing that is rather cool with React is all of the pre-built components people have put together for ease of use. For example, Materialize has an entire sidebar of components (Badges, Buttons, Breadcrumbs, etc.) we can pick and choose from. The one we are interested in right now is the [Navbar](https://materializecss.com/navbar.html) component. For a basic navbar with right-aligned links and a left-aligned logo, we get the following code: 
+
+``` HTML
+<nav>
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo">Logo</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="sass.html">Sass</a></li>
+      <li><a href="badges.html">Components</a></li>
+      <li><a href="collapsible.html">JavaScript</a></li>
+    </ul>
+  </div>
+</nav>
+```
+
+As is the case when we bring in anything from the outside, we need to be mindful of the particulars of whatever framework we are using if, in fact, we are using one. For example, if we are using React and React Router, as we are right now, then we need to make some modifications to the code above, namely change all of the `a` tags to `Link` tags and all of the `href`s to `to`s and specify where the `Link`s should route to (assuming we want to keep everything within our application). 
+
+To use the resource above, we can get the Materialize CDN and drop it in our `index.html` underneath our `title`:
+
+``` HTML
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+```
+
+And then we can make a sample `NavBar` component using the code above: 
+
+```javascript
+import React from 'react';
+import {Link} from 'react-router-dom';
+
+const NavBar = (props) => {
+  return ( 
+    <nav className="black">
+      <div className="nav-wrapper">
+        <Link to="/" className="brand-logo">AirBnB</Link>
+        <ul id="nav-mobile" className="right hide-on-med-and-down">
+          <li><Link to="/host">Become a host</Link></li>
+          <li><Link to="/help">Help</Link></li>
+          <li><Link to="/login">Log in</Link></li>
+          <li><Link to="/signup">Sign up</Link></li>
+        </ul>
+      </div>
+    </nav>
+  );
+}
+ 
+export default NavBar;
+```
+
+Then our `App.js` file could look something like the following for a very basic use case (of course, in a real application we would put the components in separate files):
+
+```javascript
+import React from 'react';
+import './App.css';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import NavBar from './components/NavBar/NavBar.component';
+
+// For demo purposes with router using materialize
+const Home = () => <h1>Home</h1>
+const Host = () => <h1>Host</h1>
+const Help = () => <h1>Help</h1>
+const LogIn = () => <h1>Log in</h1>
+const SignUp = () => <h1>Sign up</h1>
+
+function App() {
+  return (
+    <Router>
+      <NavBar />
+      <Route exact path='/' component={Home} />
+      <Route exact path='/host' component={Host} />
+      <Route exact path='/help' component={Help} />
+      <Route exact path='/login' component={LogIn} />
+      <Route exact path='/signup' component={SignUp} />
+    </Router>
+  );
+}
+
+export default App;
+```
+
+To make all of this even cooler, there is a [NavLink](https://reacttraining.com/react-router/web/api/NavLink) component from React Router that we may use, where `NavLink` is, "A special version of the `<Link>` that will add styling attributes to the rendered element when it matches the current URL." They then give several props that make the `NavLink` special and easy to use:
+
+- `activeClassName: string`
+- `activeStyle: object`
+- `exact: bool`
+- `strict: bool`
+- `isActive: func`
+- `location: object`
+- `aria-current: string`
+
+As the authors note for `activeClassName`, this is the class to give the element when it is active. The default given class is `active`. This will be joined with the `className` prop. So you can use the default `active` and style as desired or you can set `activeClassName` manually which may not be such a bad idea (e.g., `activeNavLink`). 
+
+In our situation, we should turn all of the `Link`s in our `NavBar` component to `NavLink`s: 
+
+```javascript
+import React from 'react';
+import {NavLink} from 'react-router-dom';
+
+const NavBar = (props) => {
+  return ( 
+    <nav className="black">
+      <div className="nav-wrapper">
+        <NavLink to="/" className="brand-logo">AirBnB</NavLink>
+        <ul id="nav-mobile" className="right hide-on-med-and-down">
+          <li><NavLink to="/host">Become a host</NavLink></li>
+          <li><NavLink to="/help">Help</NavLink></li>
+          <li><NavLink to="/login">Log in</NavLink></li>
+          <li><NavLink to="/signup">Sign up</NavLink></li>
+        </ul>
+      </div>
+    </nav>
+  );
+}
+ 
+export default NavBar;
+```
+
+And now we can watch this in action: 
+
+<p align='center'>
+  <img src='https://user-images.githubusercontent.com/52146855/81331371-182f3680-9067-11ea-8deb-8338c399d956.gif'>
+</p>
+
+Note that the partial matching is in effect, namely, since we are at `http://localhost:3000`, the `NavLink` with `className='brand-logo'` constantly has `active` as also part of its *joined* `className` since that route is active. Also note how subsequent routes that are visited automatically have a `className` of `active` added to them. As noted previously, `active` is the *default* `className` added when a `NavLink` is active, but we can use the `activeClassName` prop to customize this if we so wish
+
+The upshot of all of this is that we can *selectively* style different navigation links that are active: 
+
+``` CSS
+nav .active {
+  text-decoration: underline;
+}
+```
+
+The `NavLink` largely gives you a lot of styling power.
+
+---
+
+</details>
+
+<details><summary> <strong><code>Route</code>s with the <code>component</code> prop vs the <code>render</code> prop</strong></summary>
+
+We are now going to look at another very important prop of the `Route` component, namely `render` (so far we have just been looking at `component`). It should be noted at the outset that [in the Route render methods](https://reacttraining.com/react-router/web/api/Route/route-render-methods) section of the docs that the recommended method of rendering something with a `<Route>` is to use `children` elements (so neither `component` nor `render`). Regardless, only one of `component`, `render`, or `children` should be used on a given `<Route>`. For the `children` prop, the docs note the following: "Sometimes you need to render whether the path matches the location or not. In these cases, you can use the function `children` prop. It works exactly like `render` except that it gets called whether there is a match or not. The `children` render prop receives all the same [route props](https://reacttraining.com/react-router/web/api/Route/route-props) (i.e., the three route props `match`, `location`, and `history` accompany *all* of the render methods) as the `component` and `render` methods, except when a route fails to match the URL, then `match` is `null`. This allows you to dynamically adjust your UI based on whether or not the route matches." 
+
+Returning to our specific situation, what we have done so far is simply look for a route match and then render a single component. Basically, a `<Route>` is just a fancy `if` statement: If the `path` is matched, then render the specified component:
+
+``` HTML
+<Route exact path='/' component={Home} />
+```
+
+This poses a problem. Why? Because what if we wanted to do something like the following:
+
+``` HTML
+<Route exact path='/' component={<Home title='Hello'>} />
+```
+
+This is what we have normally done if we want to send down props and the like. But this is not okay to pass the `component` prop. Let's take a look at what the docs say about each render method: [component](https://reacttraining.com/react-router/web/api/Route/component), [render](https://reacttraining.com/react-router/web/api/Route/render-func), and [children](https://reacttraining.com/react-router/web/api/Route/children-func). 
+
+- **component:** A React component to render only when the location matches. It will be rendered with [route props](https://reacttraining.com/react-router/web/api/Route/route-props). When you use `component` (instead of `render` or `children`) the router uses [React.createElement](https://reactjs.org/docs/react-api.html#createelement) to create a new [React element](https://reactjs.org/docs/rendering-elements.html) from the given component. That means if you provide an inline function to the `component` prop, you would create a new component every render. This results in the existing component unmounting and the new component mounting instead of just updating the existing component. When using an inline function for inline rendering, use the `render` or the `children` prop.
+- **render (func):** This allows for convenient inline rendering and wrapping without the undesired remounting explained above. Instead of having a new React element created for you using the `component` prop, you can pass in a function to be called when the location matches. The `render` prop function has access to all the same route props (`match`, `location` and `history`) as the `component` render prop. *Note:* `<Route component>` takes precedence over `<Route render>` so don't use both in the same `<Route>`.
+- **children (func):** Sometimes you need to render whether the path matches the location or not. In these cases, you can use the function `children` prop. It works exactly like `render` except that it gets called whether there is a match or not. The `children` render prop receives all the same route props as the `component` and `render` methods, except when a route fails to match the URL, then `match` is `null`. This allows you to dynamically adjust your UI based on whether or not the route matches. This could also be useful for animations. *Note:* `<Route children>` takes precedence over both `<Route component>` and `<Route render>` so don’t use more than one in the same `<Route>`.
+
+In terms of `render`, we can do something like the following now instead:
+
+``` HTML
+<Route exact path='/' render={() => (<Home title='Hello!' />)} />
+```
+
+So `render` is very very important because anytime you need to do more than just render a component (e.g., pass certain props and the like), then you'll use `render` (or `children`) instead of `component`. But for anytime when all you need to do is render a component and don't need to pass anything down, then `component` is the right render method to use.
+
+---
+
+</details>
+
+<details><summary> <strong>Nested routes</strong></summary>
+
+We are now going to explore the idea of [nested routing](https://reacttraining.com/react-router/web/guides/quick-start/2nd-example-nested-routing). 
+
+Let's say we had multiple things inside of the `Help` component that needed to happen. For instance, maybe we have on the `Help` component a bunch of stuff that loads up at the top. So maybe we always want a header, an image, etc:
+
+```javascript
+import React, { Fragment } from 'react';
+
+const Help = (props) => {
+  return (
+    <Fragment>
+      <h1>Help Header</h1>
+      <p>An image goes here</p>
+      <h3>Footer for help</h3>
+    </Fragment>
+  );
+};
+
+export default Help;
+```
+
+So right now the `Help` component would show everything above if we went to `/help`. But maybe there's dynamic content that we need to account for. This is where `Route` can be handy. Our `Help` component could look like the following: 
+
+```javascript
+import React, { Fragment } from 'react';
+import {Route, Link} from 'react-router-dom';
+
+const HelpCustomer = () => <h1>Help Customer!</h1>
+const HelpHost = () => <h1>Help Host!</h1>
+
+const Help = (props) => {
+  return (
+    <Fragment>
+      <div>
+        <Link to='/help/customer'>I am a customer</Link> | 
+        <Link to='/help/host'>I am a host</Link>
+      </div>
+      <p>An image goes here</p>
+      <Route path='/help/customer' component={HelpCustomer} />
+      <Route path='/help/host' component={HelpHost} />
+      <h3>Footer for help</h3>
+    </Fragment>
+  );
+};
+
+export default Help;
+```
+
+Back in our `App.js`, however, this will not do (for reasons previously addressed in the note concerning `Switch`):
+
+```javascript
+function App() {
+  return (
+    <Router>
+      <NavBar />
+      <Route exact path='/' render={() => (<Home title='Hello!' />)} />
+      <Route exact path='/host' component={Host} />
+      <Route exact path='/help' component={Help} />
+      <Route exact path='/login' component={LogIn} />
+      <Route exact path='/signup' component={SignUp} />
+    </Router>
+  );
+}
+```
+
+What's the problem here? Can you see why the `Route`s with `path` props `/help/customer` and `/help/host` would never be matched? This is because only `exact`ly `/help` is currently being matched within `App.js`. The solution is to remove `exact`. Again, as noted previously, be careful with your use of `exact`. It can cause problems when used carelessly, especially in the context of using nested routing. 
+
+---
+
+</details>
+
+<details><summary> <strong>The docs on <code>Route</code> component props: <code>match</code>, <code>location</code>, and <code>history</code></strong></summary>
+
+As mentioned [in the docs](https://reacttraining.com/react-router/web/api/Route/route-props), all three render methods on `<Route>` (i.e., `component`, `render`, and `children`) will be passed the same three route props:
+
+- [match](https://reacttraining.com/react-router/web/api/match)
+- [location](https://reacttraining.com/react-router/web/api/location)
+- [history](https://reacttraining.com/react-router/web/api/history)
+
+Let's consider what the docs have to say about each of these props before exploring them in more detail in the context of our current dummy application (i.e., the AirBnB navbar clone).
+
+### match
+
+A `match` object contains information about how a `<Route path>` matched the URL. `match` objects contain the following properties:
+
+- `params` (object): Key/value pairs parsed from the URL corresponding to the dynamic segments of the path
+- `isExact` (boolean): `true` if the entire URL was matched (no trailing characters)
+- `path` (string): The path pattern used to match. Useful for building nested `<Route>`s
+- `url` (string): The matched portion of the URL. Useful for building nested `<Link>`s
+
+You'll have access to match objects in various places:
+- [Route component](https://reacttraining.com/react-router/web/api/Route/component) as `this.props.match`
+- [Route render](https://reacttraining.com/react-router/web/api/Route/render-func) as `({ match }) => ()`
+- [Route children](https://reacttraining.com/react-router/web/api/Route/children-func) as `({ match }) => ()`
+- [withRouter](https://reacttraining.com/react-router/web/api/withRouter) as `this.props.match`
+- [matchPath](https://reacttraining.com/react-router/web/api/matchPath) as the return value
+
+If a Route does not have a `path`, and therefore always matches, you'll get the closest parent match. Same goes for `withRouter`.
+
+#### null matches
+
+A `<Route>` that uses the `children` prop will call its `children` function even when the route’s `path` does not match the current location. When this is the case, the `match` will be `null`. Being able to render a `<Route>`'s contents when it does match can be useful, but certain challenges arise from this situation.
+
+The default way to "resolve" URLs is to join the `match.url` string to the "relative" path.
+
+If you attempt to do this when the match is `null`, you will end up with a `TypeError`. This means that it is considered unsafe to attempt to join "relative" paths inside of a `<Route>` when using the `children` prop.
+
+A similar, but more subtle situation occurs when you use a pathless `<Route>` inside of a `<Route>` that generates a `null` match object.
+
+Pathless `<Route>`s inherit their `match` object from their parent. If their parent `match` is `null`, then their `match` will also be `null`. This means that 
+- a) any child routes/links will have to be absolute because there is no parent to resolve with and 
+- b) a pathless route whose parent `match` can be `null` will need to use the `children` prop to render.
+
+### location
+
+Locations represent where the app is now, where you want it to go, or even where it was. It looks something like this:
+
+```javascript
+{
+  key: 'ac3df4', // not with HashHistory!
+  pathname: '/somewhere',
+  search: '?some=search-string',
+  hash: '#howdy',
+  state: {
+    [userDefined]: true
+  }
+}
+```
+
+The router will provide you with a location object in a few places:
+
+- [Route component](https://reacttraining.com/react-router/web/api/Route/component) as `this.props.location`
+- [Route render](https://reacttraining.com/react-router/web/api/Route/render-func) as `({ location }) => ()`
+- [Route children](https://reacttraining.com/react-router/web/api/Route/children-func) as `({ location }) => ()`
+- [withRouter](https://reacttraining.com/react-router/web/api/withRouter) as `this.props.location`
+
+It is also found on `history.location` but you shouldn’t use that because it's mutable. You can read more about that in the [history](https://reacttraining.com/react-router/web/api/history) doc.
+
+A location object is never mutated so you can use it in the lifecycle hooks to determine when navigation happens, this is really useful for data fetching and animation.
+
+You can provide locations instead of strings to the various places that navigate:
+
+- Web [Link to](https://reacttraining.com/react-router/web/api/Link)
+- Native [Link to](https://reacttraining.com/react-router/native/api/Link)
+- [Redirect to](https://reacttraining.com/react-router/web/api/Redirect)
+- [history.push](https://reacttraining.com/react-router/web/api/history/push)
+- [history.replace](https://reacttraining.com/react-router/web/api/history)
+
+Normally you just use a string, but if you need to add some "location state" that will be available whenever the app returns to that specific location, you can use a location object instead. This is useful if you want to branch UI based on navigation history instead of just paths (like modals).
+
+Finally, you can pass a location to the following components:
+
+- [Route](https://reacttraining.com/react-router/web/api/Route)
+- [Switch](https://reacttraining.com/react-router/web/api/Switch)
+
+This will prevent them from using the actual location in the router's state. This is useful for animation and pending navigation, or any time you want to trick a component into rendering at a different location than the real one.
+
+### history
+
+The term "history" and "`history` object" in this documentation refers to [the history package](https://github.com/ReactTraining/history), which is one of only 2 major dependencies of React Router (besides React itself), and which provides several different implementations for managing session history in JavaScript in various environments.
+
+The following terms are also used:
+
+- "browser history" - A DOM-specific implementation, useful in web browsers that support the HTML5 history API
+- "hash history" - A DOM-specific implementation for legacy web browsers
+- "memory history" - An in-memory history implementation, useful in testing and non-DOM environments like React Native
+
+`history` objects typically have the following properties and methods:
+
+- `length` (number): The number of entries in the history stack
+- `action` (string): The current action (`PUSH`, `REPLACE`, or `POP`)
+- `location` (object): The current location. May have the following properties:
+  + `pathname` (string): The path of the URL
+  + `search` (string): The URL query string
+  + `hash` (string): The URL hash fragment
+  + `state` (object): location-specific state that was provided to e.g. `push(path, state)` when this location was pushed onto the stack. Only available in browser and memory history.
+- `push(path, [state])` (function): Pushes a new entry onto the history stack
+- `replace(path, [state])` (function): Replaces the current entry on the history stack
+- `go(n)` (function): Moves the pointer in the history stack by n entries
+- `goBack()` (function): Equivalent to `go(-1)`
+- `goForward()` (function): Equivalent to `go(1)`
+- `block(prompt)` (function): Prevents navigation (see [the history docs](https://github.com/ReactTraining/history))
+
+#### history is mutable
+
+The `history` object is mutable. Therefore it is recommended to access the [location](https://reacttraining.com/react-router/web/api/location) from the render props of `<Route>`, not from `history.location`. This ensures your assumptions about React are correct in lifecycle hooks. For example:
+
+```javascript
+class Comp extends React.Component {
+  componentDidUpdate(prevProps) {
+    // will be true
+    const locationChanged =
+      this.props.location !== prevProps.location;
+
+    // INCORRECT, will *always* be false because history is mutable.
+    const locationChanged =
+      this.props.history.location !== prevProps.history.location;
+  }
+}
+
+<Route component={Comp} />;
+```
+
+This is because a new `location` object is generated for every `<Route>` render whereas `history.location` *changes* based on current location (i.e., `history.location` is never generated anew but simply mutates to reflect whereever we are currently). In the example above, `this.props.location !== prevProps.location` gives the desired result because the `location` object for the current prop is different from the `location` object for the previous prop. But `this.props.history.location !== prevProps.history.location` gives a misleading conclusion because `history.location` is *always* the same because it mutates to reflect *current* location; that is, *different* `location` objects are being compared in the `this.props.location !== prevProps.location` comparison whereas `history.location` is the *same* object in the `this.props.history.location !== prevProps.history.location` comparison.
+
+Additional properties may also be present depending on the implementation you’re using. Please refer to [the history documentation](https://github.com/ReactTraining/history#properties) for more details.
+
+---
+
+</details>
+
+<details><summary> <strong>Using <code>Route</code> component props in our application</strong></summary>
+
+We are now going to take a look at the `<Route>` props that React Routers gives us (remarked on more extensively from the docs in the note above): `match`, `location`, and `history`. These props release a lot of the programmatic power we have over the router. 
+
+The first thing to take note of is that a component will only have access to these props if the components is rendered from a `<Route>`. So how can we get something like the `NavBar` component to render from a `<Route>` on every single page? As [the docs](https://reacttraining.com/react-router/web/api/Route/path-string-string) note, `<Route>`s without a path *always* match. So we can simply do something like the following for the time being:
+
+``` HTML
+<Route component={NavBar} />
+```
+
+If we do this, then we can `console.log(props)` from within `NavBar`, and when the `NavBar` component is rendered, we will have access to all of the render props mentioned above. For example, if we have `http://localhost:3000/help?name=frank&occupation=codeninja#awesome` in the URL bar and enter this, then we will get something like the following in the console:
+
+<p align='center'>
+  <img width='700px' src='./react-router/images-for-section/router-props-illustration.png'>
+</p>
+
+This is sort of a shortened version of what you might get in native JavaScript with `window.location`. From the image above, we can *see* a lot of the functions or methods that can be run against the `history` object (see the note above or the docs for more on these methods). 9
+
+It's worth noting that the `history` object is a stack; that is, it is LIFO (last in first out) as opposed to a queue which is FIFO (first in first out). The `length` property on the `history` object shows how many things are on the stack. 
+
+One potential "gotcha" may occur when trying to access `match`, `location`, or `history` from a component rendered by `<Route>`. Specifically, the "gotcha" arises from what render method we are using (i.e., `component`, `render`, or `children`). The following rules generally apply (see [the docs](https://reacttraining.com/react-router/web/api/location)) for accessing these props from the given render method:
+
+- `component`: `this.props.match|location|history`
+- `render`: `({ match|location|history }) => ()`
+- `children`: `({ match|location|history }) => ()`
+- `withRouter`: `this.props.match|location|history`
+
+If you are using either `render` or `children`, then one easy way of getting all of the `<Route>` props easily is to do something like the following: 
+
+``` HTML
+<Route exact path='/' render={({...props}) => (<Home title='Hello!' {...props} />)} />
+```
+
+This takes advantage of ES6+ syntax and thus if we `console.log(props)` from within the `Home` component we will now get something like the following:
+
+<p align='center'>
+  <img width='500px' src='./react-router/images-for-section/router-props-destructured.png'>
+</p>
+
+The `push` object on `history` can be useful when wanting to send the user somewhere for some reason besides just a click event. Because the `history` object is a stack, if we *push* something on to the top of it, then it will make that the first thing to come off of it. So if we wanted to programmatically move someone around (i.e., so far we have been moving someone around only because they have clicked on a link or something like that. but there are times when you are going to want to move the user when they *did not* click on something because something happens such as another event, an AJAX request fulfills, etc.), then `push` lends itself well to this. 
+
+As sort of a dummy example, consider modifying the `Home` component in the following way:
+
+```javascript
+import React, {Fragment} from 'react';
+import {Route} from 'react-router-dom';
+
+const Home = (props) => {
+  const {title} = props;
+  setTimeout(() => {
+    props.history.push('/help')
+  }, 2000)
+  return ( 
+    <Fragment>
+      <h1>Home! {title}</h1>
+    </Fragment>
+  );
+}
+ 
+export default Home;
+```
+
+Of course, this is not something we would want to leave on for very long because our home page is now useless, but the browser will wait two seconds (per the `setTimeout`), and then it will call the `push` method against our `history` object, and it will push the browser forward to the `/help` route or, rather, set the `/help` route at the top of the stack.
+
+So that's how the stack works: we end up at whatever is at the top of the stack. Going backwards with `goBack` works the same way:
+
+```javascript
+setTimeout(() => {
+  props.history.goBack()
+}, 2000)
+```
+
+This would take us to the previous thing in the stack. And `goForward` does just the opposite of `goBack` (so long as there is actually something to `goForward` to). 
+
+It's worth noting that there is a [block](https://github.com/ReactTraining/history/blob/master/docs/Blocking.md) method that may be useful sometimes in the sense that it gives the user the chance to confirm or deny something before leaving a page and/or other stuff firing off. 
+
+---
+
+</details>
+
+<details><summary> <strong>Using the <code>match</code> prop on <code>Route</code> for dynamic URLs and URL params</strong></summary>
+
+What is going to be remarked on now is basically how `req.params` works [in Express](https://expressjs.com/en/4x/api.html#req.params), namely the `match.params` property will be an object containing properties mapped to the [named route parameters](https://expressjs.com/en/guide/routing.html#route-parameters). For example, if we had something like
+
+``` HTML
+<Route exact path='/about/:personId/name/:personName' component={About} />
+```
+ and then visitied `http://localhost:3000/about/7/name/william-wallace`, then `match.params` would look as follows:
+
+ ```javascript
+ {
+   personId: '7',
+   personName: 'william-wallace'
+ }
+ ```
+
+In any case, this can be very valuable for managing a lot of different content that should really be grouped. 
+
+---
+
+</details>
+
+## Redux
+
+<details open><summary> <strong>What is Redux?</strong></summary>
 
 TBD
 
 ---
 
 </details>
-
 
 ## Supplemental Notes
 
