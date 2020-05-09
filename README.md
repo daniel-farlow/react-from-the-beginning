@@ -7332,13 +7332,388 @@ export default connect(mapStateToProps, mapDispatchToProps)(Main);
 
 ## Redux Middleware (asynchronous action creators!)
 
-<details open><summary> <strong>Introduction</strong></summary>
+<details><summary> <strong>Introduction</strong></summary>
 
-TBD
+What is middleware in Redux? If we think about it, what we have seen so far does not involve anything asynchronous; that is, all of our action creators thus far have sent a very simple action (like `clearInventory`) or an action that had a payload that included some information supplied by an event triggered by the user (e.g., the `increment` function that supplied an operation and an index). But what if we wanted to update the store with something that involved asynchronous work (e.g., pulling from a database, making an AJAX call, etc.)? 
+
+As [the docs](https://redux.js.org/advanced/middleware) note concerning middleware, if you've used server-side libraries like Express, then you are already at least familiar with the *concept* of middleware. As they note: "In these frameworks, middleware is some code you can put between the framework receiving a request, and the framework generating a response. For example, Express or Koa middleware may add CORS headers, logging, compression, and more. The best feature of middleware is that it's composable in a chain. You can use multiple independent third-party middleware in a single project." The concept of middleware in server-side libraries makes complete sense--we'd like to have a way to patch into the process between receiving a request and sending a response so we could package together as good a response as possible based on what we think the user wants. The concept of middleware is similar in Redux except instead of patching into what goes on between receiving a request and sending a response on a server, we will instead patch into what goes on between dispatching or sending an action and the moment it reaches the reducer (i.e., before the reducer receives the action). 
+
+Think of it like this: 
+
+- Express: `receive request -> MIDDLEWARE -> send response`
+- Redux: `dispatch action -> MIDDLEWARE -> (reducer) receives action`
+
+The docs further note that people often use Redux middleware for logging, crash reporting, talking to an asynchronous API, routing, etc. 
+
+The basic point is that Redux middleware is absolutely critical to being able to use Redux with React; otherwise, you greatly limit the power of Redux. 
 
 ---
 
 </details>
+
+<details><summary> <strong>Review of reducers, actions, action creators, and where we are headed now</strong></summary>
+
+First of all, we have React. Often we will use `create-react-app`, and this will give us a ton of pre-loaded stuff to help us out. In particular, we have `index.js` as the entry point to our application, and within `index.js` we render the `App` component, where `App` turns around and renders whatever it needs to render. 
+
+On the other side, we now have Redux. And Redux is not related to React at all. They're totally separate and do not know about each other at all. And Redux is primarily this thing called the store, where state is managed. That is, one big object is maintained inside of that store, and the store is informed by individual functions each of which returns a piece of state. These individual functions are called reducers. Each one of these reducers is in charge of managing a piece of Redux state. 
+
+In order to get our React application to be able to talk with Redux, we had the `react-redux` module as the middleman. This module gives us the `Provider` component, and it also gave us the `connect` function. And the `Provider` component is rendered by `index.js`:
+
+```javascript
+// index.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import rootReducer from ''
+import { Provider } from 'react-redux';
+import {createStore} from 'redux';
+
+const theStore = createStore(rootReducer);
+
+ReactDOM.render(
+  <Provider store={theStore}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
+```
+
+So `index.js` grabs the `Provider` component, and then the `Provider` component bear-hugs the `App` component so that everything within `App` has access to all the Redux goodies. For any component that needs access to Redux, we export such a component with the `connect` function. And because we use the `connect` function, this gives us access to the Redux store. So `Provider` makes it *possible* for our components to connect to the store, and invoking the `connect` function with our component activates this possible connection. Hence, essentially, a component can *subscribe* to things that are happening in the store via `connect`. For example, via `mapStateToProps`, our component can subscribe to a piece of state or several pieces of state from the Redux store so that any time something happens inside of Redux, our component will get notified and rerendered with the new prop (remember that React will always rerender a component when it receives new state or new props; since Redux gives us state from the store as `props` via `mapStateToProps`, any piece of state that changes in the Redux store to which our component is subscribed effectively causes a rerender of the subscribed component because the state change in Redux is registered as a component prop change in React). All of this happens through `mapStateToProps` which is passed to `connect`.
+
+The difficult and somewhat confusing part arises when we try to *publish* to the store (i.e., when we try to update state in the store). The wiring up for all of this is rather involved (i.e., making action creators, specifying what `type` of action is returned and the `payload` if applicable, modifying appropriate reducers to listen for relevant `type`s of actions, and then using `mapDispatchToProps` to bring in the relevant action creators we want access to). An action creator, just like a reducer, is nothing more than a regular JavaScript function. And action creators return actions, where an action *must* be an object with at least a `type` property. So the action creator is the function itself, and the action is the object that the function returns. Of course, we don't write them this way out of the box--we write them as regular JavaScript functions. Our action creators really aren't action creators until we had them to `bindActionCreators` from the `redux` module. Recall the example when clearing the food department inventory:
+
+```javascript
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    clearInventory
+  }, dispatch)
+}
+```
+
+This is something we do with *all* of our actions; that is, any time we have a `mapDispatchToProps`, we first run our action creators through `bindActionCreators`. That is what takes our action creators from being regular JavaScript functions to being effective action creators that Redux can use.
+
+The other thing we did was we ran our action creators through `connect` by sending them through `mapDispatchToProps`:
+
+```javascript
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
+```
+
+So the action creators go via `connect` and can be called by our component via `this.props.clearInventory()`. So we can initiate our action creator function from our component through `connect` and because we mapped our action creator to the `dispatch`, once the action creator has returned its action, the action is going to get sent to the `dispatch`, and then the `dispatch` takes the action object returned from the action creator and sends it out to *all* of the reducers. It notifies all of them. The reducers then decide whether or not they want to update, and then they send their information back to the store. 
+
+That is the basic review for all of the moving pieces that go into a React application that uses Redux. We have the glue in the middle (i.e., `react-redux`) that allows React and Redux to communicate. Our React components work as they always have, but since we run them through `connect` from `react-redux`, they're able to grab pieces of state out of the Redux store, and they're able to run action creators that will run through the dispatch when they return their action, and then the store will get updated.
+
+We can simplify this a bit down by just focusing on the Redux part. We've got the store, and each individual reducer informs the store via an individual returned piece of state. And somehow one of our components has called one of our action creators which is just a regular function that returns an object, and that object is going to get sent to the `dispatch`, and the `dispatch` is going to let all the individual reducers know that that action happened and that they can decide to update or not. Meanwhile, any component that has subscribed to the store (or listening to a piece of state) will get notified if and when something happens to the piece of state to which it is subscribed. So the action creator gets called, the action gets returned to the `dispatch`, the `dispatch` informs each reducer, the reducers decide whether to update themselves or not but either way always return some piece of state, and then the components that are subscribed get updated if there is any update to the piece of state to which they are subscribed. 
+
+And here is where middleware comes into play. There are times when we are going to want to interrupt or jump in the middle between when the `dispatch` receives the action and when the action gets sent to the reducers. So we have an action that has been dispatched, and we want to do something before it actually gets to the reducers. Something needs to happen in that process. The most obvious example of when you might want to jump in the middle of this process is when you are making an API call or some sort of asynchronous request where you need to *wait* for something momentarily. So let's say our action creator needs to fetch something from the web. So our action creator needs to make an axios request, and an axios request automatically returns a promise. So the question is whether or not we can do something *after* the axios request to inform the payload of the action that then gets sent to all of the reducers. 
+
+---
+
+</details>
+
+<details><summary> <strong>Trying axios/http without middleware</strong></summary>
+
+In the set up for the codebase, the crux of everything is the `fetchWeather` action creator. It may be tempting to try to do something like the following:
+
+```javascript
+import axios from 'axios';
+const weatherApi = `http://api.openweathermap.org/data/2.5/weather`;
+const weatherAPIkey = `6f3f23c0f1a2fcb7edee25d08cb9cf62`;
+const scale = `imperial`; 
+
+export default async (city) => {
+  const weatherURL = `${weatherApi}?q=${city}&units=${scale}&appid=${weatherAPIkey}`;
+  console.log(city);
+  console.log(weatherURL);
+  const response = await axios.get(weatherURL);
+  return {
+    type: 'cityUpdate',
+    payload: response.data
+  }
+}
+```
+
+But no dice. If we try this, then React will shoot us back an error:
+
+```
+Error: Actions must be plain objects. Use custom middleware for async actions.
+```
+
+So we can't return something that is not an object. But it looks like we are! But Redux runs synchronously, meaning it *immediately* sends the action to the dispatch, and then the dispatch *immediately* sends the action to the reducers. So we have to somehow stop the process here. We have to do something to cut this off and then dispatch the action when we are ready. And that is exactly where custom middleware comes into the picture.
+
+---
+
+</details>
+
+<details><summary> <strong>Async action creators with <code>redux-promise</code></strong></summary>
+
+Let's revisit where we left off previously, namely our action creator that failed because it was trying to do something asynchronous:
+
+```javascript
+import axios from 'axios';
+const weatherApi = `http://api.openweathermap.org/data/2.5/weather`;
+const weatherAPIkey = `6f3f23c0f1a2fcb7edee25d08cb9cf62`;
+const scale = `imperial`; 
+
+export default async (city) => {
+  const weatherURL = `${weatherApi}?q=${city}&units=${scale}&appid=${weatherAPIkey}`;
+  console.log(city);
+  console.log(weatherURL);
+  const response = await axios.get(weatherURL);
+  return {
+    type: 'cityUpdate',
+    payload: response.data
+  }
+}
+```
+
+The `type` for the returned action is fine--it is simply a string. The problem is with the `payload` which is a *promise*. That's what `response.data` is above. And Redux is made to work as automatically as possible. Redux works synchronously and expects all actions to be dispatched and processed immediately, but our action above can't be because the `payload` is a promise. It won't run until the promise has settled. 
+
+In order to solve this problem, we need to use some middleware. For this specific example right now, the middleware we will use comes from the [redux-promise](https://www.npmjs.com/package/redux-promise) module. This module is incredibly useful in that you don't have to write much code at all to make things work, but the downside is that you don't really have anymore control over things (that's where something like `redux-thunk` might come into play or `redux-saga`). 
+
+[The docs](https://www.npmjs.com/package/redux-promise) for `redux-promise` makes its usage fairly clear: "The default export is a middleware function. If it receives a promise, it will dispatch the resolved value of the promise. It will not dispatch anything if the promise rejects." 
+
+In order to apply middleware from `redux-promise`, we need to go all the way back up to `index.js` where the store is created because that is where the middleware will be applied to the store. So instead of just
+
+```javascript
+import { createStore } from 'redux';
+```
+
+we will now have 
+
+```javascript
+import { createStore, applyMiddleware } from 'redux';
+```
+
+where `applyMiddleware` is coming entirely from `redux`. How can we actually apply the middleware from `redux-promise`? Like so:
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import rootReducer from './reducers/rootReducer';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import reduxPromise from 'redux-promise';
+
+const theStore = applyMiddleware(reduxPromise)(createStore)(rootReducer);
+
+ReactDOM.render(
+  <Provider store={theStore}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
+```
+
+The line
+
+```javascript
+const theStore = applyMiddleware(reduxPromise)(createStore)(rootReducer);
+```
+
+looks rather funky. What is going on here? Well, [the docs](https://www.npmjs.com/package/redux-promise) for `redux-promise` tell us that the default export from `redux-promise` (which we are calling `reduxPromise`) is a middleware *function*. So basically `applyMiddleware(reduxPromise)` is just another function expecting another argument, and the argument we want to pass it in this case is `createStore`. Well, `createStore` itself is a function so basically `applyMiddleware(reduxPromise)(createStore)` returns a function that expects the `rootReducer`, and that is what all is happening above. A more cumbersome albeit perhaps slightly clearer way of writing it would be as follows: 
+
+```javascript
+const middlewareApplied = applyMiddleware(reduxPromise);
+const storeWithMiddleware = middlewareApplied(createStore);
+const finalStore = storeWithMiddleware(rootReducer);
+```
+
+We will stick with the first way since it is less wordy. The effect of the line 
+
+```javascript
+const theStore = applyMiddleware(reduxPromise)(createStore)(rootReducer);
+```
+
+is that a variable called `theStore` is created that already has our middleware applied to it, where this solves our basic problem.
+
+---
+
+</details>
+
+<details><summary> <strong>Async action creators with <code>redux-thunk</strong></summary>
+
+We are now going to look at our next piece of middleware: [redux-thunk](https://www.npmjs.com/package/redux-thunk). This is sort of "Step 2" of the middleware process. The `redux-promise` module is nice but it gives us very little power or control over things. 
+
+Redux thunk is going to be more manual than `redux-promise` but the catch is that we will have more control. 
+
+The authors of the `redux-thunk` package give us somewhat of a [mean message](https://www.npmjs.com/package/redux-thunk#why-do-i-need-this) at the outset: "Why do I need this? If you’re not sure whether you need it, you probably don't. [Read this for an in-depth introduction to thunks in Redux](https://stackoverflow.com/questions/35411423/how-to-dispatch-a-redux-action-with-a-timeout/35415559#35415559)." This may be kind of annoying but it conveys a true message, namely that you shouldn't try to force this middleware because most of the time you don't need it. But just remember you have it in your back pocket so that when you do get in a situation where you need more direct control over the dispatch or access to the store then you can get it. 
+
+Here's the key part with `redux-thunk`: "Redux Thunk middleware allows you to write action creators that return a function instead of an action. The thunk can be used to delay the dispatch of an action, or to dispatch only if a certain condition is met. The inner function receives the store methods `dispatch` and `getState` as parameters."
+
+This is very different from everything we have been doing inside of our action creators so far:
+
+```javascript
+import axios from 'axios';
+const weatherApi = `http://api.openweathermap.org/data/2.5/weather`;
+const weatherAPIkey = `6f3f23c0f1a2fcb7edee25d08cb9cf62`;
+const scale = `imperial`; 
+
+export default async (city) => {
+  const weatherURL = `${weatherApi}?q=${city}&units=${scale}&appid=${weatherAPIkey}`;
+  console.log(city);
+  console.log(weatherURL);
+  const response = await axios.get(weatherURL);
+  return {
+    type: 'cityUpdate',
+    payload: response.data
+  }
+}
+```
+
+We have always been returning an object from our action creator and never a function. What `redux-thunk` is promising us is that we can take our action creators and instead of returning an action/object, we can return a function. So instead of doing `return { ... }` we can do `return () => {}`. Now why would we want to do this? Well, remember, if you don't know the answer to that question, then you probably don't need `redux-thunk`. But we will see how we can do it anyway!
+
+Sometimes the name of the module can help us out. `redux-promise` gave us an indicate that a `promise` would be involved in some way. Well, `redux-thunk` gives some indication that a `thunk` will be involved in some way. But what the hell is a thunk? [The docs](https://www.npmjs.com/package/redux-thunk#whats-a-thunk) remark on this: "A [thunk](https://en.wikipedia.org/wiki/Thunk) is a function that wraps an expression to delay its evaluation." And they give an example to illustrate this:
+
+```javascript
+// calculation of 1 + 2 is immediate
+// x === 3
+let x = 1 + 2;
+ 
+// calculation of 1 + 2 is delayed
+// foo can be called later to perform the calculation
+// foo is a thunk!
+let foo = () => 1 + 2;
+```
+
+So how can we start to use `redux-thunk`? Do we need to get rid of `redux-promise`? No! And this is the really cool part--we can use multiple pieces of middleware in Redux. In `index.js` we can now have the following: 
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import rootReducer from './reducers/rootReducer';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import reduxPromise from 'redux-promise';
+import reduxThunk from 'redux-thunk';
+
+const theStore = applyMiddleware(reduxPromise, reduxThunk)(createStore)(rootReducer);
+
+ReactDOM.render(
+  <Provider store={theStore}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
+```
+
+So how do we actually use `redux-thunk` now and what's the value? The value comes from the fact that the function we return from our action creator is given two arguments, the `dispatch` and `getState`. So far we have not interact with either of these things at all. It has been entirely `react-redux`'s job to call the `dispatch`. It has been `react-redux`'s job to actually fiddle with the store and grab state out. But with `redux-thunk` we get the power to interact with these objects (below is just a temporary dummy example):
+
+```javascript
+export default () => {
+  return (dispatch, getState) => {
+    setTimeout(() => {
+      console.log('I waited for 2 seconds')
+      dispatch({
+        type: 'testThunk'
+      })
+    }, 2000)
+  }
+}
+```
+
+The above code snippet shows that, with a thunk, we can *manually* call the dispatch and pass it an action of our choosing. The action right now is just a silly one with a `type` of `'testThunk'`, but you can imagine hown this might be useful. The effect of the code above is that the action creator waits two seconds before sending out the action `{ type: 'testThunk' }`. So we now have the power to manually call the dispatch to send out an action of our choosing to all reducers. 
+
+The other option we have is `getState`. So we can modify our action creator like so: 
+
+```javascript
+export default () => {
+  return (dispatch, getState) => {
+    setTimeout(() => {
+      const reduxState = getState();
+      console.log('Redux state: ', reduxState)
+      console.log('I waited for 2 seconds')
+      dispatch({
+        type: 'testThunk'
+      })
+    }, 2000)
+  }
+}
+```
+
+The effect of this is that when our action creator gets called, we'll return a function where `setTimeout` will wait two seconds, it will fetch the entire Redux store/state, put it inside of the `reduxState` variable, log it, and then dispatch our action.
+
+So we have access to both the entire Redux store and the dispatch inside of our thunk. What's the value of `getState` here? Well, there might be things going on in your application that you need to know before you actually submit your action to go to all of your reducers. For example, suppose there is a component that is dependent on the user already having grabbed the weather in order to actually update it. Well, we can check to see if something exists and then and only then call the dispatch:
+
+```javascript
+export default () => {
+  return (dispatch, getState) => {
+    setTimeout(() => {
+      const reduxState = getState();
+      console.log('Redux state: ', reduxState)
+      console.log('I waited for 2 seconds')
+      if (reduxState.weather.main) {
+        dispatch({
+          type: 'testThunk'
+        })
+      }
+    }, 2000)
+  }
+}
+```
+
+The `if` statement above is kind of silly, but the *concept* is what is important. Maybe it's a very important conditional that we need to consider. Maybe we only want to dispatch only if the store has certain information like authentication details or whatever else there might be. Or it could be that we want to dispatch four different actions all with different information all reliant on something else (you can imagine you could have conditional logic based on Redux state where we dispatch different actions based on what is in the store). 
+
+So we could have something like the following (not the best example but gets the point across):
+
+```javascript
+import axios from 'axios';
+
+const weatherApi = `http://api.openweathermap.org/data/2.5/weather`;
+const weatherAPIkey = `6f3f23c0f1a2fcb7edee25d08cb9cf62`;
+const scale = `imperial`; 
+
+export default (city) => {
+  return async (dispatch, getState) => {
+    let weatherURL = `${weatherApi}?q=${city}&units=${scale}&appid=${weatherAPIkey}`;
+    const reduxState = getState();
+    if (!reduxState.weather.main) {
+      weatherURL = `${weatherApi}?q=London&units=${scale}&appid=${weatherAPIkey}`
+      const response = await axios.get(weatherURL);
+      dispatch({
+        type: 'cityUpdate',
+        payload: response.data
+      })
+    } else if (reduxState.weather.main) {
+      const response = await axios.get(weatherURL);
+      if (reduxState.weather.id !== response.data.id) {
+        dispatch({
+          type: 'cityUpdate',
+          payload: response.data
+        })
+      }
+    }
+  }
+}
+```
+
+The important thing here is that the middleware gives us the power to run the thunk function (the example above illustrates how we will only send the dispatch if we get a *new* city). If we go back over to our `index.js` and remove `reduxThink` from our middleware, then we got the error we got previously: 
+
+```
+Error: Actions must be plain objects. Use custom middleware for async actions.
+```
+
+Why this error? Because we have in our `Weather` component the following:
+
+```javascript
+componentDidMount() {
+  this.props.testThunk()
+}
+```
+
+And what does the `testThunk` action creator try to do? It tries to return a *function* as opposed to a plain object. The `reduxThunk` middleware gives us the ability to return functions where we can manually call `dispatch` and `getState` before returning an action object.
+
+So `redux-thunk` is actually very powerful because when you need control inside of an action creator you can get it. As noted above, maybe there are situations where you *do not* want an action dispatched from an action creator. `redux-thunk` gives us all the power to do this. Our thunk is very powerful because we can run whatever code we want inside of it before deciding on whether or not we should dispatch an action to all of our reducers.
+
+---
+
+</details>
+
+
 
 
 
