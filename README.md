@@ -376,6 +376,122 @@ Now for the actual docs reference:
 
 </details>
 
+<details><summary> <strong>Click to expand docs reference for Redux</strong></summary>
+
+[Here](https://redux.js.org/) is the homepage for Redux and [here](https://github.com/reduxjs/redux) is the GitHub repo. And here are docs links for reference:
+
+- **Introduction**
+  + [Getting Started with Redux](https://redux.js.org/introduction/getting-started)
+  + [Installation](https://redux.js.org/introduction/installation)
+  + [Motivation](https://redux.js.org/introduction/motivation)
+  + [Core Concepts](https://redux.js.org/introduction/core-concepts)
+  + [Three Principles](https://redux.js.org/introduction/three-principles)
+  + [Prior Art](https://redux.js.org/introduction/prior-art)
+  + [Learning Resources](https://redux.js.org/introduction/learning-resources)
+  + [Ecosystem](https://redux.js.org/introduction/ecosystem)
+  + [Examples](https://redux.js.org/introduction/examples)
+- **Basic Tutorial**
+  + [Basic Tutorial: Intro](https://redux.js.org/basics/basic-tutorial)
+  + [Actions](https://redux.js.org/basics/actions)
+  + [Reducers](https://redux.js.org/basics/reducers)
+  + [Store](https://redux.js.org/basics/store)
+  + [Data flow](https://redux.js.org/basics/data-flow)
+  + [Usage with React](https://redux.js.org/basics/usage-with-react)
+  + [Example: Todo List](https://redux.js.org/basics/example)
+- **Advanced Tutorial**
+  + [Advanced Tutorial: Intro](https://redux.js.org/advanced/advanced-tutorial)
+  + [Async Actions](https://redux.js.org/advanced/async-actions)
+  + [Async Flow](https://redux.js.org/advanced/async-flow)
+  + [Middleware](https://redux.js.org/advanced/middleware)
+  + [Usage with React Router](https://redux.js.org/advanced/usage-with-react-router)
+  + [Example: Reddit API](https://redux.js.org/advanced/example-reddit-api)
+  + [Next Steps](https://redux.js.org/advanced/next-steps)
+- **Recipes**
+  + [Recipes: Index](https://redux.js.org/recipes/recipe-index)
+  + [Configuring Your Store](https://redux.js.org/recipes/configuring-your-store)
+  + [Usage with TypeScript](https://redux.js.org/recipes/usage-with-typescript)
+  + [Migrating to Redux](https://redux.js.org/recipes/migrating-to-redux)
+  + [Using Object Spread Operator](https://redux.js.org/recipes/using-object-spread-operator)
+  + [Reducing Boilerplate](https://redux.js.org/recipes/reducing-boilerplate)
+  + [Server Rendering](https://redux.js.org/recipes/server-rendering)
+  + [Writing Tests](https://redux.js.org/recipes/writing-tests)
+  + [Computing Derived Date](https://redux.js.org/recipes/computing-derived-data)
+  + [Implementing Undo History](https://redux.js.org/recipes/implementing-undo-history)
+  + [Isolating Redux Sub-Apps](https://redux.js.org/recipes/isolating-redux-sub-apps)
+  + [Using Immutable.JS with Redux](https://redux.js.org/recipes/using-immutablejs-with-redux)
+  + [Code Splitting](https://redux.js.org/recipes/code-splitting)
+  + **Structuring Reducers**
+    * [Structuring Reducers](https://redux.js.org/recipes/structuring-reducers/structuring-reducers)
+    * [Prerequisite Concepts](https://redux.js.org/recipes/structuring-reducers/prerequisite-concepts)
+    * [Basic Reducer Structure](https://redux.js.org/recipes/structuring-reducers/basic-reducer-structure)
+    * [Splitting Reducer Logic](https://redux.js.org/recipes/structuring-reducers/splitting-reducer-logic)
+    * [Refactoring Reducers Example](https://redux.js.org/recipes/structuring-reducers/refactoring-reducer-example)
+    * [Using combineReducers](https://redux.js.org/recipes/structuring-reducers/using-combinereducers)
+    * [Beyond combineReducers](https://redux.js.org/recipes/structuring-reducers/beyond-combinereducers)
+    * [Normalizing State Shape](https://redux.js.org/recipes/structuring-reducers/normalizing-state-shape)
+    * [Updating Normalized Data](https://redux.js.org/recipes/structuring-reducers/updating-normalized-data)
+    * [Reusing Reducer Logic](https://redux.js.org/recipes/structuring-reducers/reusing-reducer-logic)
+    * [Immutable Update Patterns](https://redux.js.org/recipes/structuring-reducers/immutable-update-patterns)
+    * [Initializing State](https://redux.js.org/recipes/structuring-reducers/initializing-state)
+- **FAQ**
+  + [FAQ Index](https://redux.js.org/faq)
+  + [General](https://redux.js.org/faq/general)
+  + [Reducers](https://redux.js.org/faq/reducers)
+  + [Organizing State](https://redux.js.org/faq/organizing-state)
+  + [Store Setup](https://redux.js.org/faq/store-setup)
+  + [Actions](https://redux.js.org/faq/actions)
+  + [Immutable Data](https://redux.js.org/faq/immutable-data)
+  + [Code Structure](https://redux.js.org/faq/code-structure)
+  + [Performance](https://redux.js.org/faq/performance)
+  + [Design Decisions](https://redux.js.org/faq/design-decisions)
+  + [React Redux](https://redux.js.org/faq/react-redux)
+  + [Miscellaneous](https://redux.js.org/faq/miscellaneous)
+- **Style Guide**
+  + [Style Guide](https://redux.js.org/style-guide/style-guide)
+- **Other**
+  + [Glossary](https://redux.js.org/glossary)
+  + [Troubleshooting](https://redux.js.org/troubleshooting)
+- **API Reference**
+  + [API Reference](https://redux.js.org/api/api-reference)
+  + [createStore](https://redux.js.org/api/createstore)
+  + [Store](https://redux.js.org/api/store)
+  + [combineReducers](https://redux.js.org/api/combinereducers)
+  + [applyMiddleware](https://redux.js.org/api/applymiddleware)
+  + [bindActionCreators](https://redux.js.org/api/bindactioncreators)
+  + [compose](https://redux.js.org/api/compose)
+- **Redux Toolkit**
+  + [Redux Toolkit: Overview](https://redux.js.org/redux-toolkit/overview)
+
+---
+
+</details>
+
+<details><summary> <strong>Click to expand docs reference for React-Redux</strong></summary>
+
+[Here](https://react-redux.js.org/) is the homepage for React Redux and [here](https://github.com/reduxjs/react-redux) is the GitHub repo. And here are docs links for reference:
+
+- **Introduction**
+  + [Quick Start](https://react-redux.js.org/introduction/quick-start)
+  + [Basic Tutorial](https://react-redux.js.org/introduction/basic-tutorial)
+  + [Why Use React Redux?](https://react-redux.js.org/introduction/why-use-react-redux)
+- **Using React Redux**
+  + [Connect: Extracting Data with mapStateToProps](https://react-redux.js.org/using-react-redux/connect-mapstate)
+  + [Connect: Dispatching Actions with mapDispatchToProps](https://react-redux.js.org/using-react-redux/connect-mapdispatch)
+  + [Accessing the Store](https://react-redux.js.org/using-react-redux/accessing-store)
+  + [Static Typing](https://react-redux.js.org/using-react-redux/static-typing)
+- **API Reference**
+  + [connect()](https://react-redux.js.org/api/connect)
+  + [Provider](https://react-redux.js.org/api/provider)
+  + [connectAdvanced()](https://react-redux.js.org/api/connect-advanced)
+  + [batch()](https://react-redux.js.org/api/batch)
+  + [Hooks](https://react-redux.js.org/api/hooks)
+- **Guides**
+  + [Troubleshooting](https://react-redux.js.org/troubleshooting)
+
+---
+
+</details>
+
 ## React 101
 
 <details><summary> <strong>Starter notes (course starter files, <code>create-react-app</code>, React docs, etc.)</strong></summary>
@@ -5730,13 +5846,1503 @@ In any case, this can be very valuable for managing a lot of different content t
 
 ## Redux
 
-<details open><summary> <strong>What is Redux?</strong></summary>
+<details><summary> <strong>Redux docs reference</strong></summary>
+
+[Here](https://redux.js.org/) is the homepage for Redux and [here](https://github.com/reduxjs/redux) is the GitHub repo. And here are docs links for reference:
+
+- **Introduction**
+  + [Getting Started with Redux](https://redux.js.org/introduction/getting-started)
+  + [Installation](https://redux.js.org/introduction/installation)
+  + [Motivation](https://redux.js.org/introduction/motivation)
+  + [Core Concepts](https://redux.js.org/introduction/core-concepts)
+  + [Three Principles](https://redux.js.org/introduction/three-principles)
+  + [Prior Art](https://redux.js.org/introduction/prior-art)
+  + [Learning Resources](https://redux.js.org/introduction/learning-resources)
+  + [Ecosystem](https://redux.js.org/introduction/ecosystem)
+  + [Examples](https://redux.js.org/introduction/examples)
+- **Basic Tutorial**
+  + [Basic Tutorial: Intro](https://redux.js.org/basics/basic-tutorial)
+  + [Actions](https://redux.js.org/basics/actions)
+  + [Reducers](https://redux.js.org/basics/reducers)
+  + [Store](https://redux.js.org/basics/store)
+  + [Data flow](https://redux.js.org/basics/data-flow)
+  + [Usage with React](https://redux.js.org/basics/usage-with-react)
+  + [Example: Todo List](https://redux.js.org/basics/example)
+- **Advanced Tutorial**
+  + [Advanced Tutorial: Intro](https://redux.js.org/advanced/advanced-tutorial)
+  + [Async Actions](https://redux.js.org/advanced/async-actions)
+  + [Async Flow](https://redux.js.org/advanced/async-flow)
+  + [Middleware](https://redux.js.org/advanced/middleware)
+  + [Usage with React Router](https://redux.js.org/advanced/usage-with-react-router)
+  + [Example: Reddit API](https://redux.js.org/advanced/example-reddit-api)
+  + [Next Steps](https://redux.js.org/advanced/next-steps)
+- **Recipes**
+  + [Recipes: Index](https://redux.js.org/recipes/recipe-index)
+  + [Configuring Your Store](https://redux.js.org/recipes/configuring-your-store)
+  + [Usage with TypeScript](https://redux.js.org/recipes/usage-with-typescript)
+  + [Migrating to Redux](https://redux.js.org/recipes/migrating-to-redux)
+  + [Using Object Spread Operator](https://redux.js.org/recipes/using-object-spread-operator)
+  + [Reducing Boilerplate](https://redux.js.org/recipes/reducing-boilerplate)
+  + [Server Rendering](https://redux.js.org/recipes/server-rendering)
+  + [Writing Tests](https://redux.js.org/recipes/writing-tests)
+  + [Computing Derived Date](https://redux.js.org/recipes/computing-derived-data)
+  + [Implementing Undo History](https://redux.js.org/recipes/implementing-undo-history)
+  + [Isolating Redux Sub-Apps](https://redux.js.org/recipes/isolating-redux-sub-apps)
+  + [Using Immutable.JS with Redux](https://redux.js.org/recipes/using-immutablejs-with-redux)
+  + [Code Splitting](https://redux.js.org/recipes/code-splitting)
+  + **Structuring Reducers**
+    * [Structuring Reducers](https://redux.js.org/recipes/structuring-reducers/structuring-reducers)
+    * [Prerequisite Concepts](https://redux.js.org/recipes/structuring-reducers/prerequisite-concepts)
+    * [Basic Reducer Structure](https://redux.js.org/recipes/structuring-reducers/basic-reducer-structure)
+    * [Splitting Reducer Logic](https://redux.js.org/recipes/structuring-reducers/splitting-reducer-logic)
+    * [Refactoring Reducers Example](https://redux.js.org/recipes/structuring-reducers/refactoring-reducer-example)
+    * [Using combineReducers](https://redux.js.org/recipes/structuring-reducers/using-combinereducers)
+    * [Beyond combineReducers](https://redux.js.org/recipes/structuring-reducers/beyond-combinereducers)
+    * [Normalizing State Shape](https://redux.js.org/recipes/structuring-reducers/normalizing-state-shape)
+    * [Updating Normalized Data](https://redux.js.org/recipes/structuring-reducers/updating-normalized-data)
+    * [Reusing Reducer Logic](https://redux.js.org/recipes/structuring-reducers/reusing-reducer-logic)
+    * [Immutable Update Patterns](https://redux.js.org/recipes/structuring-reducers/immutable-update-patterns)
+    * [Initializing State](https://redux.js.org/recipes/structuring-reducers/initializing-state)
+- **FAQ**
+  + [FAQ Index](https://redux.js.org/faq)
+  + [General](https://redux.js.org/faq/general)
+  + [Reducers](https://redux.js.org/faq/reducers)
+  + [Organizing State](https://redux.js.org/faq/organizing-state)
+  + [Store Setup](https://redux.js.org/faq/store-setup)
+  + [Actions](https://redux.js.org/faq/actions)
+  + [Immutable Data](https://redux.js.org/faq/immutable-data)
+  + [Code Structure](https://redux.js.org/faq/code-structure)
+  + [Performance](https://redux.js.org/faq/performance)
+  + [Design Decisions](https://redux.js.org/faq/design-decisions)
+  + [React Redux](https://redux.js.org/faq/react-redux)
+  + [Miscellaneous](https://redux.js.org/faq/miscellaneous)
+- **Style Guide**
+  + [Style Guide](https://redux.js.org/style-guide/style-guide)
+- **Other**
+  + [Glossary](https://redux.js.org/glossary)
+  + [Troubleshooting](https://redux.js.org/troubleshooting)
+- **API Reference**
+  + [API Reference](https://redux.js.org/api/api-reference)
+  + [createStore](https://redux.js.org/api/createstore)
+  + [Store](https://redux.js.org/api/store)
+  + [combineReducers](https://redux.js.org/api/combinereducers)
+  + [applyMiddleware](https://redux.js.org/api/applymiddleware)
+  + [bindActionCreators](https://redux.js.org/api/bindactioncreators)
+  + [compose](https://redux.js.org/api/compose)
+- **Redux Toolkit**
+  + [Redux Toolkit: Overview](https://redux.js.org/redux-toolkit/overview)
+
+---
+
+</details>
+
+<details><summary> <strong>React Redux docs reference</strong></summary>
+
+[Here](https://react-redux.js.org/) is the homepage for React Redux and [here](https://github.com/reduxjs/react-redux) is the GitHub repo. And here are docs links for reference:
+
+- **Introduction**
+  + [Quick Start](https://react-redux.js.org/introduction/quick-start)
+  + [Basic Tutorial](https://react-redux.js.org/introduction/basic-tutorial)
+  + [Why Use React Redux?](https://react-redux.js.org/introduction/why-use-react-redux)
+- **Using React Redux**
+  + [Connect: Extracting Data with mapStateToProps](https://react-redux.js.org/using-react-redux/connect-mapstate)
+  + [Connect: Dispatching Actions with mapDispatchToProps](https://react-redux.js.org/using-react-redux/connect-mapdispatch)
+  + [Accessing the Store](https://react-redux.js.org/using-react-redux/accessing-store)
+  + [Static Typing](https://react-redux.js.org/using-react-redux/static-typing)
+- **API Reference**
+  + [connect()](https://react-redux.js.org/api/connect)
+  + [Provider](https://react-redux.js.org/api/provider)
+  + [connectAdvanced()](https://react-redux.js.org/api/connect-advanced)
+  + [batch()](https://react-redux.js.org/api/batch)
+  + [Hooks](https://react-redux.js.org/api/hooks)
+- **Guides**
+  + [Troubleshooting](https://react-redux.js.org/troubleshooting)
+
+---
+
+</details>
+
+<details><summary> <strong>Before Redux and React-Redux</strong></summary>
+
+If we hop on over to [the Redux homepage](https://redux.js.org/), then we are greeted by the following four prominent messages after the centerpiece message (i.e., Redux - A Predictable State Container for JS Apps):
+
+- **Predictable:** Redux helps you write applications that *behave consistently*, run in different environments (client, server, and native), and are *easy to test*.
+- **Centralized:** Centralizing your application's state and logic enables powerful capabilities like *undo/redo*, *state persistence*, and much more.
+- **Debuggable:** The [Redux DevTools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en) make it easy to trace *when*, *where*, *why*, and *how* your application's state changed. Redux's architecture lets you log changes, use "*time-travel debugging*", and even send complete error reports to a server.
+- **Flexible:** Redux *works with any UI layer*, and has *a large ecosystem of addons* to fit your needs.
+
+We then see two other things underneath these messages (other libraries from the Redux team):
+
+- [React-Redux](https://react-redux.js.org/): Official React bindings for Redux
+- [Redux Toolkit](https://redux-toolkit.js.org/): The official, opinionated, batteries-included toolset for efficient Redux development.
+
+If we go to the React-Redux page (which is where we will spend most of our time), then we are greeted by four more prominent messages:
+
+- **Official:** React Redux is maintained by the Redux team, and *kept up-to-date with the latest APIs from Redux and React*.
+- **Predictable:** *Designed to work with React's component mode*l. You define how to extract the values your component needs from Redux, and your component receives them as props.
+- **Encapsulated:** Creates wrapper components that *manage the store interaction logic for you*, so you don't have to write it yourself.
+- **Optimized:** Automatically implements *complex performance optimizations*, so that your own component only re-renders when the data it needs has actually changed.
+
+---
+
+</details>
+
+<details><summary> <strong>What is Redux?</strong></summary>
+
+In the simplest of terms, Redux is a state management tool/library (i.e., a bunch of JavaScript someone else wrote to make your life easier). When used properly, Redux will make your life *much* easier. If used properly. But starting out can be rough. The amount of boilerplate code to get things started can be rather intimidating. In fact, now there is an [official "Redux+JS" template](https://github.com/reduxjs/cra-template-redux) for Create React App to be used like so:
+
+``` BASH
+npx create-react-app my-app --template redux
+```
+
+There isn't much said about usage of this in the docs so it's hard to envisage exactly what the template provides. [This video](https://www.youtube.com/watch?v=xbgwyhHmCyU) goes through some of it. 
+
+Returning to our original query, what could a state management tool or library really provide for us? How would using something like Redux differ from what we have done previously? Well, what have we done previously? Thus far, we have done entirely component-based state management. That is, state has always been managed either locally within a single component (e.g., making an AJAX call within `componentDidMount` and then placing the results in local state) or we "lifted state up" so that a child component could pretend to change state in its parent component by using a callback passed down as props from the parent that actually changed the state in the parent. 
+
+Recall why "lifting up state" was necessary in the AWS flashcards application: An action happened in the quizbar component and that event needed to be known by the flashcard component, but these components were not children of each other but lived on other ends of the component hierarchy. We got around this problem by placing the state we needed in both components in the closest common ancestor, which happened to be the `App` component. Nonetheless, we are still only managing state at the component level. This isn't application state at this point because even though it may seem like the `QuizBar` component is changing the `App` state, it's not. `App` manages its own state, and `App` sends down a callback as props to let `QuizBar` know, "Hey, if something happens, run this code. I will change my own state. You don't ever change my state. I change my own state. You just run a little bit of code (the callback I pass down as props), and that will be me updating state. But don't worry about the details. That's not your problem." It's a fantastic solution. But only when the application is small. 
+
+When you get to a company that uses Redux for a very large application, you will have hundreds if not *thousands* of components working in unison, and it will be common for different components to know about a common piece of state (i.e., when something happens in one component that changes state, then another component somewhere else will need to know how state just changed):
+
+<p align='center'>
+  <img width='500px' src='./redux/images-for-section/many-components.png'>
+</p>
+
+In the picture above, you can imagine the pain and torment that would be involved in lifting up state so much. In general, as the application grows and gets much bigger, eventually everything is going to end up living at the very top in `App`. And then `App` is going to get super bloated and be an absolute disaster because you're going to end up sending down callbacks ten layers deep and you're going to be changing state in components where you have no idea what it's doing, and there's no way another developer is going to be able to sit down and understand what's happening. This is where Redux is going to come into play. 
+
+Redux is going to create something called the Store. We will have a Store that is sort of external to our application. Or it's outside of the component structure. And it will create a publication/subscription type model where, say, something happens in one component and then the component where something just happened can push or *publish* out to the store communicating what just happened. Meanwhile, a component elsewhere that needs to know about what just happened in the aforementioned component can *subscribe* to the store and be notified when that thing happens:
+
+<p align='center'>
+  <img width='500px' src='./redux/images-for-section/basic-store.png'>
+</p>
+
+This is a super simple overview of how Redux works, but the idea is that Redux is going to work as a sort of global store where we can keep *application* state. Not component state. Because we are still going to use component state as we have, but we are going to start using Redux which will give us the ability to put stuff in a place where any component can use it. The upshot of all this is we can add components in various locations without having to worry about lifting up state to ridiculous levels:
+
+<p align='center'>
+  <img width='500px' src='./redux/images-for-section/new-feature.png'>
+</p>
+
+One last thought: Redux is primarily meant for large applications. There is no way we are going to be able to make an applications of this size that *justifies* Redux right now, but we can implement it in a basic fashion to show how it might be used in a larger application. Regardless, it is absolutely phenomenal for managing application state in an easy and maintainable way that can be scaled over a long period of time across a whole bunch of developers because it creates good uniformity for how the whole application manages its state. 
+
+---
+
+</details>
+
+<details><summary> <strong>Redux and React</strong></summary>
+
+Probably the worst thing you can do with Redux is to just start coding. There are a *lot* of moving pieces. One of the questions we want to answer is *how* to work with Redux properly, and the problem is that the *how* really needs to be done the right way (as opposed to, "eh, it sort of works") in order to manage the entire application state effectively. So it will feel confusing and somewhat contrived at first possibly. It never gets more complicated than at the very beginning. So you just have to get to that point where you understand all of the moving pieces, why they are the way they are, and then you'll simply redo the same thing over and over and over. So what are the pieces!? We will cover them in two stages:
+
+1. React Redux: We will talk about how Redux works with React through the [react-redux](https://www.npmjs.com/package/react-redux) package just to get a sense of how the puzzle pieces might fit together.
+2. Redux: We will talk about how Redux itself works (we *do not* have to be using React to use Redux). 
+
+We will now cover the first piece. In any application using Redux and React, we have a couple of distinct pieces, namely the Redux piece as well as the React piece. Redux has no idea that React exists. It's not going to and it doesn't need to know. Meanwhile, React has no idea that Redux exists. In the same way, it doesn't need to know, and we are going to keep them completely separate. Redux is not meant to work exclusively with React. You could use Redux with Vue, Angular, or simply by itself (just use [the JavaScript](https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.js)), etc. React obviously doesn't need Redux because we haven't been using Redux up until now. So Redux and React are totally distinct from each other. 
+
+The point of all of this is that some of the things we are going to talk about are specific to Redux while some things are specific to React. For example, with Redux, there are actions, reducers, and dispatchers, and all of these things have nothing to do with React, and React will not know that any of them exist. Of course, React has its own state, components, and everything else that makes React what it is, and Redux doesn't know about this stuff. In order to get Redux and React to communicate with each other, we are going to need to have something in the middle, namely something literally called [react-redux](https://react-redux.js.org/introduction/quick-start). This is [the NPM module](https://www.npmjs.com/package/react-redux) we are going to install to in order to get React and Redux to communicate with each other because these things are not made out of the box to work with each other. Essentially, React-Redux will be in the middle to facilitate communication between Redux and React (something we could wire together ourselves with considerable overhead, but the community has already done this for us!). Inside of React-Redux we will get a `Provider` component as well as `connect`. The point is that there will now be some things in our application that will be entirely Redux-specific, entirely React-Redux-specific, and entirely React-specific:
+
+| **Redux** | `react-redux` | **React** |
+| --------- | ------------- | --------- |
+| actions | `Provider` | state |
+| reducers | `connect` | components |
+| dispatchers |  | props |
+
+Consider the following picture to illustrate things (explanation follows picture):
+
+<p align='center'>
+  <img width='600px' src='./redux/images-for-section/react-redux-illustrated.png'>
+</p>
+
+On the left-hand side we've got the store which is an entirely Redux thing, and we can put as much as we want in there or as little as we want in there. The store is going to be the place that basically any component can go to and either update the store (i.e., "publish" )or get stuff from the store (i.e., "subscribe"). That's the gist. 
+
+On the right-hand side we've got our React app, and our React apps have pretty much all been the same in structure (thanks to `create-react-app`), where we have `index.js` at the very top, `App.js`, directly below it, and then everything else (i.e., our component structure tree). 
+
+Our goal is going to be to make it so any of the components in our React app can be able to talk to the Redux store whatever the components happen to be. And the way that we're going to do that (because Redux and React don't know anything about each other out of the box) is that the `Provider` from React-Redux is going to know about the Redux store, and we are going to take the `Provider` component and we're going to "bear-hug" the entire React application. And by "bear hug" we mean we are going to render the `Provider` component inside of `index.js`. So `index.js` is going to have `Provider` inside of it, and `App.js` is going to have the `Router` (i.e., `BrowserRouter as Router` from `react-router-dom`). So we're going to have both things. That way if any component inside of our React application needs to access something from the store, then it is already inside of the `Provider` component so it will be able to go to the store, and it will do so by means of the `connect` function which will be inside of the component subscribing to the store. So the `connect` function, which is part of React-Redux will be inside of a component that needs to know about Redux, and because that component is inside of the `Provider` it will be able to go to the store. 
+
+The main point in all of this is that React and Redux are not connected in any way by default. Both Redux and React have their own moving parts, and React-Redux is meant to bring these moving parts together in a unifying way. Why? Because we want our components in React to be able to go the store and grab state or update state from *anywhere* in the application in as seamless and trouble-free way as possible. So that's why this whole architecture exists. We're going to use `Provider` and `connect` from React-Redux in order to communicate between React and Redux. 
+
+---
+
+</details>
+
+<details><summary> <strong>How Redux works</strong></summary>
+
+Forget about React and React-Redux for a moment. We're just going to think about how Redux does its thing for a moment. Redux has the store. We've got an object inside the store, and *that* makes up our application state. It can be as big or as small as needed. 
+
+The way that Redux works is that the store is informed by a bunch of little functions (as many as you want). These little functions that inform the store are called *reducers*. So you have a bunch of little functions that return a piece of state. And what these functions return can be any data type, but the point is that they are returning a *piece* of state. Every one of them. The logic inside of these reducers can be simply or complex; whatever the case, all of the little reducers return an object and whatever they return is going to *collectively* make up the store. So the store itself--you don't put anything in there. We never mess with the store directly. We never update the store directly. Instead, we use the reducers. They are functions that return a piece of state, and then Redux will handle updating the store (similar to how `this.setState` works in React--we never ever mess with `state` directly in React; we never mess with the store directly in Redux--we use these reducers that return their own little pieces of state and all of those pieces of state aggragate or collectively make up the store). These reducers are not built into Redux--they are functions that we are going to write, that we are responsible for, and there are a couple of rules, and we are going to deal with those rules soon. But the reducers are just tiny functions that we write that return state and that state, all added together, makes up the store. Think of the store as a grocery store where the reducers are like departments: you need all of the departments (e.g., produce, fruits, etc.) individually to create an entire grocery store. So that's what the reducers are.
+
+In order to update the reducers, we have what are called action creators, and we are going to write these as well. And action creators are also little functions. They are little functions that create what you might expect: actions! These are four big terms when it comes to Redux:
+
+- Store
+- Reducers
+- Action creators
+- Actions
+
+An action is simply going to be a little object, and there are rules surrounding the actions, but at the absolute bare minimum, an action *must* have a property of `type`. An action creator is a little function that makes an action object.
+
+So reducers are little functions that return state that gets put in the store, and action creators are little functions that return actions (i.e., an object with at least a property of `type`). That's really all there is to it even though the innerworking can obviously get much much more complex.
+
+The last major piece of Redux is what's a called a "dispatch." And the dispatch is a function that is built into Redux--this one we don't make. We write the reducers entirely ourselves. We write the action creators ourselves and the actions as well. But we con't build the store, and we don't build the dispatch. The dispatch is given to us--it is part of the store. And what the dispatch does is it *dispatches* an action. The action creator will make an action, and when the action (i.e., an object with a `type` property on it) gets triggered it will go to the dispatch, and the dispatch will take that action object and inform *all* of the reducers about it. It will let every reducer know, "Hey! Something happened." If our action were simply something like `{type: 'auth'}`, then it would be, "Hey! I got an object with a `type` of `auth`. I don't know if you care, but I'm just letting you know." And then our reducers will kick into gear, and these reducer functions will need to decide if they care about this action or not. Do they care about the particular `type` that is being passed on (you can already tell how reducer functions will often operate based on what `type` an action has)? Ultimately, most actions will not only have a `type` but also a `payload` (e.g., some sort of data or whatever it might be that a reducer can work with if the reducer decides it cares about the `type` of the action it is informed about). So what will happen is this: The action creator will fire off an action, that action will go to the dispatch, and then the dispatch will send the action to each reducer, and each reducer will have to make a decision about whether or not it cares about the action it is informed about (it makes this decision based on the `type` property of the action object it receives), and if the reducers cares about the action, then it can grab the `payload` and return a different piece of state. If it doesn't care about the action, then it can return the old piece of state. Whatever happens, all of the reducers will get notified every time an action is sent off by an action creator. And *that* is how the store is updated. The reducers return their little pieces of state. Those end up creating one big object in the store. Those individual little reducers will get notified every time an action happens by the dispatcher and then they can update themselves based on the `payload` or whatever, but they'll always know what *type* of action it was because of the `type` property on the action that is sent. 
+
+---
+
+</details>
+
+<details><summary> <strong>Wiring up Redux (all the gory details)</strong></summary>
+
+Here is a frame of reference for how everything is supposed to work (you do not have to follow these things in the given order, but it's how some people set things up anyway):
+
+### 1. Use react-redux and wrap the Provider component around everything
+
+```javascript
+import { Provider } from 'react-redux'
+```
+
+---
+
+In order to wire up a Redux/React app, we need `react-redux`. This is the glue between them. Specifically, we need the `Provider` component to be around *everything*. So you will want to have the following in `index.js`: 
+
+```javascript
+import { Provider } from 'react-redux';
+```
+
+So you're not just going to render `<App />` like
+
+```javascript
+ReactDOM.render(<App />, document.getElementById('root'));
+```
+
+in `index.js` as we have normally done right out of the box. We're now going to render the `Provider` component which is coming from `react-redux` and that's going to "bear-hug" our entire React application. It's not going to stay this way (some more configuration is needed, as outlined below), but we can set it up this way:
+
+```javascript
+ReactDOM.render(
+  <Provider>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
+```
+
+If we try to run things right away, then we will get a `TypeError: Cannot read property 'getState' of undefined` error. The reason for this is because the `Provider` component connects the Redux store with the React application. And right now we do not have a store! The above is trying to render a `Provider` *without* a store and that's not okay. 
+
+### 2. Create the store
+
+```javascript
+import { createStore } from 'redux'
+```
+
+---
+
+Create the Redux store so that Redux exists and the `Provider` has a store to work with:
+
+```javascript
+import { createStore } from 'redux'
+```
+
+Hopefully this will help you remember where things are coming from: We've got `react-redux` which is the module from which `Provider` comes, and we've got the `redux` module from which `createStore` comes. If you see `redux` as the module you're importing from, then that means React does not know about this thing, and it means `react-redux` does not know about this thing. You could use this in any other framework or just in native JS. This is simply part of `redux`. Now, we're going to give the store to the `Provider`, but at this point `import { createStore } from 'redux'` has nothing to do with anything--it's just pure Redux. 
+
+### 3. Make reducers to populate the store
+
+What makes up the Redux store? If you remember, what makes up the Redux store are little functions that return a piece of state. What we need are *reducers*. So we need reducers to populate the store! The store by itself is just like an empty building. We need reducers to make the store useful. The store is just an aggregate of the reducers. We have to have at least one reducer in order to have any store. And the way that this part works is that we always start with a `rootReducer`. 
+
+What that means is that we are going to make one sort of "master reducer", which may be thought of as the store manager, that will import all of the other reducers. Oftentimes you will have a `reducers` folder inside of `src` in your React application, and inside of `reducers` the `rootReducer` will often be simply called `index.js`, but given how this name can be used all over the place, sometimes it is easiest to just name the `rootReducer` as `rootReducer.js`. 
+
+Inside of that file will be the `rootReducer`. Now, to make a `rootReducer` we will need to get a method from Redux called `combineReducers`, which does exactly what its name implies. Each individual reducer will get combined together into one big store. We can get this method as follows:
+
+```javascript
+import { combineReducers } from 'redux';
+```
+
+The next thing we will need to do is to actually get each individual reducer. So we'll need to make them and import them into the `rootReducer`. So think back to what a reducer actually is. A reducer is just a function that returns a piece of state. The simplest reducer you might get would be something like
+
+```javascript
+export default (state = [], action) => {
+  return state;
+}
+```
+
+Note that all reducers have 2 parameters:
+
+1. Current state (usually provide a default state like the empty array above so if `state` is unset then we will initialize it as an empty array)
+2. Info that came from any action
+
+The reducer example given above is totally useless because it will always return an empty array. But it qualifies as a reducer because it's just a function. We could also write the above reducer using non ES6+ syntax (we will use the syntax above but the syntax below is worth knowing and being aware of):
+
+```javascript
+function frozen(state = [], action) {
+  return state;
+}
+
+export default frozen;
+```
+
+To get the above reducer into the `rootReducer`, we will call our imports in the `rootReducer.js` file:
+
+```javascript
+import frozenReducer from './frozen';
+```
+
+We now need to call `combineReducers` and hand it an object. Each key in `combineReducers` will be a piece of state in the Redux store, and each value will be a reducer, and that reducer will return a piece of state (so each value will be the value of that piece of state in the redux store). So for this example we can write something like the following:
+
+```javascript
+const rootReducer = combineReducers({
+  frozen: frozenReducer
+})
+```
+
+The above chunk of code means that in our Redux store we will have a little piece of state called `frozen` and the value of `frozen` is going to be whatever the `frozenReducer` function returns. What does it return? Well right now it only ever returns `state` where `state` is an empty array so this is hardly useful, but hopefully the utility of all of this is starting to become apparent. But this is how Redux works is we will add another reducer for the produce and the produce will be another little piece of state inside of Redux. So, in this way, you can add as many new features, remove old ones, access any particular part of the Redux store by grabbing the return value of a little piece of state from the reducer.
+
+From `rootReducer.js`, once we have imported all of the reducers we need and combined them using `combineReducers`, we should `export default rootReducer` the `rootReducer` we set up above. 
+
+We can then import the `rootReducer` in the entry point of our application, `index.js`:
+
+```javascript
+import rootReducer from './reducers/rootReducer';
+```
+
+We are now actually ready to create the store by passing `createStore` from the `redux` module the `rootReducer` we exported as the default export from `rootReducer.js` and imported as `rootReducer` in `index.js`:
+
+```javascript
+const theStore = createStore(rootReducer);
+```
+
+Since the `Provider` is the glue between Redux and React, we need to use its `store` prop and give it the value of `theStore` we created above:
+
+```javascript
+ReactDOM.render(
+  <Provider store={theStore}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
+```
+
+---
+
+</details>
+
+<details><summary> <strong>Wiring up Redux (just the necessary pieces with comments)</strong></summary>
+
+After creating our React application using `create-react-app`, we should do the following:
+
+```BASH
+npm i redux react-redux
+```
+
+Then create a `reducers` folder inside of the `src` folder and make two files:
+
+1. `frozen.js` (this is a dummy reducer)
+2. `rootReducer.js` (this will be the `rootReducer`; in other codebases you will often see this simply as `index.js`)
+
+To get everything wired up after running `create-react-app` and creating the two files above, our files should look as follows (comments provided to make things easier for reference):
+
+<details><summary> <code>index.js</code> (the top-level index that renders <code>App</code> by default) </summary>
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+
+// 1. In order to wire up a Redux/React application:
+// - We need react-redux so that React and Redux can communicate with each other. We also need redux because react-redux will be useless without redux!
+// - We need the Provider component to be around everything or "bear hug" the application. // - So you can start in the terminal with "npm i redux react-redux" and then import the Provider component:
+
+import { Provider } from 'react-redux';
+
+// 2. Create the redux store so that redux exists and the Provider has a store to work with:
+
+import { createStore } from 'redux';
+
+// 3. Provide/create individual reducers to populate the store. All of these reducers will be provided to the store as a single reducer known as rootReducer that may be thought of as the "store manager"
+
+import rootReducer from './reducers/rootReducer';
+
+// 4. Create the store by instantiating a variable with a value equal to the following: createStore(rootReducer):
+
+const theStore = createStore(rootReducer);
+
+// 5. Provider is the glue between React and Redux. Pass the store you created above as the value for Provider's store prop:
+
+ReactDOM.render(
+  <Provider store={theStore}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
+```
+
+---
+
+</details>
+
+<details><summary> <code>rootReducer.js</code></summary>
+
+```javascript
+// This is the root reducer! It is the store manager for all the reducers.
+// To make a rootReducer:
+
+// 1. Get a method from redux called combineReducers:
+
+import { combineReducers } from 'redux';
+
+// 2. Get each individual reducer:
+
+import frozenReducer from './frozen';
+// ... import all the other reducers here ...
+
+// 3. Call combineReducers and hand it an object. 
+// - Each key in combineReducers will be a piece of state in the redux store. 
+// - Each value will be a reducer, and that reducer will return a piece of state (so each value will be the value of that piece of state in the redux store)
+
+const rootReducer = combineReducers({
+  frozen: frozenReducer
+})
+
+export default rootReducer;
+```
+
+---
+
+</details>
+
+<details><summary> <code>frozen.js</code></summary>
+
+```javascript
+// This is just a dummy reducer!
+
+export default (state = [], action) => {
+  return state;
+}
+
+// Below is the syntax one would use to avoid ES6+
+
+// function frozen(state = [], action) {
+//   return state;
+// }
+
+// export default frozen;
+```
+
+---
+
+</details>
+
+That is all that is needed to get things wired up. Of course, nothing is really happening just yet (note how currently `rootReducer` is purely Redux while any component we would normally make is purely React ... we need some way of CONNECTing these ... covered in the next note), but that's what all is needed to get the show on the road as it were.
+
+---
+
+</details>
+
+<details><summary> <strong>CONNECTing Redux and React</strong></summary>
+
+We are now going to actually connect what is in our Redux store with an actual component (what good is state in the Redux store unless our components can actually use the state!?). So to recap where we ended previously: 
+
+We have the `Provider`, and the `Provider` has access to `theStore`, where `theStore` is made up of the `rootReducer`, where the `rootReducer` is made up of a bunch of little reducers, and each one of those little reducers returns a piece of state. So the `rootReducer` is the manager of the store. (The store is like an empty building if it doesn't have any reducers.) The `rootReducer` doesn't return any state on its own--it simply collects all the individual reducers. Continuing our metaphor, each individual reducer is like a department in a grocery store. In this case we have the `frozen` department. So we have at least one department for the manager (i.e., the `rootReducer`) to manage. And the manager can hand that to the store. Per our analogy, we currently have a store with just one department in it, the `frozen` department, but we'll add some more departments in just a bit. 
+
+With everything as it currently is in the codebase described previously, we can create a `FrozenDept` component (in a `components` folder inside of the `src` folder) that will connect to and make use of the Redux store (there are a *bunch* of comments in the file below; the next note seeks to condense things a bit):
+
+<details><summary> <code>FrozenDept.jsx</code></summary>
+
+```javascript
+import React, { Component } from 'react';
+
+/* Connecting this component with Redux
+  - This is the part now where we want to grab from the Redux store a piece of state. So this is that application state kind of thing, where we have a component, FrozenDept, and rather than the component managing the state itself, it's being managed inside of Redux. So ANY COMPONENT can grab it. This is not a practical example that follows because we only have a tiny application, which you would never use Redux for, but it will be useful to see how to finish wiring things up so that we can finish connecting Redux and React so that a component can get something out of the Redux store.
+  - We want this component to know about Redux. To do that, we need some help...or some glue.
+  - The glue is react-redux! We need the connect function. So we needed Provider up top in order to get everything started, but at the component-level what we need is a connection from React to Redux.
+  - If a component needs to know about Redux, then this is what we are going to use EVERY SINGLE TIME: import { connect } from 'react-redux';
+  - The export from a component will be a dead giveaway in terms of whether or not you are using Redux. You will not be exporting the default component anymore. Instead, you are going to export default the connect with the component
+*/
+
+import { connect } from 'react-redux';
+
+class FrozenDept extends Component {
+  state = {
+
+  }
+
+  render() {
+    console.log(this.props.frozenData);
+    /* What we have managed to accomplish when the above works and reaches into the Redux store:
+      - If we go back to App.js, then we see we only call <FrozenDept /> and do not pass props as we normally might: <FrozenDept frozenData={} />
+      - Instead of the parent sending down frozenData as props, we are reaching into the Redux store via mapStateToProps and we're mapping a piece of state in the Redux store, namely "frozen" (whose state value is the value returned by the frozenReducer), to this component's props. Even though we only reached out to grab the "frozen" piece of state, we can easily imagine grabbing more than just this one piece of state.
+      - We have the "frozen" piece of state from the Redux store mapped to this component as a prop which we locally call "frozenData". This piece of state that has been mapped to this component as a prop can now be accessed using this.props.frozenData or whatever we choose to call this piece of state locally.
+      - "export default connect(mapStateToProps)(FrozenDept);" is the Redux part. What we are saying is let's set up a function, mapStateToProps, and go and fetch something from the Redux store, and then let's hand it to the component, FrozenDept.
+    */
+    
+    return (
+      <h1>The frozen food department!</h1>
+    );
+  }
+}
+
+// console.log(connect);
+
+/* mapStateToProps (how it works):
+  - mapStateToProps takes one argument, "state", and that is the rootReducer/Store
+  - mapStateToProps returns an object with:
+    + property is the local prop name to this component (so whatever we put on the left is what this component is going to know that thing as)
+    + the value will be the property in the rootReducer, that is, a piece of the store
+  - We want to return an object and we need one of the properties of the rootReducer. What are the properties of the rootReducer? Well, we've only got one for this example and it is "frozen". So as far as connect is concerned we can return something, and we can call it anything we want--we're going to call it frozenData below.
+  - So we've got a function, mapStateToProps, which returns an object, where we are creating a local property, frozenData, to this component that is not being sent down from a parent--it's coming from connect, which is getting it from the store. What does the store have? Well, the store or the rootReducer IS state. What properties do we have as options right now? Well, we only have one right now, namely "frozen" so if we use state.frozen then we are going to get the return value of frozenReducer. What is the return value of frozenReducer? It will be state. What is state? Right now it's always going to be an empty array but not for long.
+  - RECAP: mapStateToProps takes state as its argument, where state is the rootReducer. The rootReducer has a property of frozen. We're going to map that state to this component's props, and that prop is going to be called frozenData.
+*/
+
+function mapStateToProps(state) {
+  return {
+    frozenData: state.frozen
+  }
+}
+
+// export default FrozenDept;
+export default connect(mapStateToProps)(FrozenDept);
+
+/* What's happening with connect:
+  - connect, somewhere inside of redux, is returning a function
+  - The function that connect returns takes an argument which is the component we want to render
+*/
+
+/* What connect take as arguments:
+  - We can find out by simply running console.log(connect) above.
+  - First arg: The first argument is going to map a piece of redux state to this component's props and is going to be called mapStateToProps
+*/
+
+
+/* If the above syntax looks funky, then try to make sense of something like x(1)(2) in JS:  
+
+  function x(n) {
+    return (m) => {
+      console.log(n+m);
+    }
+  }
+
+  x(1)(2) // 3
+
+*/
+
+/* NOTES: 
+  - Right now this may seem weird and not particularly useful. Why would anyone do this? We still need a bigger project to really make this whole thing shine. But everything above covers this portion of actually connecting React to Redux.
+  - Soon we will get an action creator and an action going that will actually give us the ability to update our state. (And we can add a couple more reducers.)
+*/
+
+```
+
+---
+
+</details>
+
+---
+
+</details>
+
+<details><summary> <strong>The absolute most basic use of Redux (no action creator, action, or dispatch just yet)</strong></summary>
+
+Consider the following files that outline setting up the absolute most basic use of Redux where we fetch a piece of state from the store in a component (more things will be added soon, but right now we are trying to wrap our heads around the set up; each file's contents will then be remarked on).
+
+`index.js`: This is the entry point for our application and where we render something (typically just the `App` component if we are not using Redux) to the DOM inside of `<div id='root'></div>` in `index.html`. With Redux, however, we want *everything* inside of our `App`lication to be `Provide`d access to the Redux store, but React and Redux don't know anything about each other so we have to *connect* them by means of the `Provider` component from the `react-redux` module. What Redux store are we trying to `Provide` React access to? None unless we actually `createStore` inside of Redux. What is a Redux store comprised or made of? A bunch of reducer functions that individually return tiny pieces of state, where all of the state pieces together collectively make up the store. Hence, `createStore` should create the store by means of *all* of the reducers. Where do all of the reducers live? In the `rootReducer` function from `rootReducer.js` (remarked on more in a later point below). In any case, we create the store by means of a single *master* or *root* reducer that has every single reducer bundled inside of it. Once all of this is done, we can supply the `Provider` component with the created store by means of the `store` prop on the `Provider`:
+
+```javascript
+// /src/index.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import rootReducer from './reducers/rootReducer';
+
+const theStore = createStore(rootReducer);
+
+ReactDOM.render(
+  <Provider store={theStore}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
+```
+
+`App.js`: This is the top component in our component tree (just below the entry point for our application, `index.js`) under which all other components will live. In this basic example, all we want to do is use a component that tries to make use of Redux; thus, for right now at least, `App` will look much as it has before:
+
+```javascript
+// /src/App.js
+import React from 'react';
+import './App.css';
+
+import FrozenDept from './components/FrozenDept/FrozenDept.component';
+
+function App() {
+  return (
+    <div className="App">
+      <FrozenDept />
+    </div>
+  );
+}
+
+export default App;
+```
+
+`frozen.js`: In order to not have a completely meaningless, empty store, we need to have at least one reducer that returns a piece of state to live in the store. Below is the absolute most basic reducer you could have--right now it is rather pointless because all it will do is return the default seed data we hand it (sometimes you may want to use a default value of an empty array `[]` or an empty object `{}` or empty string `''`, etc.). But as we will see, you can initialize state in different reducers in helpful ways and often the body of the reducer will have a bunch (or a little) logic to run based on the `type` of the `action` it takes in. But for right now, we will simply have a default state value of some piddly seed data so we at least have *something* to work with:
+
+```javascript
+// /src/reducers/frozen.js
+const seedData = ['TV Dinners', 'Frozen Veggies', 'Frozen Pizzas'];
+
+export default (state = seedData, action) => {
+  return state;
+}
+```
+
+`rootReducer.js`: When creating and providing the store in `index.js`, we pondered what it actually meant to create the store. What is the store comprised or made of? We know the store consists of a bunch of pieces of state returned from a bunch of individual reducers. But how do we bundle together the pieces of state being returned by the reducers and the reducers themselves? Furthermore, where do the reducers actually live? Well, typically, the reducers will live in a "reducers" folder/directory. As for how we bundle together or combine all of the reducers in order to create the store, we make a *root* or *master* reducer whose sole job is to combine all of the reducers (sometimes people export the root reducer from `index.js` in the `reducers` directory, but we will export the root reducer from `rootReducer.js` to make everything abundantly clear); specifically, we import the `combineReducers` function from the `redux` module, a function that expects a single object, an object that literally consists of key-value pairs where the key *represents* the piece of state being returned by an individual reducer and the value is the individual reducer itself. This may sound confusing at first, but it should make sense upon reflection: since the reducer *returns* a piece of state, essentially what we have is the `key` as the name or label of what we want to call a piece of state being returned by a reducer and the `value` for this key as the reducer itself since the reducer actually returns a piece of state (i.e., the value associated with the key should really not be thought of so much as the reducer itself but the *return value* of the reducer, namely the piece of state being returned; thus, whenever we reference the key, we are getting the value of the reducer associated with it). More concretely, below what we are effectively saying is, "Hey, the `frozenReducer` reducer function returns a piece of state and I want the return value of this function (i.e., the piece of state) to be referenced as `frozen`." As our application grows and we make more use of Redux, our `rootReducer` will grow and grow as we dump more and more into the `combineReducers` function, namely individual pieces of state (i.e., the `value` which comes from the return value of the reducer we are calling) we can reference by name (i.e., the `key`): 
+
+```javascript
+// /src/reducers/rootReducer.js
+import { combineReducers } from 'redux';
+import frozenReducer from './frozen';
+
+const stateLabelsAndReducersReturningState = {
+  frozen: frozenReducer
+}
+
+const rootReducer = combineReducers(stateLabelsAndReducersReturningState);
+
+export default rootReducer;
+```
+
+`FrozenDept.component.jsx` (this file not will require more extensive commentary): This is the component that will use Redux for right now (more will be added to this component later and we will create additional components as well). How can we get this component to actually use Redux? We need some glue. We need some way of *connecting* Redux and React in this component and the `connect` function from `react-redux` is what we will use to accomplish this. We can actually take a look at the `connect` function by inspecting the `react-redux` node module: 
+
+```
+node_modules -> react-redux -> lib -> connect -> connect.js
+```
+
+What we find is a lot of rather complicated code that is reproduced on click below.
+
+<details><summary> <code>connect.js</code></summary>
+
+```javascript
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+exports.__esModule = true;
+exports.createConnect = createConnect;
+exports["default"] = void 0;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutPropertiesLoose"));
+
+var _connectAdvanced = _interopRequireDefault(require("../components/connectAdvanced"));
+
+var _shallowEqual = _interopRequireDefault(require("../utils/shallowEqual"));
+
+var _mapDispatchToProps = _interopRequireDefault(require("./mapDispatchToProps"));
+
+var _mapStateToProps = _interopRequireDefault(require("./mapStateToProps"));
+
+var _mergeProps = _interopRequireDefault(require("./mergeProps"));
+
+var _selectorFactory = _interopRequireDefault(require("./selectorFactory"));
+
+/*
+  connect is a facade over connectAdvanced. It turns its args into a compatible
+  selectorFactory, which has the signature:
+
+    (dispatch, options) => (nextState, nextOwnProps) => nextFinalProps
+  
+  connect passes its args to connectAdvanced as options, which will in turn pass them to
+  selectorFactory each time a Connect component instance is instantiated or hot reloaded.
+
+  selectorFactory returns a final props selector from its mapStateToProps,
+  mapStateToPropsFactories, mapDispatchToProps, mapDispatchToPropsFactories, mergeProps,
+  mergePropsFactories, and pure args.
+
+  The resulting final props selector is called by the Connect component instance whenever
+  it receives new props or store state.
+ */
+function match(arg, factories, name) {
+  for (var i = factories.length - 1; i >= 0; i--) {
+    var result = factories[i](arg);
+    if (result) return result;
+  }
+
+  return function (dispatch, options) {
+    throw new Error("Invalid value of type " + typeof arg + " for " + name + " argument when connecting component " + options.wrappedComponentName + ".");
+  };
+}
+
+function strictEqual(a, b) {
+  return a === b;
+} // createConnect with default args builds the 'official' connect behavior. Calling it with
+// different options opens up some testing and extensibility scenarios
+
+
+function createConnect(_temp) {
+  var _ref = _temp === void 0 ? {} : _temp,
+      _ref$connectHOC = _ref.connectHOC,
+      connectHOC = _ref$connectHOC === void 0 ? _connectAdvanced["default"] : _ref$connectHOC,
+      _ref$mapStateToPropsF = _ref.mapStateToPropsFactories,
+      mapStateToPropsFactories = _ref$mapStateToPropsF === void 0 ? _mapStateToProps["default"] : _ref$mapStateToPropsF,
+      _ref$mapDispatchToPro = _ref.mapDispatchToPropsFactories,
+      mapDispatchToPropsFactories = _ref$mapDispatchToPro === void 0 ? _mapDispatchToProps["default"] : _ref$mapDispatchToPro,
+      _ref$mergePropsFactor = _ref.mergePropsFactories,
+      mergePropsFactories = _ref$mergePropsFactor === void 0 ? _mergeProps["default"] : _ref$mergePropsFactor,
+      _ref$selectorFactory = _ref.selectorFactory,
+      selectorFactory = _ref$selectorFactory === void 0 ? _selectorFactory["default"] : _ref$selectorFactory;
+
+  return function connect(mapStateToProps, mapDispatchToProps, mergeProps, _ref2) {
+    if (_ref2 === void 0) {
+      _ref2 = {};
+    }
+
+    var _ref3 = _ref2,
+        _ref3$pure = _ref3.pure,
+        pure = _ref3$pure === void 0 ? true : _ref3$pure,
+        _ref3$areStatesEqual = _ref3.areStatesEqual,
+        areStatesEqual = _ref3$areStatesEqual === void 0 ? strictEqual : _ref3$areStatesEqual,
+        _ref3$areOwnPropsEqua = _ref3.areOwnPropsEqual,
+        areOwnPropsEqual = _ref3$areOwnPropsEqua === void 0 ? _shallowEqual["default"] : _ref3$areOwnPropsEqua,
+        _ref3$areStatePropsEq = _ref3.areStatePropsEqual,
+        areStatePropsEqual = _ref3$areStatePropsEq === void 0 ? _shallowEqual["default"] : _ref3$areStatePropsEq,
+        _ref3$areMergedPropsE = _ref3.areMergedPropsEqual,
+        areMergedPropsEqual = _ref3$areMergedPropsE === void 0 ? _shallowEqual["default"] : _ref3$areMergedPropsE,
+        extraOptions = (0, _objectWithoutPropertiesLoose2["default"])(_ref3, ["pure", "areStatesEqual", "areOwnPropsEqual", "areStatePropsEqual", "areMergedPropsEqual"]);
+    var initMapStateToProps = match(mapStateToProps, mapStateToPropsFactories, 'mapStateToProps');
+    var initMapDispatchToProps = match(mapDispatchToProps, mapDispatchToPropsFactories, 'mapDispatchToProps');
+    var initMergeProps = match(mergeProps, mergePropsFactories, 'mergeProps');
+    return connectHOC(selectorFactory, (0, _extends2["default"])({
+      // used in error messages
+      methodName: 'connect',
+      // used to compute Connect's displayName from the wrapped component's displayName.
+      getDisplayName: function getDisplayName(name) {
+        return "Connect(" + name + ")";
+      },
+      // if mapStateToProps is falsy, the Connect component doesn't subscribe to store state changes
+      shouldHandleStateChanges: Boolean(mapStateToProps),
+      // passed through to selectorFactory
+      initMapStateToProps: initMapStateToProps,
+      initMapDispatchToProps: initMapDispatchToProps,
+      initMergeProps: initMergeProps,
+      pure: pure,
+      areStatesEqual: areStatesEqual,
+      areOwnPropsEqual: areOwnPropsEqual,
+      areStatePropsEqual: areStatePropsEqual,
+      areMergedPropsEqual: areMergedPropsEqual
+    }, extraOptions));
+  };
+}
+
+var _default =
+/*#__PURE__*/
+createConnect();
+
+exports["default"] = _default;
+```
+
+---
+
+</details>
+
+If you take a look at the contents of the file above, then what you will see is that `_default` is being exported where `var _default = createConnect();`. What is the return value of `createConnect()`? It is the following: 
+
+```javascript
+return function connect(mapStateToProps, mapDispatchToProps, mergeProps, _ref2) { ... }
+```
+
+So the `connect` function expects a few arguments even though only `mapStateToProps` is required (we will remark more extensively on `mapStateToProps` and `mapDispatchToProps`, as these will be what are most often used). Worth noting, however, is the `connect` itself returns a function:
+
+```javascript
+return connectHOC(selectorFactory, ...);
+```
+
+For right now, we can simply read this as, "The `connect` function expects a *component* to actually connect to the Redux store." But just because our component can be *connected* to the Redux store doesn't mean we are actually "subscribed" to the Redux store where we can pull state from it. Also, just because we are connected to the store doesn't mean we can "publish" to it. This is where `mapStateToProps` and `mapDispatchToProps` come in:
+
+- `mapStateToProps`: This is how we will *subscribe* to the store and pull out from it whatever state we need or want to know about. Redux will literally map the application state (i.e., the state in the Redux store) to this component's props.
+- `mapDispatchToProps`: This is how we will *publish* to the store and update the state. We still have a way to go before adding the dispatch because we will need action creators and actions that reducers can use to actually update the store. 
+
+Here is what the basic component will look like momentarily:
+
+```javascript
+// /src/components/FrozenDept/FrozenDept.component.jsx
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+class FrozenDept extends Component {
+  state = {};
+
+  render() {
+    console.log(this.props.localNameForStateFromRootReducer);
+    return <h1>The frozen food department!</h1>;
+  }
+}
+
+function mapStateToProps(state) {
+  return {
+    localNameForStateFromRootReducer: state.frozen,
+  };
+}
+
+export default connect(mapStateToProps)(FrozenDept);
+```
+
+Recap:
+
+- **Connect** (i.e., `import { connect } from 'react-redux';`):
+  + We want this component to know about Redux. To do that, we need some help...or some glue.
+  + The glue is `react-redux`! We need the `connect` function. So we needed `Provider` up top in `index.js` in order to get everything started, but at the component-level what we need is a connection from React to Redux.
+  + If a component needs to know about Redux, then this is what we are going to use EVERY SINGLE TIME: `import { connect } from 'react-redux';`.
+  + The export from a component will be a dead giveaway in terms of whether or not you are using Redux. You will not be exporting the default component anymore. Instead, you are going to export default the connect with the component: `export default connect(mapStateToProps)(FrozenDept);`
+- **mapStateToProps**
+  + `mapStateToProps` takes one argument, `state`, and that represents everything inside of the Redux store (i.e., the entire object fed to `combineReducers` in the root reducer). 
+  + `mapStateToProps` returns an object of key-value pairs where the keys and values represent the following:
+    * `key`: The local prop name to be used in the calling component. Whatever name is used is how *this* component will locally refer to a piece of state from the Redux store. 
+    * `value`: `state.NAME` where `NAME` exists in the `rootReducer` as a key whose value is a piece of state being returned by a reducer. 
+    * Concrete illustration in the context of this component: The `mapStateToProps` function in this component brings in `state` as its single argument and returns an object (this object only has one key-value pair right now, but in the future you may have many more). This object has a key of `localNameForStateFromRootReducer`, and we should note that we can use whatever name makes sense. In this example, a better key might be something like `frozenData`. Regardless, what name we use as the key is how we will locally refer to this piece of application state from within our component (e.g., `this.props.localNameForStateFromRootReducer`). The *value* for this key needs to reflect what is in our `rootReducer`; specifically, in our `rootReducer` we have a key name of `frozen` that points to the return value of the `frozenReducer`. With `function mapStateToProps(state) { ... }`, the `state` argument represents the store or the object fed to `combineReducers` in the `rootReducer`. Since that object has a key of `frozen` whose value is `frozenReducer`, we can refer to this value or piece of state being returned from `frozenReducer` via `state.frozen`. 
+   + So we've got a function, `mapStateToProps`, which returns an object, where we are creating a local property, `localNameForStateFromRootReducer`, to this component that is *not* being sent down from a parent--it's coming from `connect`, which is getting it from the Redux store. What does the store have? Well, the store or the `rootReducer` IS application state. What properties do we have as options right now? Well, we only have one right now, namely `frozen`--so if we use `state.frozen` then we are going to get the return value of `frozenReducer`. What is the return value of `frozenReducer`? It will be state. What is state? Right now it's always going to be the `seedData` array we defined for default state (or an empty array if that is the default) but not for long.
+  + SUMMARY: `mapStateToProps` takes `state` as its argument, where `state` is the `rootReducer`. The `rootReducer` has a property of `frozen`. We're going to map that state to this component's props, and that prop is going to be called localNameForStateFromRootReducer.
+- **this.props.localNameForStateFromRootReducer**
+  + If we go back to `App.js`, then we see we only call `<FrozenDept />` and do not pass props as we normally might (e.g., `<FrozenDept frozenData={} />`). 
+  + Instead of the parent sending down `frozenData` as props, we are reaching into the Redux store via `mapStateToProps` and we're mapping a piece of state in the Redux store, namely `frozen` (whose state value is the value returned by the `frozenReducer`), to this component's props. Even though we only reached out to grab the `frozen` piece of state, we can easily imagine grabbing more than just this one piece of state.
+  + We have the `frozen` piece of state from the Redux store mapped to this component as a prop which we locally call `localNameForStateFromRootReducer`. This piece of state that has been mapped to this component as a prop can now be accessed using `this.props.localNameForStateFromRootReducer` or whatever we choose to call this piece of state locally.
+  + `export default connect(mapStateToProps)(FrozenDept);` is the Redux part. What we are saying is let's set up a function, `mapStateToProps`, and go and fetch something from the Redux store, and then let's hand it to the component, `FrozenDept`.
+
+---
+
+</details>
+
+<details><summary> <strong>Adding more reducers to our store</strong></summary>
+
+Before we take a look at action creators and the dispatch (because that tends to be the most confusing part), we are going to add a couple more reducers and get them into our application. 
+
+One thing to note about naming conventions: It is often not a bad idea to name your reducers `<reducer-name>Reducer.js`. It just gets easier to track things. For example, instead of `frozen.js` in our `reducers` folder, we can rename this as `frozenReducer.js` to make it abundantly clear.
+
+Note that *every* time you add a reducer you have to go to the `rootReducer`, import the new reducer(s), and then specify in the `combineReducers` what you want the little piece of state being returned by the reducer to be called (what you have called this piece of state will be a new key, and the reducer itself will be the value for this key). For example, say we start with
+
+```javascript
+import { combineReducers } from 'redux';
+
+import frozenReducer from './frozenReducer';
+
+const rootReducer = combineReducers({
+  frozen: frozenReducer
+})
+
+export default rootReducer;
+```
+
+as our `rootReducer.js` file. Then, after writing two new reducers, `produceReducer` and `meatReducer`, we might want to have something like the following:
+
+```javascript
+import { combineReducers } from 'redux';
+
+import frozenReducer from './frozenReducer';
+import produceReducer from './produceReducer';
+import meatReducer from './meatReducer';
+
+const rootReducer = combineReducers({
+  frozen: frozenReducer,
+  produce: produceReducer,
+  meat: meatReducer
+})
+
+export default rootReducer;
+```
+
+Note how the new reducers `produceReducer` and `meatReducer` have been imported, and we have called the pieces of state they return in `combineReducers` as `produce` and `meat`, respectively. Then, in whatever component we want to access these new pieces of state we can update our `mapStateToProps`:
+
+```javascript
+function mapStateToProps(state) {
+  return {
+    frozenData: state.frozen
+  }
+}
+```
+
+becomes
+
+```javascript
+function mapStateToProps(state) {
+  return {
+    frozenData: state.frozen,
+    meatData: state.meat,
+    // only add in here what you want access to--so maybe we don't need access to the produceData
+    // produceData: state.produce
+  }
+}
+```
+
+So this is the beauty of Redux. Any time new data is added to the store, any component can have access to it almost instantly. You just have to drop the one line into `mapStateToProps` and suddenly it's accessible. Above, we started with just access to the `frozen` piece of state from the store by accessing it as a prop (hence `mapStateToProps`) and locally calling it `frozenData`. But now maybe we want to access the `meat` piece of state from the store. No problem. Just drop `meatData: state.meat` into the `mapStateToProps` function.
+
+This gives us a ton of flexibility. No longer do we have to rearchitect our entire application by moving state up and creating callbacks at the appropriate level and so on. So this is a huge win.
+
+---
+
+</details>
+
+<details><summary> <strong>Adding an action creator and action</strong></summary>
+
+We can *start* to see some of the power of Redux now, namely we do not have to rearchitect our entire application to let components know about different pieces of application state. But all of this is kind of pointless if the state is static. After all, the idea behind state implies some sort of dynamic value. We need to be able to *update* state for Redux to truly be useful. So the question now becomes: How do we update application state (i.e., the store) in Redux? In the context of what we have been doing so far: How do we update the quantity of the different food items? For example, we might want a plus/minus button for "TV Dinners" from the `frozen` state mentioned previously to update the quantity (or we might want to be able to update the quantity for food from any department). In all cases, essentially what we are trying to do is update the state or the store. 
+
+Thus far, we have only interacted with the store and reducers via `mapStateToProps` simply to *get* stuff from the store. But now we want to actually *update* the store. How do we do that? What is the store made of again? The store is made up of a bunch of pieces of state, all of which are returned by individual reducers. Hence, in order to change or update the store, we are going to need to change the reducers. And in order to change the reducers we have `mapDispatchToProps`. 
+
+Recall that the `connect` function from `react-redux` can take more than just the `mapStateToProps` function--it can also take a `mapDispatchToProps` function. But what should the `mapDispatchToProps` function look like and what does it do exactly? The answer behind this is where the increased complexity comes in. We are going to have to not only define a `mapDispatchToProps` function, but we will need to make action creators as well as actions for reducers to receive in order for the `dispatch` from `mapDispatchToProps` to be of any use. The `mapDispatchToProps` function, in its skeletal form, will look as follows: 
+
+```javascript
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    // ...
+  }, dispatch)
+}
+```
+
+Note the use of `bindActionCreators` which comes from the `redux` module (you will need to `import { bindActionCreators } from 'redux';` at the top of your component). Basically, the `dispatch` will take an action and will send it up to each individual reducer (the `type` of the action is how the reducer will decide whether or not the action is of any importance). Actions, however, are created by action creators. For example:
+
+```javascript
+export default (operation, index) => {
+  return {
+    type: 'updateMeat',
+    payload: {
+      operation,
+      index
+    }
+  }
+}
+```
+
+Here, the function being exported is the action creator (which expects two arguments, namely `operation` and `index`) while the action itself is what the function returns:
+
+```javascript
+{
+  type: 'updateMeat',
+  payload: {
+    operation,
+    index
+  }
+}
+```
+
+Note from the above that action creators are just functions. We are now going to make a couple of action creators with a couple of actions. Often you will do this by creating an `actions` folder inside of the `src` folder for your application. Ultimately, what we really want to do is connect our action creator to our component and then send the action that the action creator returns on through the dispatcher so that all the reducers can get notified (this will be much clearer soon). 
+
+There's considerably more going on here! We will walk through all of the steps of actually adding the dispatcher and wiring everything up in the next note.
+
+---
+
+</details>
+
+<details><summary> <strong>Adding the dispatcher</strong></summary>
+
+We are now going to connect the dispatcher to our components. We'll start with just using examples as they relate to everything "frozen".
+
+We have the `FrozenDept` component that uses Redux state:
+
+```javascript
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import updateFrozen from '../../actions/frozenInvUpdate';
+import { bindActionCreators } from 'redux';
+
+class FrozenDept extends Component {
+  state = {};
+
+  increment = (operation, index) => {
+    this.props.updateFrozenInv(operation, index)
+  }
+
+  render() {
+    const { frozenData } = this.props;
+    const frozenInventory = frozenData.map((item, i) => (
+      <div key={i}>
+        <li>{item.food}: {item.quantity}</li>
+        <input type="button" onClick={() => this.increment('+', i)} value='+' />
+        <input type="button" onClick={() => this.increment('-', i)} value='-' />
+      </div>
+    ))
+    return (
+      <div>
+        <h1>The frozen food department!</h1>
+        <ul>
+          {frozenInventory}
+        </ul>
+      </div>
+    )
+  }
+}
+
+function mapStateToProps(state) {
+  return {
+    frozenData: state.frozen
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    updateFrozenInv: updateFrozen
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FrozenDept);
+```
+
+We've got `frozenInvUpdate.js` which exports the action creator that the `FrozenDept` component is going to want to run if the `increment` function runs in our example:
+
+```javascript
+export default (operation, index) => {
+  return {
+    type: 'updateFrozen',
+    payload: {
+      operation,
+      index
+    }
+  }
+}
+```
+
+And the `frozenReducer` is the reducer that returns the state inside of Redux that's informing the `FrozenDept` component:
+
+```javascript
+const seedData = [
+  {
+    food: 'TV Dinners',
+    quantity: 10
+  },
+  {
+    food: 'Frozen Veggies',
+    quantity: 21
+  },
+  {
+    food: 'Frozen Pizzas',
+    quantity: 25
+  }
+];
+
+export default (state = seedData, action) => {
+  // run a bunch of logic if the action has the type we are interested in
+  if (action.type === 'updateFrozen') {
+    const {operation, index} = action.payload;
+    const newState = [...state];
+  
+    switch(operation) {
+      case '+':
+        newState[index].quantity++;
+        return newState;
+      case '-':
+        newState[index].quantity--;
+        return newState;
+      default:
+        return state;
+    }
+  }
+  // if the action does not have a type we are interested in, then just return state
+  return state;
+}
+```
+
+This is where everything can get really confusing. There's just a lot going on here because we are attaching absolutely everything now. But soon we will know almost everything that we need to know about Redux with respect to React. There will hardly be anything else that you ever need to do. It's just going to be JS and logic and whatnot. But you'll know all of the moving parts necessary to make Redux work seamlessly with React.
+
+Now, instead of just having a `type` for the action you return from your action creator, you will often want to have a `payload` to update the state in the Redux store. This is the most common object you will pass in Redux, an object with a `type` and a `payload`. You have to have a `type` because we are dealing with an action and what a reducer does *depends on the action type*. And then the other thing you'll usually have is the `payload`, and the payload just contains data or stuff that comes along with the particular type we specify. So you might see something like what we had above for an action creator:
+
+```javascript
+export default (operation, index) => {
+  return {
+    type: 'updateFrozen',
+    payload: {
+      operation,
+      index
+    }
+  }
+}
+```
+
+This is great, but we still do not have any connection to Redux. Let's go back to the diagram:
+
+<p align='center'>
+  <img width='600px' src='./redux/images-for-section/redux-core-illustration.png'>
+</p>
+
+
+This is all Redux stuff. The `FrozenDept` component has no idea that any of this stuff exists. React doesn't know about any of this stuff. React is running a function that has an action, but it's not connected to the dispatch in any way. So we do technically have the action creator and the action it is returning, but it's not really a part of Redux because right now it will never get to a reducer, and reducers make up the aggregate state in the store which is the whole point of Redux. What we need to do is make it so that the component can call the action creator, but we need to change it so that when we call `updateFrozen` it goes to the dispatch. And then from the dispatch it will go to each reducer. That way the reducer can update itself, update the store, and then inside of our `FrozenDept` component, where we are mapping through `frozenData` from the Redux store, we'll be mapping through a new, updated thing, a new piece of state from the Redux store that has been updated by a reducer(s) which has been updated by a dispatcher(s) which was sent an action from an action creator. 
+
+We can do something like the following to see some of the innerworkings of Redux (this will run as soon as we fire off or start up our application):
+
+```javascript
+export default (state = seedData, action) => {
+  console.log('Frozen reducer is running!');
+  console.log(action);
+  return state;
+}
+```
+
+The actions we would see by default are the ones that Redux core runs and passes to the dispatch, something like the following:
+
+```javascript
+{ type: "@@redux/PROBE_UNKNOWN_ACTION0.f.w.k.m" }
+```
+
+Now we don't care about these actions. But this is how the dispatcher works. We do care about *our* actions however. We want to make it so we can attach *our* action creators to the same dispatch Redux core uses so that all of our reducers can get notified and will update if they need to. So in our case we want to connect our `updateFrozen` action creator to the dispatch. 
+
+How are we going to do this? Well, from before, recall what we got when we looked at the `connect` function from the `react-redux` module. We got something like the following:
+
+```javascript
+connect(mapStateToProps, mapDispatchToProps, mergeProps, _ref2) { ... }
+```
+
+We have already experienced and used `mapStateToProps` which allowed us to grab from any component any pieces of state we wanted from the Redux store as props. We will now focus on `mapDispatchToProps`. And it's going to do exactly the same thing that `mapStateToProps` did, where we have something like `this.props.frozenData` which is mapped to the Redux store: 
+
+```javascript
+function mapStateToProps(state) {
+  return {
+    frozenData: state.frozen
+  }
+}
+```
+
+We are about to make a `this.props.updateFrozen` and we're going to map it to the dispatch (this is how we are going to connect the two--we are going to go from having a component that doesn't know about any of the Redux stuff to a component that can pass the function to the dispatcher which will notify each reducer):
+
+Here are some notes about the `default export` from a component when we are using Redux:
+
+- Normal component export when using React:
+  + `export default FrozenDept;`
+- When applicable (state doesn't need to be updated in the store), just supply `mapStateToProps` as the only argument to `connect`:
+  + `export default connect(mapStateToProps)(FrozenDept);`
+- When applicable (state DOES need to be updated in the store), supply both `mapStateToProps` as well as `mapDispatchToProps` to `connect` in that order:
+  + `export default connect(mapStateToProps, mapDispatchToProps)(FrozenDept);`
+
+The point is that now we can do `this.props.updateFrozen(operation, index)` instead of `updateFrozen(operation, index)`. And now the exact same code will run, BUT it will go to the dispatch. And because it goes to the dispatch, it will go to every single reducer. The difference from before when Redux core was doing things by default:
+
+<p align='center'>
+  <img width='800px' src='./redux/images-for-section/wired-dispatch.png'>
+</p>
+
+You can see how our `type` and `payload` will be as we specified previously, and we can see how this is sent to ALL of our reducers (we are using a `console.log` in each reducer to specify that that reducer is running).
+
+So what's the upshot here? Well, we're bringing it home. This is where the magic is finally going to happen. If we go to `frozenReducer`, then we can see it is getting notified by the frozen action that, "Hey, I just happened. A `type` of `updateFrozen` just happened." And not only `frozenReducer` but also the other reducers are getting notified as well. *Every* reducer gets notified when an action happens.
+
+So in our `frozenReducer` we can modify the code to look as follows:
+
+```javascript
+export default (state = seedData, action) => {
+  console.log('Frozen reducer is running!');
+  console.log(action);
+  if (action.type === 'updateFrozen') {
+    console.log('I care about this action!');
+    return state
+  } else {
+    return state;
+  }
+}
+```
+
+This code will run any time the dispatch sends an action over. (This will be true of all reducers.) Our code as specified is going to let us know that this code is running (the first `console.log` tells us what reducer fires off) and what action just happened (the second `console.log`). IF the action type equals `updateFrozen`, then we are going to tell the console from the `frozenReducer` that we care about that action and we are going to run some logic (to be filled in), and we are going to return state. But otherwise, if the action `type` is not `updateFrozen`, and it won't be on those first three actions that run by Redux core, then we are just going to return state (we won't try to update it in the store in any way). So all we need to do now is just run our logic based on what happens to update the state. We do not want to mutate state directly (just as in React when using `this.setState`) so we will create a *copy* of the state, modify that copy, and then return that copy so that the state will be updated accordingly:
+
+```javascript
+const seedData = [
+  {
+    food: 'TV Dinners',
+    quantity: 10
+  },
+  {
+    food: 'Frozen Veggies',
+    quantity: 21
+  },
+  {
+    food: 'Frozen Pizzas',
+    quantity: 25
+  }
+];
+
+export default (state = seedData, action) => {
+  // run a bunch of logic if the action has the type we are interested in
+  if (action.type === 'updateFrozen') {
+    const {operation, index} = action.payload;
+    const newState = [...state]; // make a copy of state and mutate the copy
+  
+    switch(operation) {
+      case '+':
+        newState[index].quantity++;
+        return newState;
+      case '-':
+        newState[index].quantity--;
+        return newState;
+      default:
+        return state;
+    }
+  }
+  // if the action does not have a type we are interested in, then just return state
+  return state;
+}
+```
+
+What's happening above? We create a copy of `state` with `const newState = [...state];`. Note that `state` will start off as the `seedData` specified at the top of the `frozenReducer` file (this `seedData` will often actually be data pulled from a database or something else). Because of how the `updateFrozen` function works, we know what index we are after which is part of the `payload`, and we can modify this part of the array (the `quantity`) based on the `operation` and the `index`. We will then return `newState`. 
+
+To summarize, IF we get the `updateFrozen` action, and the only reason we would get it is because the `frozenInvUpdate` action creator ran, and the only reason that action creator would run is because the `FrozenDept` component called `this.props.updateFrozen`, and it passed over an `operation` and an `index`.
+
+So let's recap and look at the whole roundtrip: We've got an action (returned from the `frozenInvUpdate` action creator) that's connected to the dispatch inside of our component. When we run that code, the dispatch kicks it off to all the reducers. The `meatReducer` doesn't care. The `produceReducer` doesn't care. Ah, but the `frozenReducer` does care. So the `meatReducer` and the `produceReducer` will just return their old state, but the `frozenReducer` will make a copy of state, it updates that state with some new data, it returns that to the store, and our `FrozenDept` React component is looking at the Redux store, and it notices that, "Oh, something just changed. I had better re-render. What changed? The value of the `frozenReducer`."
+
+So what's the upshot of all this? Well, for our application, not a whole lot, but we have access to the entire frozen department *everywhere* in our application. So we can add any feature anytime anywhere and quickly patch in to that application state instead of passing callbacks all over the place. 
+
+---
+
+</details>
+
+<details><summary> <strong>Some review</strong></summary>
+
+Our application right now is set up like this: At the very top we have `index.js`. That's not a component--that's where `ReactDOM` renders. Inside of `index.js`, the thing we are rendering immediately, unlike in the past, is no longer just `<App />`. It is now  the `Provider` component (which comes from `react-redux`), with `store` as a prop, wrapped around our `App` component. 
+
+We then have our `<App />` component which branches into three components, the `<FrozenDept />`, `<MeatDept />`, and `<ProduceDept />`. So at that point everything is React/JS with the exception of `Provider` which is coming from `react-redux`--we do not yet have anything that is purely Redux (until we involve the store that is). 
+
+Now, Redux has a store. And what we want is for our components to be able to get stuff from the store, and we also want them to be able to update the store. In order for this to happen, there are all of the other moving pieces that need to be in place. At this point it's not all too complicated. We have our component structure and one sort of odd component with `Provider` and then the store is entirely external. The tricky part comes with the rest of Redux which is the dispatch and the reducers. Getting those two things to cooperate with each other is where most of the confusion seems to come in. 
+
+To actually make the store, we have the `rootReducer` which is just Redux, and it imports a bunch of little reducers (the `frozenReducer`, `meatReducer`, and `produceReducer` in our example). They are all just JS functions that all feed in to the `rootReducer`. The `rootReducer` is about to get passed in to the store, but right now we have three little reducers, each of them sort of like their own little department, just like a grocery store. All of them get tied together in `rootReducer`. And back in `index.js`, we grab the `rootReducer` and make the store. So the store gets created from the `rootReducer`, which is simply a combination of all the little reducers, and then we use that to build the store, and the store gets handed to the `Provider`. So the `Provider` now has the store. 
+
+So what's the store? It's the `rootReducer`, which is just the return value of its composite reducer functions (i.e., the reducers). So this gets the store set up. In order to be able to actually use the store, we add `connect` from `react-redux` to every component that we want to know about Redux (in our case all of the components we had used `connect`). Any component that is `connect`ed can go to the store and grab *whatever* piece of state it wants. In our example, we are grabbing from the `ProduceDept` component the `produce` piece of state (or `state.produce` which we are calling `produceData` when we `mapStateToProps`) which is returned by the `produceReducer` which is part of the `rootReducer` which makes up the store. The same thing is true for the `MeatDept` component: we are grabbing the piece of state returned by `meatReducer`  which is part of the `rootReducer` which makes up the store. And we are doing the same thing with the `FrozenDept` component.
+
+This gets us pretty much up to date with the lecture about connecting Redux and React. That's what we used `conect` for (to let any REACT component know about REDUX so the component could use state from the store as props). The second part involved needing to update the state in store which involved needing to update the reducers (since each reducer returns a piece of state). In order to update the reducers, we need a special mechanism. Redux is all about application state. It manages the state of your application, and we want a very consistent, very predictable way of updating the state of the whole application. When Redux really starts to shine is when you have multiple components all trying to change the same thing at the same time. And then you start crossing wires and things start to go heywire. That's specifically what Redux is designed to help with. 
+
+`connect` not only gives us access to the store but also gives us the ability to use the action creators (`frozenInvUpdate`, `meatInvUpdate`, and `produceInvUpdate` in our example), and those action creators will pass up (i.e., return) to dispatch the action, where each action has a `type` property and often a `payload` property as well. All three of our action creators return actions, and we call those action creators with `connect`, and because we map those functions to the dispatcher, when the function returns its value, it will get sent to the dispatch, and the dispatch is going to send those actions to every single reducer. The reducers make a decision about whether or not they should update themselves (i.e., create a new copy of the old state, modify it in some way based on the action `type`, and then return it) or whether they should just return their old state. They return it to the `rootReducer`, and the `rootReducer` is what makes up the store. And because our components are looking at the store through `connect`, they will get notified of any change and re-render accordingly to reflect the updated pieces of state from the store used as props within the component. 
+
+That is the whole cycle! And it is always the same. Why does it have to be so complicated and difficult? Redux is made to make the process as predictable and easy to manage as possible in the long run so that when you're troubleshooting a bug or you need to update a piece of state in some component, then it can be done in "the right way"; that is, it can be done in a very consistent, very predictable way in order to keep wires from getting crossed. 
+
+So next we are going to add the router which will work just as it has, where the `Provider` is going to render `App` and `App` is going to render the router, and the router is going to render everything else.
+
+---
+
+</details>
+
+<details><summary> <strong>Adding the Router</strong></summary>
+
+We are now going to add the React Router to our application. So we've already got Redux, which has pretty much taken over our `index.js`. And while you could put the router around `App` in `index.js`, it's been Rob's experience that `index.js` can get really crowded really fast if you have both the router and all of the Redux setup in the same file because both of them are going to require more and more code. So instead of adding React Router to `index.js`, we are going to add it to `App.js`. This is Rob's convention, but there are several ways to do this; regardless of how you do it, however, you never ever want more than one router. 
+
+So you can immediately do an `npm i react-router-dom` and then import it in your `App.js` file and wrap all of your application in the `BrowserRouter` like so (along with using `Route` to render the components we want to):
+
+```javascript
+import React from 'react';
+import './App.css';
+import FrozenDept from './components/FrozenDept/FrozenDept';
+import MeatDept from './components/MeatDept/MeatDept';
+import ProduceDept from './components/ProduceDept/ProduceDept';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+function App() {
+  return (
+    <Router>
+      <div className="App">
+        <Route path="/frozen-dept" component={FrozenDept} />
+        <Route path="/meat-dept" component={MeatDept} />
+        <Route path="/produce-dept" component={ProduceDept} />
+      </div>
+    </Router>
+  );
+}
+
+export default App;
+```
+
+Now we won't see anything upon the application loading because no path currently matches what we have above, but we can fix that. With a `NavBar` component: `<Route path="/" component={NavBar} />`
+
+We want this to be present no matter where we are in our application. Note that the router is not interfering with Redux at all. It's inside of `App` which is inside of the `Provider` which has access to the Redux store. So these two are not in conflict at all.
+
+We can then use `Link` tags within the `NavBar` to link to the appropriate paths. Why do we use `Link` tags instead of `a` tags? Because we do not want to leave the application. Then the `reacte-router-dom` module will manage the JS that will just rewrite the URL instead of actually taking us away from the application. So it will update the DOM for us without taking us away.
+
+So, in our example, we can count up and down and change quantities for different items, then navigate to another component using the Router, hop back, and our changes are still in effect. Note that going from one component to another means we are actually mounting and unmounting, popping components in and out of the main frame of `App.js`, and when the component pops back in, it grabs the data it needs from Redux, and Redux, because it's outside of React, nothing changes. So this is really really handy.
+
+---
+
+</details>
+
+<details><summary> <strong>Getting more from Redux (clearing all the inventory)</strong></summary>
+
+Suppose we wanted to see the entire grocery store and the quantity of food items in each department. Furthermore, and more importantly, supposed we wanted a way to clear all the inventory and set all the food quantities back to 0. How could we do this? Normally, without Redux, this would probably be rather painful. We would need access to all of the state from each food department and we would also need to pass down callbacks from each food department in order to make it possible for their state to change. Essentially, some serious rearchitecting of our application would be involved. And who wants to do that? But with Redux it's pretty simple (relatively)!
+
+If we want to display the sum of all the quantities of food items in each food department, then we will certainly need to read from the store all the quantities for each food item in a department; that is, we will need `mapStateToProps`:
+
+```javascript
+function mapStateToProps(state) {
+  return {
+    frozenData: state.frozen,
+    produceData: state.produce,
+    meatData: state.meat,
+  };
+}
+```
+
+Since we are also going to want to *update* the store (i.e., reset the inventory for all food departments), we are definitely going to need `mapDispatchToProps`:
+
+```javascript
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    // ???
+  }, dispatch)
+}
+```
+
+But what do we pass to `bindActionCreators` inside of `mapDispatchToProps`? Well, clearly an action creator of some sort, but what could we possibly use for our action creator here? It's actually quite simple: we just need an action creator with a `type` of `clearInventory` or some other message that *all* of the reducers can be on the lookout for to see if they need to clear their inventory. So the `clearInventory` action creator can be as simple as the following: 
+
+```javascript
+export default () => {
+  return {
+    type: 'clearInventory'
+  }
+}
+```
+
+Hence, our `mapDispatchToProps` can look like the following:
+
+```javascript
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    clearInventory
+  }, dispatch)
+}
+```
+
+We can now fire off the `clearInventory` action creator from within our component by invoking `this.props.clearInventory()`. Where should we invoke this? One very easy way would be to simply have a `button` with an `onClick` event handler and then call the action creator within the event handler:
+
+``` HTML
+<button onClick={this.clearInventory}>Reset All Inventory</button>
+```
+
+And `clearInventory` would be a class method like this: 
+
+```javascript
+clearInventory = () => {
+  this.props.clearInventory()
+}
+```
+
+But so far we haven't actually *cleared* or reset any inventory. We haven't spelled out how to update the store. How do we update the store? By means of reducers. How does everything we have done so far have anything to do with our reducers? Well, when the button referenced above is clicked, what happens? It triggers an action creator that gets sent to the dispatch and the dispatch sends the action returned by the action creator to *all* of the reducers. So what remains now is simply to add conditional logic to the reducers that should care about an action with `type: 'clearInventory'`.
+
+As an example, the `frozerReducer` might be updated as follows (along with the other reducers that need to share this logic):
+
+```javascript
+const seedData = [
+  {
+    food: 'TV Dinners',
+    quantity: 10
+  },
+  {
+    food: 'Frozen Veggies',
+    quantity: 21
+  },
+  {
+    food: 'Frozen Pizzas',
+    quantity: 25
+  }
+];
+
+export default (state = seedData, action) => {
+  // run a bunch of logic if the action has the type we are interested in
+  if (action.type === 'updateFrozen') {
+    const {operation, index} = action.payload;
+    const newState = [...state];
+  
+    switch(operation) {
+      case '+':
+        newState[index].quantity++;
+        return newState;
+      case '-':
+        newState[index].quantity--;
+        return newState;
+      default:
+        return state;
+    } 
+  } else if (action.type === 'clearInventory') {
+    const newState = [...state];
+    newState.forEach((foodItem) => {
+      foodItem.quantity = 0;
+    })
+    return newState
+  }
+  // if the action does not have a type we are interested in, then just return state
+  return state;
+}
+```
+
+Notice how the only real addition was the following part:
+
+```javascript
+else if (action.type === 'clearInventory') {
+  const newState = [...state];
+  newState.forEach((foodItem) => {
+    foodItem.quantity = 0;
+  })
+  return newState
+}
+```
+
+This is *super awesome* because we might have an application where a single action effects 10 different reducers or even more. In this example, we just have one action (i.e., the `clearInventory` one) that effects 3 reducers. But it quickly becomes apparent just how nifty this can be. This basically gives us the ability to add features however we want in our application with simplicity and ease. Need access to some application state? Throw in `mapStateToProps` and grab what you need. Need to be able to *update* state? Throw in `mapDispatchToProps` and whatever action you intend to effect different reducers (and then update the effected reducers). 
+
+We now have immense power over our application state from the very beginning to the maintenance phase of our software. Of course, the real question now becomes how do we do asynchronous things with Redux? Because that is where the true power will be unleashed (e.g., grabbing from databases, making API calls, etc.). We will look at asynchronous action creators next.
+
+In summary, our `Main` component just remarked on might look as follows:
+
+```javascript
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import clearInventory from '../../actions/clearInventory';
+
+class Main extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  clearInventory = () => {
+    this.props.clearInventory()
+  }
+
+  render() {
+    const { frozenData, meatData, produceData } = this.props;
+
+    return (
+      <div>
+        <h1>Quantity of items in Frozen Department: {sumInventory(frozenData)}</h1>
+        <h1>Quantity of items in Meat Department: {sumInventory(meatData)}</h1>
+        <h1>Quantity of items in Produce Department: {sumInventory(produceData)}</h1>
+        <button onClick={this.clearInventory}>Reset All Inventory</button>
+      </div>
+    );
+  }
+}
+
+function sumInventory(foodDept) {
+  return foodDept.reduce((acc, foodItem) => {
+    return acc + foodItem.quantity;
+  }, 0)
+}
+
+function mapStateToProps(state) {
+  return {
+    frozenData: state.frozen,
+    produceData: state.produce,
+    meatData: state.meat,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    clearInventory
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
+```
+
+---
+
+</details>
+
+## Redux Middleware (asynchronous action creators!)
+
+<details open><summary> <strong>Introduction</strong></summary>
 
 TBD
 
 ---
 
 </details>
+
+
+
+
 
 ## Supplemental Notes
 
@@ -5747,8 +7353,3 @@ TBD
 ---
 
 </details>
-
-
-
-
-
