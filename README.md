@@ -492,6 +492,25 @@ Now for the actual docs reference:
 
 </details>
 
+<details><summary> <strong>Click to expand docs reference for Hooks API</strong></summary>
+
+- [Basic Hooks](https://reactjs.org/docs/hooks-reference.html#basic-hooks)
+  + [useState](https://reactjs.org/docs/hooks-reference.html#usestate)
+  + [useEffect](https://reactjs.org/docs/hooks-reference.html#useeffect)
+  + [useContext](https://reactjs.org/docs/hooks-reference.html#usecontext)
+- [Additional Hooks](https://reactjs.org/docs/hooks-reference.html#additional-hooks)
+  + [useReducer](https://reactjs.org/docs/hooks-reference.html#usereducer)
+  + [useCallback](https://reactjs.org/docs/hooks-reference.html#usecallback)
+  + [useMemo](https://reactjs.org/docs/hooks-reference.html#usememo)
+  + [useRef](https://reactjs.org/docs/hooks-reference.html#useref)
+  + [useImperativeHandle](https://reactjs.org/docs/hooks-reference.html#useimperativehandle)
+  + [useLayoutEffect](https://reactjs.org/docs/hooks-reference.html#uselayouteffect)
+  + [useDebugValue](https://reactjs.org/docs/hooks-reference.html#usedebugvalue)
+
+---
+
+</details>
+
 ## React 101
 
 <details><summary> <strong>Starter notes (course starter files, <code>create-react-app</code>, React docs, etc.)</strong></summary>
@@ -7533,7 +7552,7 @@ is that a variable called `theStore` is created that already has our middleware 
 
 </details>
 
-<details><summary> <strong>Async action creators with <code>redux-thunk</strong></summary>
+<details><summary> <strong>Async action creators with <code>redux-thunk</code></strong></summary>
 
 We are now going to look at our next piece of middleware: [redux-thunk](https://www.npmjs.com/package/redux-thunk). This is sort of "Step 2" of the middleware process. The `redux-promise` module is nice but it gives us very little power or control over things. 
 
@@ -7713,11 +7732,225 @@ So `redux-thunk` is actually very powerful because when you need control inside 
 
 </details>
 
+## Before Hooks
+
+<details><summary> <strong>Introduction to hooks and whether or not you should use them</strong></summary>
+
+As [the docs](https://reactjs.org/docs/hooks-intro.html) say, "Hooks are a new addition in React 16.8. They let you use state and other React features without writing a class." They say basically the same thing in [the React changelog](https://github.com/facebook/react/blob/master/CHANGELOG.md#1680-february-6-2019) where we can see Hooks were added on February 6, 2019.
+
+So what does it mean to use state and other React features without writing a class? Well, up until now, every time we have wanted to use state, the word `this` for any reason, or any of the component lifecycle methods (e.g., `componentDidMount`, `componentDidUpdate`, `render`, etc.), then we had to use a class. Functional components were only useful for presentational components. They never managed their own state. The only thing they had was props. Hooks seeks to give you the option of doing it either way (i.e., using state and React features in classes or in functions). 
+
+Before going deep into things, consider the following very simple class-based version of a simple counter:
+
+```javascript
+class App extends React.Component {
+  state = { counter: 0 }
+  updateCounter = () => {
+    this.setState((prevState, props) => ({
+      counter: prevState.counter + 1
+    }));
+  }
+  render() {
+    return(
+      <div>
+        <div>Counter: {this.state.counter}</div>
+        <button onClick={this.updateCounter}>Add One!</button>
+      </div>
+    )
+  }
+}
+```
+
+Nothing shocking here. Very straightforward. Now consider the following equivalent hooks-based version of the same counter:
+
+```javascript
+import React, {useState} from 'react';
+import './App.css';
+
+function App() {
+  const [counter, setCounter] = useState(0);
+
+  return(
+    <div>
+      <div>Counter: {counter}</div>
+      <button onClick={() => setCounter(counter + 1)}>Add One!</button>
+    </div>
+  )
+}
+```
+
+We're doing the exact same thing we were doing before, but now we are doing it without the overhead of a class. It's definitely shorter, less clunky, fewer extra variables, etc., in order to accomplish the same thing with the new system. A couple comments though:
+
+- [The docs](https://reactjs.org/docs/hooks-intro.html#no-breaking-changes) remark on how there are no breaking changes with hooks.
+  + Completely opt-in (you can try Hooks without rewriting any existing code): Hooks are the future of React but there's no reason to feel like you have to use them.
+  + 100% backwards-compatibile (no breaking changes): So you can use hooks in a class-based application without any problems.
+  + Available as of v16.8.0
+- **There are no plans to remove classes from React:** This is a huge line. Very important. They tell us we can read more about the gradual adoption strategy for Hooks in [this section](https://reactjs.org/docs/hooks-intro.html#gradual-adoption-strategy). The basic point is that this is a dual strategy by Facebook (by the React team)--they are not planning on getting rid of classes. So you can use both at the moment. That may change eventually, but there are no plans currently to move away from classes. This is important to keep in mind because if you are a new developer, then a lot of times you want to overcommit to whatever the cool/new/shiny thing is, and that's not a good idea. It doesn't mean don't use hooks, but it means don't completely overcommit to hooks and forget about classes forever. You need a *good* reason to go without classes; otherwise, you'll end up in a bad place later on. The industry right now remains object-oriented focused. Whether or not you like it, Java and C# still dominate the software engineering industry and they are class-based and object-oriented.
+- **Hooks don’t replace your knowledge of React concepts:** "Instead, Hooks provide a more direct API to the React concepts you already know: props, state, context, refs, and lifecycle. As we will show later, Hooks also offer a new powerful way to combine them." This should be good news! All of our hard work with classes will not be for waste at all. If anything, knowing hooks will simply be another powerful tool in our React toolbelt. So React is the same--it's just, "Hey! Here's a new tool." Hooks do not give you new power that you did not already have. It's just a different way to organize your code. It's so difficult to accept that if you are learning a new thing. It's tempting to abandon classes and go straight to hooks, but that is a bad idea. Don't do that! Any large existing codebase is going to be all classes right now. As the React team [notes](https://reactjs.org/docs/hooks-intro.html#gradual-adoption-strategy) in the general adoption strategy section, "Crucially, Hooks work side-by-side with existing code so you can adopt them gradually. There is no rush to migrate to Hooks. We recommend avoiding any “big rewrites”, especially for existing, complex class components. It takes a bit of a mindshift to start “thinking in Hooks”. In our experience, it’s best to practice using Hooks in new and non-critical components first, and ensure that everybody on your team feels comfortable with them." They go on, "We intend for Hooks to cover all existing use cases for classes, but we will keep supporting class components for the foreseeable future. At Facebook, we have tens of thousands of components written as classes, and we have absolutely no plans to rewrite them. Instead, we are starting to use Hooks in the new code side by side with classes."
+- At the end of the point above, Facebook notes that they have thousands of class-based components and they have no intention of rewriting them with hooks. If that's Facebook's position, then you have to take them seriously. You do not have to go to hooks. They are simply a new tool that can unleash potentially new power in your applications.
+- The overall point is that you should not be totally overcommitting and selling out to hooks forgetting about classes and abandoning them completely. Similarly, you should not remain stuck in the mud refusing to learn hooks and only stay with classes. Both hooks and classes are absolutely essential if you are going to be a React developer. Hooks are the intended future of the framework, but classes remain the tried and true way of going about wiring together large applications and they have been used extensively since ES6+. They both do the same thing. They're just two different tools. Don't just carry a hammer. Don't just carry a screwdriver. Carry a hammer and a screwdriver and use the one that you need.
+
+---
+
+</details>
+
+<details><summary> <strong>Using React to explain OOP and functional programming</strong></summary>
+
+We are now going to talk about programming paradigms, specificially object-oriented programming (OOP) and functional programming (FP), and we will use React as the landscape in which we discuss the different defining concepts of each paradigm. The reason this is important to talk about in the context of choosing whether or not to use class-based components or function-based components with state (i.e., hooks) is because that is precisely what we are dealing with here. We have classes and we have hooks, and they are in direct competition with each other. They do exactly the same thing. You can use them together, but all that means is you can have a class that has hooks in it, but they do the same thing in that one is managing state at an object level (i.e., classes) and the other is managing it at a functional level (i.e., hooks). And those are two completely different things. The difference between the two is entirely organizational. It is how you organize your code. It does not change what you code does, it changes how your code is organized. So a programming paradigm is for the developer, and you have one whether you know it or not, but it's for the developer not for the machine. The overall point is that classes and hooks are all about how you organize your code. As the React team noted, hooks do not replace any of your existing knowledge--they simply make some of the API access easier and more straightforward. Two of the main programming paradigms are OOP and FP. We will now discuss them in the context of React. Classes use OOP while Hooks use FP. We'll start with classes and OOP since that is what we have been using up until now.
+
+OOP follows a couple of tenants--there are 4 pillars of OOP:
+
+1. **Encapsulation:** This is just a fancy word that means we are going to take all of the data that belongs together and all of the functions that change or mutate that data will be in the same thing. So if you want to change whatever data there is (e.g., an array, an object, etc.), you have to use a method or a function and it has to belong to "me". So the object contains everything. That is exactly how our code has worked so far. For example, we never set state directly--we used an internal class method, `this.setState`, in order to change stuff because the component needs to be encapsulated. We want the data of the object or component (e.g., `this.state.counter` in the previous note) to be managed by the object or component, and we want to do that as much as possible. So we do mutate state, but we do it with setters (e.g., `setState`) and getters specific to the class we are working with. But OOP mutates state on purpose--it just does it in a *controlled* way. 
+2. **Abstraction:** The idea of abstraction is that we want to hide everything that we possibly can from the outside world and only expose what we absolutely have to. The components work this way in React because `this.WHATEVER` can't be seen by anybody else because it belongs to that object or component so if we make a `this.updateCounter` or `this.changeName` or something like that, then no other component can use that or even see the state inside of it. Nobody can use those methods and nobody can change that data unless we pass those methods around. So as a quick example, if we have a component that renders another component (e.g., `App` rendering `Counter`), then `App` can have all of its own stuff and `Counter` can have all of its own stuff, and they do not see each other, but if we want `Counter` to be able to use or see something inside of `App`, then we pass this something down as a prop to `Counter`. That prop can show data and it can enable functions. So we can run code inside of `Counter` that's actually written inside of `App`. In the same way, we can access variables inside of `Counter` that are actually written inside of `App`. But all of the variables that we see in `Counter` that are coming from `App`...we can't change them. We can only see the values of them. The code we can run inside of `Counter` that can change the variables in `App` still comes from `App`. So basically you're given an outside look into `App` within `Counter`, but `App` is still changing itself. `Counter` cannot change anything in `App`. `Counter` can only tell `App` to change itself. So, again, there's mutation going on. We're changing variables inside of objects, but we're hiding as much as possible from everybody else in order to keep the encapsulation principle as alive as possible.
+3. **Inheritance:** We won't spend much time on this since JavaScript is not an inheritance-based language but a prototype-based language (i.e., JavaScript doesn't actually support real inheritance). But the basic idea is that you can take an existing class and make a new class with pretty much everything that the main one already has. We used this with the `React` object from the `react` module when we did something like `class MyComponent extends React.Component`. So we got all of the super class (i.e., `React.Component`) stuff inside of `MyComponent` by calling `super` within our own class `constructor` method. So we get `componentDidMount`, `componentDidUpdate`, `render`, etc. It's helpful to do this because you can customize and reuse existing code. 
+4. **Polymorphism:** This may sound scary but it's really not a big deal at all. Basically, polymorphism means that if you extend a class, like extending `React.Component` into our own `MyComponent` class, then if we want to use the same method from `React.Component`, then we have the ability to overwrite it. We actually do this all the time because `componentDidMount` is defined inside of `React.Component`--we just define it sometimes in `MyComponent`. If we don't define it, then we're using the one that `React.Component` has made for us. If we overwrite it, then we're not using the `React.Component` one anymore--we're using *our* method. That's all polymorphism is. And we have to use it because if we want to our component to be customizable from the extended class, which in this case is `React.Component`, then we have to use polymorphism. 
+
+This is a super brief overview of OOP in the context of React, but the main thing here is that we are keeping everything internal (encapsulation), we're trying to hide everything we can from the outside world (abstraction), we get to use stuff from other classes like `React.Component` (inheritance), and we can overwrite stuff in `React.Component` whenever we want to (polymorphism). Basically what we are doing with all of this is MUTATING state but doing so in a very controlled way. But we're changing state constantly in an OOP approach. But it's okay because we are following the precepts outlined above to make sense out of everything.
+
+For FP, there are two main pillars or tenets: 
+
+1. **Purity:** This means that we do not mutate state. There is no side effect ever of running a pure function. Given a piece of input, a pure function should *always* return the same output. That's not true in OOP because state might be different. If state is different, then given a piece of input, we could get any number of outputs because it depends on what the state of the program is. In a pure function, that is never true; that is, if you give a piece of input, then you will always get the same output. 
+2. **Immutability:** We still have state. We just don't ever change it. We simply replace it. So in OOP we're constantly changing the same variable (e.g., `this.state`) in a very controlled way, but in FP we still need the data to change but instead of actually changing a variable, you replace the old variables (hence the immutability). We never change anything, we simply overwrite what used to be there. We have a super awesome example that we have been using, and it is called REDUX. Redux uses FP because there is state (i.e., we do have a store), but what informs the store to decide what is in the store? Well, we have the reducers. Those are what decide what's inside of the store. We have a bunch of little reducers. What do the reducers return? They never ever change a piece of state. They simply return something different. So they never mutate state. They simply update the store with a totally different new variable. This isn't to say we don't change the store. We do. We do it all the time. But we don't mutate the stuff inside of the store. We overwrite what used to be there, and we do this with our reducers which are pure functions. 
+
+As can be seen from the above descriptions of everything from OOP and FP, purity and immutability are very different from the mutation that goes on in OOP. This should give you more context for both paradigms and the merits of both. 
+
+---
+
+</details>
+
+<details><summary> <strong>Paradigm chart</strong></summary>
+
+Consider the following programming paradigm chart we will use to guide us through the next few notes:
+
+<p align='center'>
+  <img width='400px' src='./before-hooks/images-for-section/programming-paradigms.png'>
+</p>
+
+We are now going to continue working through what we started to address in the previous note only in a more "these are the actual ways to program" manner. So before we talked specifically about OOP and FP, but those two aren't actually in competition with each other. They tend to be somewhat these days because programmers from both sides can hate those of the other side. But really these paradigms aren't in competition with each other. 
+
+The chart above has a horizontal access that represents how to do state management and a vertical axis that represents how data and methods are associated in an application. These are the ways we will discover how we want to organize our code and what paradigm we want to use. There are a lot of different ways to look at this particular concept but this is how we will frame things for now and we will subsequently explore and code out each thing listed above. 
+
+The first option for state management is the imperative programming paradigm. In regards to state management, imperative programming means that you simply mutate state. If you want to change the value of a variable, then you change it. There is no shared state. You make a variable and then you change it whenever you need to. This is almost certainly how you learned to program because it's awesome when you have a small problem. You simply get work done and can start coding right away. You don't have to worry about setting up really complicated structures. 
+
+The second option for state management is the functional programming paradigm. In regards to state management, functional programming means we primarily have shared state.
+
+If we now go to how the data and methods are associated with each other, we will have OOP and procedural. 
+
+In procedural programming, that just means there is no association between the data and the methods. 
+
+- **Imperative and Procedural (I + P):** Just like with imperative, we simply mutate state. It's kind of like the wild wild west. Procedural is the same way. If you need a function, then you write it. It doesn't make any difference what data it uses. You can use any data you want and you can declare data anywhere you want. A lot of times this just means you're using a ton of globals, and this is probably where you started programming (i.e., imperative and procedural). 
+- **Functional and Procedural (F + P):** This means you are going to manage state very carefully. You will avoid mutating it whenever possible. And the data you are passing around doesn't have to be associated with a particular collection of functions because all of the functions are pure.
+- **Imperative and Object-Oriented (I + OOP):** This means we are going to mutate state, but we are going to handle the state in the small, controlled, and encapsulated little objects. We have our little objects to keep all the setters and getters in one place, and we're just going to mutate directly but in a very controlled way.
+- **Functional and Object-Oriented (F + OOP):** FP and OOP, as this point illustrates, can work together. That would mean we would try to eliminate state if at all possible, but any time where we have to use state, we'll put it inside of objects. 
+
+---
+
+</details>
+
+## Hooks
+
+<details><summary> <strong>Back to Hooks</strong></summary>
 
 
+If we head back to [the docs](https://reactjs.org/docs/hooks-overview.html) and look at the [Hooks at a Glance](https://reactjs.org/docs/hooks-overview.html) section, then we will see material on the [State Hook](https://reactjs.org/docs/hooks-overview.html#state-hook) and the [Effect Hook](https://reactjs.org/docs/hooks-overview.html#effect-hook). These will be the Hooks you use most often and the React docs has [a section on the useState Hook](https://reactjs.org/docs/hooks-state.html) as well as [a section on the useEffect Hook](https://reactjs.org/docs/hooks-effect.html). 
 
+So there are two main Hooks we will use (there are others and we can write some ourselves but these will be the most common): State Hook, Effect Hook. These are the Hook names, and we *use* them like so:
 
+```javascript
+import React, { useState, useEffect } from 'react';
+```
 
+That is, to use the State Hook and the Effect Hook, you import `useState` and `useEffect`, respectively. Generally, "use" prepends the name of the Hook you will use (e.g., `useContext`, `useReducer`, etc.). [Here](https://reactjs.org/docs/hooks-reference.html) is the Hooks API reference, and we can see the Hooks categorized as Basic and Additional:
+
+- [Basic Hooks](https://reactjs.org/docs/hooks-reference.html#basic-hooks)
+  + [useState](https://reactjs.org/docs/hooks-reference.html#usestate)
+  + [useEffect](https://reactjs.org/docs/hooks-reference.html#useeffect)
+  + [useContext](https://reactjs.org/docs/hooks-reference.html#usecontext)
+- [Additional Hooks](https://reactjs.org/docs/hooks-reference.html#additional-hooks)
+  + [useReducer](https://reactjs.org/docs/hooks-reference.html#usereducer)
+  + [useCallback](https://reactjs.org/docs/hooks-reference.html#usecallback)
+  + [useMemo](https://reactjs.org/docs/hooks-reference.html#usememo)
+  + [useRef](https://reactjs.org/docs/hooks-reference.html#useref)
+  + [useImperativeHandle](https://reactjs.org/docs/hooks-reference.html#useimperativehandle)
+  + [useLayoutEffect](https://reactjs.org/docs/hooks-reference.html#uselayouteffect)
+  + [useDebugValue](https://reactjs.org/docs/hooks-reference.html#usedebugvalue)
+
+The `useState` hook, like we saw before, gives us the ability to interact with or use component-level state just like we always have with our class components but inside of a function component. The `useEffect` hook allows us to use component lifecycle methods. So things like `componentDidMount`, `componentDidUpdate`, `componentWillUmount`, etc., all require us to use the `useEffect` hook. This is because these methods come as a result of *extending* `React.Component` in our class methods. So we need some way to tap into them inside of functional components and the way we do that is with the `useEffect` hook. 
+
+Let's now revisit our super basic counter component that used `useState`: 
+
+```javascript
+import React, {useState} from 'react';
+import './App.css';
+
+function App() {
+  const [counter, setCounter] = useState(0);
+
+  return(
+    <div>
+      <div>Counter: {counter}</div>
+      <button onClick={() => setCounter(counter + 1)}>Add One!</button>
+    </div>
+  )
+}
+```
+
+The line
+
+```javascript
+const [counter, setCounter] = useState(0);
+```
+
+may look somewhat intimidating but it shouldn't be. It's array destructuring and very similar to what have done before with something like 
+
+```javascript
+const { name, age } = this.state;
+```
+
+where we create variables `name` and `age` from `this.state.name` and `this.state.age`, respectively. We're doing the exact same thing with `const [counter, setCounter] = useState(0);` except when you are talking about arrays you are going to grab things by index. Clearly, then, somehow `useState(0)` must be returning an array. If we drop a little `console.log(useState(0))` below `const [counter, setCounter] = useState(0);` then we can see what this is exactly:
+
+<p align='center'>
+  <img width='400px' src='./hooks/images-for-section/useState-illustration.png'>
+</p>
+
+So we can see that calling `useState(0)` returns an array of two elements where the first element is the number `0`, and the second element is a function. We don't need to worry about all the function details right now, but just know React is giving you that. So what just happened? What do the two elements coming from `useState` do exactly? 
+
+Well, whatever we pass to `useState` is going to be the first element in the array. So when we do 
+
+```javascript
+const [counter, setCounter] = useState(0);
+```
+
+what we are effectively doing is initializing `counter` to be `0`. 
+
+So whatever we pass the `useState` Hook is going to be our initial piece of state; in the example above, the piece of state `counter` will have an initial value of `0`. Now, `setCounter`, on the other hand, is going to be the means by which we interact with our piece of state. So `setCounter` is going to be kind of like calling `this.setState`. 
+
+A couple notes from what we have just discussed:
+
+- The zeroth index of `useState(arg)` is effectively `this.state.arg` in the lens of what we have used previously.
+- The first index of `useState(arg)` is effectively `this.setState({ arg })`
+
+Said more concisely and differently:
+
+- `[0]` or `counter` = the `this.state`
+- `[1]` or `setCounter` = `this.setState(thing [0])`
+
+And note that the `0` we passed `useState(0)` previously when we ran `const [counter, setCounter] = useState(0);` is effectively equivalent to initializing `this.state = { counter: 0 }` in a class. 
+
+It's worth noting that Hooks *do not* use an object to store state like we have done previously with classes. We're not putting things in objects where we have things like `this.state.WHATEVER`. From now on, inside of the Hooks landscape, we are just using a plain variable. So `counter` contains the value of the state for our counter, and it is not associated with any other piece of state. And it is also not stored inside of an object that we keep track of. It's just its own variable. And really this is just some "frosting"; that is, React state works the same in Hooks as it does when we are using classes. You are not getting any new power--you're just interacting with the React API differently than we have in the past. Exactly the same stuff, same performance, same security, etc. It's just: How do you want to interact with React? Do you want to use the Hooks system and just write functions? Or do you want to use classes? Either way React is going to do the same thing under the hood. 
+
+---
+
+</details>
+
+<details><summary> <strong>The return of the weather widget!</strong></summary>
+
+We are now going to tackle making HTTP requests with Hooks because this is one of the most common things you will do with React (you're going to constantly need data from somewhere). And the Hooks system is rather nice in this arena. 
+
+TBD ...
+---
+
+</details>
 
 ## Supplemental Notes
 
